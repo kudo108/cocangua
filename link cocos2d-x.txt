@@ -1,0 +1,1 @@
+http://cocos2d-x.googlecode.com/files/cocos2d-2.0-x-2.0.3.zip
