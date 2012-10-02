@@ -1,10 +1,18 @@
-﻿Build started 10/1/2012 5:10:07 PM.
+﻿Build started 10/2/2012 11:42:41 AM.
      1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (rebuild target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug.win32\CoCaNgua.win32.unsuccessfulbuild" because "AlwaysCreate" was specified.
+     1>_PrepareForClean:
+         Deleting file "Debug.win32\CoCaNgua.win32.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug.win32\CoCaNgua.win32.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp Animals.cpp AnimalUnit.cpp main.cpp Map.cpp MapLocation.cpp Map_classic.cpp XiNgau.cpp
+         XiNgau.cpp
+         Map_classic.cpp
+         MapLocation.cpp
+         Map.cpp
          main.cpp
+         AnimalUnit.cpp
+         Animals.cpp
          HelloWorldScene.cpp
          AppDelegate.cpp
          Generating Code...
@@ -17,10 +25,35 @@
          Debug.win32\CoCaNgua.win32.exe.embed.manifest.res
          Debug.win32\AppDelegate.obj
          Debug.win32\HelloWorldScene.obj
+         Debug.win32\Animals.obj
+         Debug.win32\AnimalUnit.obj
          Debug.win32\main.obj
-     1>LINK : fatal error LNK1104: cannot open file 'libExtensions.lib'
-     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (rebuild target(s)) -- FAILED.
+         Debug.win32\Map.obj
+         Debug.win32\MapLocation.obj
+         Debug.win32\Map_classic.obj
+         Debug.win32\XiNgau.obj
+       Manifest:
+         Deleting file "Debug.win32\CoCaNgua.win32.exe.embed.manifest".
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug.win32\CoCaNgua.win32.exe.embed.manifest" /manifest Debug.win32\CoCaNgua.win32.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug.win32\CoCaNgua.win32.exe.embed.manifest.res" Debug.win32\CoCaNgua.win32_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\CoCaNgua.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug.win32\CoCaNgua.win32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\CoCaNgua.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\CoCaNgua.win32.lib" /MACHINE:X86 Debug.win32\CoCaNgua.res
+         Debug.win32\CoCaNgua.win32.exe.embed.manifest.res
+         Debug.win32\AppDelegate.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\Animals.obj
+         Debug.win32\AnimalUnit.obj
+         Debug.win32\main.obj
+         Debug.win32\Map.obj
+         Debug.win32\MapLocation.obj
+         Debug.win32\Map_classic.obj
+         Debug.win32\XiNgau.obj
+         CoCaNgua.win32.vcxproj -> E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\CoCaNgua.win32.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug.win32\CoCaNgua.win32.unsuccessfulbuild".
+         Touching "Debug.win32\CoCaNgua.win32.lastbuildstate".
+     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (rebuild target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:13.61
+Time Elapsed 00:00:10.22
