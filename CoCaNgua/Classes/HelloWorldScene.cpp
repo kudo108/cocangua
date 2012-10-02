@@ -1,5 +1,5 @@
 #include "HelloWorldScene.h"
-
+#include "XiNgau.h"
 using namespace cocos2d;
 
 CCScene* HelloWorld::scene()
@@ -38,7 +38,7 @@ bool HelloWorld::init()
         //////////////////////////////////////////////////////////////////////////
         // add your codes below...
         //////////////////////////////////////////////////////////////////////////
-
+		/*
         // 1. Add a menu item with "X" image, which is clicked to quit the program.
 
         // Create a "close" menu item with close icon, it's an auto release object.
@@ -84,6 +84,21 @@ bool HelloWorld::init()
         this->addChild(pSprite, 0);
 
         bRet = true;
+		*/
+		CCSize size = CCDirector::sharedDirector()->getWinSize();
+		//background
+		CCSprite* background = CCSprite::create("image/Background_classic.jpg");
+        CC_BREAK_IF(! background);
+		background->setScaleX(0.5859375);
+		background->setScaleY(0.5859375);
+        // Place the sprite on the center of the screen
+        background->setPosition(ccp(size.width/2-100, size.height/2));
+
+        // Add the sprite to HelloWorld layer as a child layer.
+        this->addChild(background, 0);
+
+
+		bRet = true;
     } while (0);
 
     return bRet;

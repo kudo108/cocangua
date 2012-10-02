@@ -1,7 +1,7 @@
 #include "main.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
-
+#include <atlstr.h>
 USING_NS_CC;
 
 // uncomment below line, open debug console
@@ -25,10 +25,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     // create the application instance
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
-    eglView->setFrameSize(480, 320);
-
+    eglView->setFrameSize(800, 600);
+	//char* title = "Co Ca Ngua - CrazyTeam";
+	CString strTest (_T("Co Ca Ngua - CrazyTeam"));
+	SetWindowTextW(eglView->getHWnd(),(LPCWSTR) strTest );
     int ret = CCApplication::sharedApplication()->run();
-
+	
 #ifdef USE_WIN32_CONSOLE
     FreeConsole();
 #endif
