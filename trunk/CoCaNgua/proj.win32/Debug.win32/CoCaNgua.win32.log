@@ -1,16 +1,19 @@
-﻿Build started 10/2/2012 11:42:41 AM.
+﻿Build started 10/3/2012 10:11:59 AM.
      1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug.win32\CoCaNgua.win32.lastbuildstate".
        InitializeBuildStatus:
          Touching "Debug.win32\CoCaNgua.win32.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp Animals.cpp AnimalUnit.cpp main.cpp Map.cpp MapLocation.cpp Map_classic.cpp XiNgau.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp Animals.cpp AnimalUnit.cpp ClassicGameScene.cpp main.cpp Map.cpp MapLocation.cpp Map_classic.cpp MenuScene.cpp TrailerScene.cpp XiNgau.cpp
          XiNgau.cpp
+         TrailerScene.cpp
+         MenuScene.cpp
          Map_classic.cpp
          MapLocation.cpp
          Map.cpp
          main.cpp
+         ClassicGameScene.cpp
          AnimalUnit.cpp
          Animals.cpp
          HelloWorldScene.cpp
@@ -27,10 +30,13 @@
          Debug.win32\HelloWorldScene.obj
          Debug.win32\Animals.obj
          Debug.win32\AnimalUnit.obj
+         Debug.win32\ClassicGameScene.obj
          Debug.win32\main.obj
          Debug.win32\Map.obj
          Debug.win32\MapLocation.obj
          Debug.win32\Map_classic.obj
+         Debug.win32\MenuScene.obj
+         Debug.win32\TrailerScene.obj
          Debug.win32\XiNgau.obj
        Manifest:
          Deleting file "Debug.win32\CoCaNgua.win32.exe.embed.manifest".
@@ -43,10 +49,13 @@
          Debug.win32\HelloWorldScene.obj
          Debug.win32\Animals.obj
          Debug.win32\AnimalUnit.obj
+         Debug.win32\ClassicGameScene.obj
          Debug.win32\main.obj
          Debug.win32\Map.obj
          Debug.win32\MapLocation.obj
          Debug.win32\Map_classic.obj
+         Debug.win32\MenuScene.obj
+         Debug.win32\TrailerScene.obj
          Debug.win32\XiNgau.obj
          CoCaNgua.win32.vcxproj -> E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Debug.win32\CoCaNgua.win32.exe
        FinalizeBuildStatus:
@@ -56,4 +65,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:10.22
+Time Elapsed 00:00:16.70
