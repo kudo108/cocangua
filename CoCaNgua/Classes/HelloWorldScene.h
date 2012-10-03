@@ -21,6 +21,8 @@ public:
 
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+private:
+	void call_Trailer();
 };
 
 #endif  // __HELLOWORLD_SCENE_H__

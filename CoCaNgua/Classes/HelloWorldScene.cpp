@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 #include "XiNgau.h"
+#include "TrailerScene.h"
+
 using namespace cocos2d;
 
 CCScene* HelloWorld::scene()
@@ -87,17 +89,23 @@ bool HelloWorld::init()
 		*/
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
 		//background
-		CCSprite* background = CCSprite::create("image/Background_classic.jpg");
+		CCSprite* background = CCSprite::create("image/loader.jpg");
         CC_BREAK_IF(! background);
-		background->setScaleX(0.5859375);
-		background->setScaleY(0.5859375);
+		//background->setScaleX(0.5859375);
+		//background->setScaleY(0.5859375);
         // Place the sprite on the center of the screen
-        background->setPosition(ccp(size.width/2-100, size.height/2));
+        background->setPosition(ccp(size.width/2, size.height/2));
 
         // Add the sprite to HelloWorld layer as a child layer.
         this->addChild(background, 0);
-
-
+		//sleep(3);
+	//	call_Trailer();
+		this->runAction( CCSequence::create(
+                                CCDelayTime::create(3),
+                                CCCallFunc::create(this, 
+                                callfunc_selector(HelloWorld::call_Trailer)),
+                                NULL));
+		
 		bRet = true;
     } while (0);
 
@@ -110,3 +118,7 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
     CCDirector::sharedDirector()->end();
 }
 
+void HelloWorld::call_Trailer(){
+	TrailerScene *trailerScene = TrailerScene::create();
+	CCDirector::sharedDirector()->replaceScene(trailerScene);
+}

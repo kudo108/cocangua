@@ -70,6 +70,15 @@
     <ClInclude Include="XiNgau.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="ClassicGameScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="TrailerScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -97,6 +106,15 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="XiNgau.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicGameScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="TrailerScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
