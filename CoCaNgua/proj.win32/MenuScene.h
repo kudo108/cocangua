@@ -3,14 +3,6 @@
 
 #include "cocos2d.h"
 
-class MenuLayer: public cocos2d::CCLayer
-{
-public:
-	MenuLayer(void);
-	~MenuLayer(void);
-	bool init();
-	CREATE_FUNC(MenuLayer);
-};
 
 class MenuScene : public cocos2d::CCScene
 {
@@ -19,15 +11,16 @@ public:
 	~MenuScene(void);
 	bool init();
 	CREATE_FUNC(MenuScene);
+
 private:
-	void menuClassicGameCallback();
-	void menuModernGameCallback();
-	void menuLoadGameCallback();
-	void menuAboutCallback();
-	void menuHelpCallback();
-	void menuOptionCallback();
-	void menuExitCallback();
-	void menuAIGameCallback();
+	void menuClassicGameCallback(CCObject* sender);
+	void menuModernGameCallback(CCObject* sender);
+	void menuLoadGameCallback(CCObject* sender);
+	void menuAboutCallback(CCObject* sender);
+	void menuHelpCallback(CCObject* sender);
+	void menuOptionCallback(CCObject* sender);
+	void menuExitCallback(CCObject* sender);
+	void menuAIGameCallback(CCObject* sender);
 };
 
 #endif

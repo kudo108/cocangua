@@ -125,15 +125,12 @@
       </DllDataFileName>
     </Midl>
     <PostBuildEvent>
-      <Command>xcopy /Y /E .\Resources\*.* $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\Resources\CloseNormal.png" />
-    <None Include="..\Resources\CloseSelected.png" />
-    <None Include="..\Resources\HelloWorld.png" />
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico" />
-    <None Include="res\Background_classic.jpg" />
     <None Include="res\CoCaNgua.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -142,31 +139,37 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="AboutScene.h" />
     <ClInclude Include="Animals.h" />
     <ClInclude Include="AnimalUnit.h" />
-    <ClInclude Include="ClassicGameScene.h" />
+    <ClInclude Include="ClassicGameLayer.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="GameLayer.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="HelpScene.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="MapLocation.h" />
-    <ClInclude Include="Map_classic.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="OptionScene.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="TrailerScene.h" />
-    <ClInclude Include="XiNgau.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="AboutScene.cpp" />
     <ClCompile Include="Animals.cpp" />
     <ClCompile Include="AnimalUnit.cpp" />
-    <ClCompile Include="ClassicGameScene.cpp" />
+    <ClCompile Include="ClassicGameLayer.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="GameLayer.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapLocation.cpp" />
-    <ClCompile Include="Map_classic.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="TrailerScene.cpp" />
-    <ClCompile Include="XiNgau.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
