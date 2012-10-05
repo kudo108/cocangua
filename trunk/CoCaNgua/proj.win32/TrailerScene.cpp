@@ -4,25 +4,12 @@
 
 using namespace cocos2d;
 
-TrailerLayer::TrailerLayer(void)
+
+void TrailerScene::load_Trailer()
 {
 }
 
-
-TrailerLayer::~TrailerLayer(void)
-{
-}
-
-bool TrailerLayer::init()
-{
-	return true;
-}
-
-void TrailerLayer::load_Trailer()
-{
-}
-
-void TrailerLayer::callMenu()
+void TrailerScene::callMenu()
 {
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
@@ -40,9 +27,9 @@ bool TrailerScene::init()
 {
 	//sau nay bo cai nay
 	this->runAction( CCSequence::create(
-                                CCDelayTime::create(3),
+                                CCDelayTime::create(1),
                                 CCCallFunc::create(this, 
-                                callfunc_selector(TrailerLayer::callMenu)),
+                                callfunc_selector(TrailerScene::callMenu)),
                                 NULL));//callMenu();
 	return true;
 }

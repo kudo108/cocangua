@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="source">
-      <UniqueIdentifier>{fb728452-f12f-4b03-9f4c-f1289d3ac6a5}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{ba84080c-1af0-4ed4-b221-9d286f9b3382}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
@@ -13,21 +9,13 @@
       <UniqueIdentifier>{27fc00d5-064e-481f-99dc-a386ba476020}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
     </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{fb728452-f12f-4b03-9f4c-f1289d3ac6a5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Resources\CloseSelected.png">
-      <Filter>resource</Filter>
-    </None>
-    <None Include="..\Resources\CloseNormal.png">
-      <Filter>resource</Filter>
-    </None>
-    <None Include="..\Resources\HelloWorld.png">
-      <Filter>resource</Filter>
-    </None>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico">
-      <Filter>resource</Filter>
-    </None>
-    <None Include="res\Background_classic.jpg">
       <Filter>resource</Filter>
     </None>
     <None Include="res\CoCaNgua.ico">
@@ -58,25 +46,34 @@
     <ClInclude Include="Animals.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Map_classic.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="MapLocation.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="XiNgau.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassicGameScene.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="TrailerScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassicGameLayer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLayer.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -96,25 +93,34 @@
     <ClCompile Include="Animals.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="Map_classic.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="MapLocation.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="XiNgau.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassicGameScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="MenuScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="TrailerScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicGameLayer.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLayer.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
