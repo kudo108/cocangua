@@ -65,7 +65,7 @@ bool GameScene::init()
 
 	//200x200 xi ngau
 	//call GameLayer::xoXiNgau() de xo xi ngau
-	CCSprite* background = CCSprite::create(Config::xingau_init_image);
+	background = CCSprite::create(Config::xingau_init_image);
     if(background)
 	{
 		background->setPosition(ccp(size.width-100, size.height-100));

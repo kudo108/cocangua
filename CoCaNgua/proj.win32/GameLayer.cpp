@@ -1,3 +1,4 @@
+#include "MenuScene.h"
 #include "GameLayer.h"
 #include "cocos2d.h"
 
@@ -24,6 +25,8 @@ void GameLayer::saveGameCallback(CCObject *sender)
 }
 void GameLayer::quitGameCallback(CCObject *sender)
 {
+	MenuScene *menuScene = MenuScene::create();
+	CCDirector::sharedDirector()->replaceScene(menuScene);
 	//back to menu
 }
 void GameLayer::ruleCallback(CCObject *sender)
