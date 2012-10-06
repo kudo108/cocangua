@@ -1,6 +1,7 @@
 #ifndef _MENU_SCENE_H_
 #define _MENU_SCENE_H_H
 
+#include <windows.h>
 #include "MenuScene.h"
 #include "cocos2d.h"
 #include "GameScene.h"
@@ -155,10 +156,10 @@ void MenuScene::menuOptionCallback(CCObject* sender)
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
-	this->cleanup();
-	this->autorelease();
-	exit(1);
+	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+		this->cleanup();
+		this->autorelease();
+		exit(1);
+	}
 }
-
-	
 #endif
