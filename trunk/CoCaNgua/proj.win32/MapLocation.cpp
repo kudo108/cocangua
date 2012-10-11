@@ -82,7 +82,7 @@ int MapLocation::getIndexLocation(cocos2d::CCPoint point)
 
 CCPoint *MapLocation::getFinishPoint(int step, int tag)
 {
-	CCPoint result[6];
+	CCPoint result[12];
 	int i = 0;
 	for(i; i < step; i++)
 	{
@@ -94,4 +94,8 @@ CCPoint *MapLocation::getFinishPoint(int step, int tag)
 CCPoint MapLocation::getFirstWayPoint(int tag)
 {
 	return wayLocation[14*tag];
+}
+CCPoint MapLocation::getInitLocation(int tag, int num)
+{
+	return initLocation[tag*4+num];
 }
