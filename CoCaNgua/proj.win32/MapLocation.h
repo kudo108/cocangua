@@ -10,6 +10,8 @@ public:
 	CCPoint *getPointNextOf( CCPoint currentLocation,int step);
 	CCPoint *getFinishPoint(int step, int tag);
 	CCPoint getFirstWayPoint(int tag);
+	//use for init Animal
+	CCPoint getInitLocation(int tag, int num);//lay con tro chi den vi tri ra quan
 private:
 	int winSize;
 	float scale;

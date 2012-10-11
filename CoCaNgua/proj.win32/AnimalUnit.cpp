@@ -1,32 +1,35 @@
 #include "AnimalUnit.h"
-#include "MapLocation.h"
 /*
 Chua nhung thong tin ve 1 con co
 */
 
-AnimalUnit::AnimalUnit(MapLocation* _initLocation, MapLocation* _bornLocation)
+AnimalUnit::AnimalUnit(CCPoint* _initLocation, const char* imageLink)
 {
-	this->initLocation = _initLocation;
-	this->bornLocation = _bornLocation;
+	this->initLocation = _initLocation;//vi tri trong chuong
 	this->location = _initLocation;
+	this->sprite = CCSprite::create(imageLink);
+	this->path_went = -1;
 }
-MapLocation* AnimalUnit::getLocation(){
+CCPoint* AnimalUnit::getLocation(){
 	return this->location;
 }
 
 AnimalUnit::~AnimalUnit(void)
 {
-	//nothing to do
+	this->sprite->autorelease();
 }
 void AnimalUnit::born(){//tu chuong ra duong
-	this->location = this->bornLocation;
+	this->location = this->initLocation;
 }
 void AnimalUnit::go(int path){//di them dc path buoc
 	
 }
-void AnimalUnit::success(int x){//den dich buoc thu x
+void AnimalUnit::finish(int x){//den dich buoc thu x
 
 }
 void AnimalUnit::die(){//chet, ve lai chuong
 
+}
+void AnimalUnit::dance()
+{
 }

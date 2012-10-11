@@ -7,6 +7,10 @@ const char* Config::flashBackground = "image/flash.jpg";
 const char* Config::aboutBackground = "image/about.jpg";
 const char* Config::classicGameBackground = "image/Background_classic.jpg";
 const char* Config::xingau_init_image = "image/ccn4.jpg";
+const char* Config::animal1_init_image="/image/animal/1.jpg";
+const char* Config::animal2_init_image="/image/animal/2.jpg";
+const char* Config::animal3_init_image="/image/animal/3.jpg";
+const char* Config::animal0_init_image="/image/animal/0.jpg";
 
 int Config::getVolume()
 {
