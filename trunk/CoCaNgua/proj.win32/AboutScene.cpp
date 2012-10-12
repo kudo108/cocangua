@@ -43,6 +43,7 @@ bool AboutScene::init()
 
 void AboutScene::menuCallback(CCObject *sender)
 {
+	MenuScene::playButtonEffect();
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }
