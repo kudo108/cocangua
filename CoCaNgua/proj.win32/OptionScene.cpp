@@ -3,6 +3,7 @@
 #include "MenuScene.h"
 #include "Config.h"
 #include "SimpleAudioEngine.h"
+#include "resource.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -53,24 +54,21 @@ bool OptionScene::init()
 
 void OptionScene::toggleMusic(CCObject *sender){
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
-	
-	int volume = SimpleAudioEngine::sharedEngine()->getBackgroundMusicVolume();
-	bool playing = SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying();
-	if(playing){
-		printf("Turn off music\n");
+	int isMusicPlaying = Config::getVolume();
+	if(isMusicPlaying){
 		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 		//pMusicButton->unselected();
 	}else{
-		printf("Turn on music\n");
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 		//pMusicButton->selected();
 	}
-	
+	Config::setVolume(!isMusicPlaying);
 	
 }
 
 void OptionScene::menuCallback(CCObject *sender)
 {
+	MenuScene::playButtonEffect();
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

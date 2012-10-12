@@ -9,9 +9,10 @@
 #include "HelpScene.h"
 #include "OptionScene.h"
 #include "Config.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
-
+using namespace CocosDenshion;
 
 MenuScene::MenuScene(void)
 {
@@ -46,8 +47,8 @@ bool MenuScene::init()
 										menu_selector(MenuScene::menuClassicGameCallback));
 
 	pClassicGameButton->setFontSizeObj(objectFontSize);
-	menuArray->addObject(pClassicGameButton);
 	pClassicGameButton->setPosition(ccp(size.width / 2, size.height/2 + 3.5*jump));
+	menuArray->addObject(pClassicGameButton);
 	// Modern Game
 	CCMenuItemFont* pModernGameButton = CCMenuItemFont::create(
 										"Modern Game",
@@ -119,43 +120,55 @@ bool MenuScene::init()
 
 	return true;
 }
+
+void MenuScene::playButtonEffect(){
+	SimpleAudioEngine::sharedEngine()->playEffect(Config::sfxButton);
+}
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	AboutScene *aboutScene = AboutScene::create();
 	CCDirector::sharedDirector()->replaceScene(aboutScene);		
 }
 void MenuScene::menuHelpCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	HelpScene *helpScene = HelpScene::create();
 	CCDirector::sharedDirector()->replaceScene(helpScene);
 }
 void MenuScene::menuOptionCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	OptionScene *optionScene = OptionScene::create();
 	CCDirector::sharedDirector()->replaceScene(optionScene);
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
+	MenuScene::playButtonEffect();
 	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();

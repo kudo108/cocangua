@@ -35,6 +35,7 @@ bool HelpScene::init()
 }
 void HelpScene::menuCallback(CCObject *sender)
 {
+	MenuScene::playButtonEffect();
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

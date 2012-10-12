@@ -11,8 +11,9 @@ public:
 	~MenuScene(void);
 	bool init();
 	CREATE_FUNC(MenuScene);
-
+	static void playButtonEffect();
 private:
+	
 	void menuClassicGameCallback(CCObject* sender);
 	void menuModernGameCallback(CCObject* sender);
 	void menuLoadGameCallback(CCObject* sender);
