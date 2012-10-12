@@ -5,11 +5,11 @@ class Config
 public:
 	static void setVolume(int _v);
 	static void setIsBgMusicPlaying(bool _Bg);
-	//static void setIsSFXEffectPlaying(bool _SFX);
+	static void setIsSFXEffectPlaying(bool _SFX);
 
 	static int getVolume();
 	static bool getIsBgMusicPlaying();
-	//static bool getIsSFXEffectPlaying();
+	static bool getIsSFXEffectPlaying();
 
 	const static char* sfxDirectory;
 	const static char* musicDirectory;
@@ -28,6 +28,6 @@ public:
 private:
 	static bool isBgMusicPlaying;
 	static int volume;
-	//static bool isSFXEffectPlaying;
+	static bool isSFXEffectPlaying;
 };
 

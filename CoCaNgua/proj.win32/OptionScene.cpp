@@ -42,7 +42,7 @@ bool OptionScene::init()
 										menu_selector(OptionScene::toggleSFX));
 	
 	pSFXButton->setFontSizeObj(Config::objectFontSize);
-	pSFXButton->setPosition(ccp(size.width/2, size.height - 30));
+	pSFXButton->setPosition(ccp(size.width/2, size.height - 90));
 	//pMusicButton->unselected();
 	menuArray->addObject(pSFXButton);
 
@@ -65,7 +65,7 @@ bool OptionScene::init()
 void OptionScene::toggleMusic(CCObject *sender){
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
 
-	int isMusicPlaying = Config::getIsBgMusicPlaying();
+	bool isMusicPlaying = Config::getIsBgMusicPlaying();
 	if(isMusicPlaying){
 		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 	}else{
@@ -74,17 +74,17 @@ void OptionScene::toggleMusic(CCObject *sender){
 	Config::setIsBgMusicPlaying(!isMusicPlaying);
 }
 
-//void OptionScene::toggleSFX(CCObject* sender){
-//	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
-//
-//	int isSFXPlaying = Config::getIsSFXEffectPlaying();
-//	if(isSFXPlaying){
-//		SimpleAudioEngine::sharedEngine()->pauseAllEffects();
-//	}else{
-//		SimpleAudioEngine::sharedEngine()->resumeAllEffects();
-//	}
-//	Config::setIsSFXEffectPlaying(!isSFXPlaying);
-//}
+void OptionScene::toggleSFX(CCObject* sender){
+	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
+	
+	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
+	if(isSFXPlaying){
+		SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+	}else{
+		SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+	}
+	Config::setIsSFXEffectPlaying(!isSFXPlaying);
+}
 
 void OptionScene::menuCallback(CCObject *sender)
 {
