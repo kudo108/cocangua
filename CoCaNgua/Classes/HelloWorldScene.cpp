@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "TrailerScene.h"
 #include "Config.h"
+#include "SimpleAudioEngine.h" 
 
 using namespace cocos2d;
 
@@ -52,17 +53,23 @@ bool HelloWorld::init()
 		}
 		//sleep(3);
 	//	call_Trailer();
+		
 		this->runAction( CCSequence::create(
                                 CCDelayTime::create(3),
                                 CCCallFunc::create(this, 
                                 callfunc_selector(HelloWorld::call_Trailer)),
                                 NULL));
-		
+		startMusic();
 		bRet = true;
     } while (0);
 
     return bRet;
 }
+
+void HelloWorld::startMusic(){
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background-music.wav", true);   
+}
+
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
