@@ -67,7 +67,7 @@ bool HelloWorld::init()
 }
 
 void HelloWorld::startMusic(){
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("music/background-music.wav", true);   
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Config::backgroundMusic, true);   
 }
 
 

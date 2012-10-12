@@ -4,6 +4,8 @@
 #include <atlstr.h>
 USING_NS_CC;
 
+static bool isBackgroundMusicPlaying = false;
+
 // uncomment below line, open debug console
 // #define USE_WIN32_CONSOLE
 
