@@ -11,10 +11,11 @@ public:
 	~OptionScene(void);
 	bool init();
 	CREATE_FUNC(OptionScene);
-	virtual void toggleMusic(CCObject *sender);
+	
 private:
 	void menuCallback(CCObject *sender);
-	
+	void toggleMusic(CCObject *sender);
+	void toggleSFX(CCObject *sender);
 };
 
 #endif
