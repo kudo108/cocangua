@@ -162,4 +162,6 @@ void MenuScene::menuExitCallback(CCObject* sender)
 		exit(1);
 	}
 }
+
+
 #endif
