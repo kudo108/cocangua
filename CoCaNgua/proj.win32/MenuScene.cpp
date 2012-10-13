@@ -3,7 +3,6 @@
 
 #include <windows.h>
 #include "MenuScene.h"
-#include "cocos2d.h"
 #include "GameScene.h"
 #include "AboutScene.h"
 #include "HelpScene.h"
@@ -12,15 +11,8 @@
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;
+//using namespace CocosDenshion;
 
-MenuScene::MenuScene(void)
-{
-}
-
-MenuScene::~MenuScene(void)
-{
-}
 
 bool MenuScene::init()
 {
@@ -122,7 +114,7 @@ bool MenuScene::init()
 }
 
 void MenuScene::playButtonEffect(){
-	SimpleAudioEngine::sharedEngine()->playEffect(Config::sfxButton);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(Config::sfxButton);
 }
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
@@ -172,7 +164,8 @@ void MenuScene::menuExitCallback(CCObject* sender)
 	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();
-		exit(1);
+		CCDirector::sharedDirector()->end();
+		//exit(1);
 	}
 }
 

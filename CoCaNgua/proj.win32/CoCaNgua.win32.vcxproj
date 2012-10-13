@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="res\CoCaNgua.ico" />
   </ItemGroup>
   <ItemGroup>

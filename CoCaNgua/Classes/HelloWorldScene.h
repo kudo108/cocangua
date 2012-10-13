@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-#include "Box2D/Box2D.h"
+//#include "Box2D/Box2D.h"
 
 #include "SimpleAudioEngine.h"
 
@@ -19,7 +19,7 @@ public:
     //static CocosDenshion::SimpleAudioEngine::sharedEngine();
 
     // a selector callback
-    void menuCloseCallback(CCObject* pSender);
+    //void menuCloseCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);

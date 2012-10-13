@@ -10,9 +10,7 @@ using namespace cocos2d;
 class AboutScene : public cocos2d::CCScene
 {
 public:
-	AboutScene(void);
-	~AboutScene(void);
-	bool init();
+	virtual bool init();
 	CREATE_FUNC(AboutScene);
 private:
 	void menuCallback(CCObject *sender);

@@ -6,10 +6,12 @@
 class ClassicGameLayer: public cocos2d::CCLayer
 {
 public:
-	ClassicGameLayer(void);
-	~ClassicGameLayer(void);
-	bool init();
+	virtual bool init();
 	CREATE_FUNC(ClassicGameLayer);
+	void go1Callback(CCObject *sender);
+	void go2Callback(CCObject *sender);
+	void go3Callback(CCObject *sender);
+	void go4Callback(CCObject *sender);
 };
 
 #endif
