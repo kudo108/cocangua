@@ -56,7 +56,7 @@ CCPoint MapLocation::getPoint(int index)
 CCPoint *MapLocation::getPointNextOf(CCPoint currentLocation,int step)
 	//tra ve cac diem tiep theo khi so xuc xac dc step buoc
 {
-	CCPoint result[12];
+	static CCPoint result[12];
 	int currentIndex = getIndexLocation(currentLocation);
 	int i =1;
 	for(i; i <=step; i++)
@@ -82,7 +82,7 @@ int MapLocation::getIndexLocation(cocos2d::CCPoint point)
 
 CCPoint *MapLocation::getFinishPoint(int step, int tag)
 {
-	CCPoint result[12];
+	static CCPoint result[12];
 	int i = 0;
 	for(i; i < step; i++)
 	{

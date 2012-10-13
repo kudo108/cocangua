@@ -7,9 +7,7 @@
 class OptionScene : public cocos2d::CCScene
 {
 public:
-	OptionScene(void);
-	~OptionScene(void);
-	bool init();
+	virtual bool init();
 	CREATE_FUNC(OptionScene);
 	
 private:

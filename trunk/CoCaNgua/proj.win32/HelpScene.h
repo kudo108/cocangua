@@ -6,9 +6,7 @@
 class HelpScene : public cocos2d::CCScene
 {
 public:
-	HelpScene(void);
-	~HelpScene(void);
-	bool init();
+	virtual bool init();
 	CREATE_FUNC(HelpScene);
 private:
 	void menuCallback(CCObject *sender);

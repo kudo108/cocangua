@@ -1,6 +1,5 @@
 #include "TrailerScene.h"
 #include "MenuScene.h"
-#include "cocos2d.h"
 
 using namespace cocos2d;
 
@@ -13,14 +12,6 @@ void TrailerScene::callMenu()
 {
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
-}
-TrailerScene::TrailerScene(void)
-{
-}
-
-
-TrailerScene::~TrailerScene(void)
-{
 }
 
 bool TrailerScene::init()

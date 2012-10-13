@@ -71,12 +71,6 @@ void HelloWorld::startMusic(){
 }
 
 
-void HelloWorld::menuCloseCallback(CCObject* pSender)
-{
-    // "close" menu item clicked
-    CCDirector::sharedDirector()->end();
-}
-
 void HelloWorld::call_Trailer(){
 	TrailerScene *trailerScene = TrailerScene::create();
 	CCDirector::sharedDirector()->replaceScene(trailerScene);

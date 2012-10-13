@@ -1,19 +1,8 @@
 #include "AboutScene.h"
-#include "cocos2d.h"
 #include "MenuScene.h"
 #include "Config.h"
 
 using namespace cocos2d;
-
-
-AboutScene::AboutScene(void)
-{
-}
-
-
-AboutScene::~AboutScene(void)
-{
-}
 
 bool AboutScene::init()
 {

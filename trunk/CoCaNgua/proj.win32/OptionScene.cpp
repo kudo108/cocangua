@@ -1,5 +1,4 @@
 #include "OptionScene.h"
-#include "cocos2d.h"
 #include "MenuScene.h"
 #include "Config.h"
 #include "SimpleAudioEngine.h"
@@ -7,15 +6,6 @@
 
 using namespace cocos2d;
 using namespace CocosDenshion;
-
-OptionScene::OptionScene(void)
-{
-}
-
-
-OptionScene::~OptionScene(void)
-{
-}
 
 bool OptionScene::init()
 {

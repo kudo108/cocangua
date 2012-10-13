@@ -7,9 +7,7 @@
 class MenuScene : public cocos2d::CCScene
 {
 public:
-	MenuScene(void);
-	~MenuScene(void);
-	bool init();
+	virtual bool init();
 	CREATE_FUNC(MenuScene);
 	static void playButtonEffect();
 private:

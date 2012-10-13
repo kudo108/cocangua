@@ -13,6 +13,18 @@
       <UniqueIdentifier>{fb728452-f12f-4b03-9f4c-f1289d3ac6a5}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
     </Filter>
+    <Filter Include="include\Object">
+      <UniqueIdentifier>{f3ac2cc1-1d2f-4e13-88d5-18f22579c799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Scene">
+      <UniqueIdentifier>{49abee2b-b113-4804-895b-969cde37f4d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\object">
+      <UniqueIdentifier>{91d7f52d-6242-4e1f-8aa7-108828c2fb5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\scene">
+      <UniqueIdentifier>{34ce8469-8b76-41dc-9f8c-2556f101e5b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico">
@@ -21,6 +33,7 @@
     <None Include="res\CoCaNgua.ico">
       <Filter>resource</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CoCaNgua.rc">
@@ -37,44 +50,44 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimalUnit.h">
-      <Filter>include</Filter>
+    <ClInclude Include="AboutScene.h">
+      <Filter>include\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Animals.h">
-      <Filter>include</Filter>
+      <Filter>include\Object</Filter>
     </ClInclude>
-    <ClInclude Include="MapLocation.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="TrailerScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="AboutScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="HelpScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>include</Filter>
+    <ClInclude Include="AnimalUnit.h">
+      <Filter>include\Object</Filter>
     </ClInclude>
     <ClInclude Include="ClassicGameLayer.h">
-      <Filter>include</Filter>
+      <Filter>include\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameLayer.h">
-      <Filter>include</Filter>
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapLocation.h">
+      <Filter>include\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TrailerScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>include\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -84,44 +97,44 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimalUnit.cpp">
-      <Filter>source</Filter>
+    <ClCompile Include="AboutScene.cpp">
+      <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="Animals.cpp">
-      <Filter>source</Filter>
+      <Filter>source\object</Filter>
     </ClCompile>
-    <ClCompile Include="MapLocation.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="TrailerScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="AboutScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="HelpScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="OptionScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Config.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>source</Filter>
+    <ClCompile Include="AnimalUnit.cpp">
+      <Filter>source\object</Filter>
     </ClCompile>
     <ClCompile Include="ClassicGameLayer.cpp">
-      <Filter>source</Filter>
+      <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameLayer.cpp">
-      <Filter>source</Filter>
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLocation.cpp">
+      <Filter>source\object</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TrailerScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>source\object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

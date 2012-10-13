@@ -1,18 +1,9 @@
 #include "HelpScene.h"
-#include "cocos2d.h"
 #include "MenuScene.h"
 #include "Config.h"
 
 using namespace cocos2d;
 
-HelpScene::HelpScene(void)
-{
-}
-
-
-HelpScene::~HelpScene(void)
-{
-}
 
 bool HelpScene::init()
 {

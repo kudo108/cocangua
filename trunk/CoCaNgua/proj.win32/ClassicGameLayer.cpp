@@ -4,19 +4,10 @@
 #include "ClassicGameLayer.h"
 #include "Config.h"
 #include "MenuScene.h"
-#include "cocos2d.h"
 #include "GameLayer.h"
 
 using namespace cocos2d;
 
-ClassicGameLayer::ClassicGameLayer(void)
-{
-}
-
-
-ClassicGameLayer::~ClassicGameLayer(void)
-{
-}
 
 bool ClassicGameLayer::init()
 {
@@ -24,6 +15,19 @@ bool ClassicGameLayer::init()
 
 
 	return true;
+}
+
+void ClassicGameLayer::go1Callback(CCObject *sender)
+{
+}
+void ClassicGameLayer::go2Callback(CCObject *sender)
+{
+}
+void ClassicGameLayer::go3Callback(CCObject *sender)
+{
+}
+void ClassicGameLayer::go4Callback(CCObject *sender)
+{
 }
 
 #endif
