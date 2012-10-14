@@ -4,7 +4,7 @@
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
-
+#include "GameOverScene.h"
 using namespace CocosDenshion;
 using namespace cocos2d;
 
@@ -58,7 +58,7 @@ bool GameScene::init()
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"Save",
 										this,
-										menu_selector(GameScene::saveGameCallback));
+										menu_selector(GameScene::gameOverCallback));
 	pSaveGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pSaveGameButton);
 	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
@@ -79,6 +79,7 @@ bool GameScene::init()
 	pQuitGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pQuitGameButton);
 	pQuitGameButton->setPosition(ccp(size.width-100, jump));
+
 	
 	//button 1
 	float numberButtonPositionY = 4*jump;
@@ -161,6 +162,13 @@ void GameScene::setGameType(int _t)
 	this->gameType = _t;
 }
 
+//test
+void GameScene::gameOverCallback(CCObject *sender){
+	//save game
+	HelloWorld::playEffect(Config::sfxButton, false);
+	GameOverScene *menuScene = GameOverScene::create();
+	CCDirector::sharedDirector()->replaceScene(menuScene);
+}
 
 void GameScene::saveGameCallback(CCObject *sender)
 {
