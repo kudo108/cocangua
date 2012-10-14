@@ -1,11 +1,9 @@
 #include "OptionScene.h"
 #include "MenuScene.h"
 #include "Config.h"
-#include "SimpleAudioEngine.h"
 #include "resource.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;
 
 bool OptionScene::init()
 {
@@ -57,9 +55,9 @@ void OptionScene::toggleMusic(CCObject *sender){
 
 	bool isMusicPlaying = Config::getIsBgMusicPlaying();
 	if(isMusicPlaying){
-		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+		HelloWorld::pauseBackgroundMusic();
 	}else{
-		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+		HelloWorld::resumeBackgroundMusic();
 	}
 	Config::setIsBgMusicPlaying(!isMusicPlaying);
 }
@@ -68,17 +66,13 @@ void OptionScene::toggleSFX(CCObject* sender){
 	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
 	
 	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
-	if(isSFXPlaying){
-		SimpleAudioEngine::sharedEngine()->pauseAllEffects();
-	}else{
-		SimpleAudioEngine::sharedEngine()->resumeAllEffects();
-	}
+	//OutputDebugStringW(L"My output string.");
 	Config::setIsSFXEffectPlaying(!isSFXPlaying);
 }
 
 void OptionScene::menuCallback(CCObject *sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

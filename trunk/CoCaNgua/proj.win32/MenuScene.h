@@ -9,9 +9,7 @@ class MenuScene : public cocos2d::CCScene
 public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
-	static void playButtonEffect();
 private:
-	
 	void menuClassicGameCallback(CCObject* sender);
 	void menuModernGameCallback(CCObject* sender);
 	void menuLoadGameCallback(CCObject* sender);
