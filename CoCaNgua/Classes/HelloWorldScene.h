@@ -23,9 +23,12 @@ public:
 
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+	static void playBackgroundMusic(const char* _bgMusic);
+	static void pauseBackgroundMusic();
+	static void resumeBackgroundMusic();
+	static int playEffect(const char* _sfx, bool loop);
+	static void stopEffect(int id);
 
-	//turn the background music on
-	void startMusic();
 private:
 	void call_Trailer();
 };

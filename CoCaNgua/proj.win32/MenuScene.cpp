@@ -2,13 +2,13 @@
 #define _MENU_SCENE_H_H
 
 #include <windows.h>
+#include "HelloWorldScene.h"
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "AboutScene.h"
 #include "HelpScene.h"
 #include "OptionScene.h"
 #include "Config.h"
-#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 //using namespace CocosDenshion;
@@ -113,54 +113,51 @@ bool MenuScene::init()
 	return true;
 }
 
-void MenuScene::playButtonEffect(){
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(Config::sfxButton);
-}
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	AboutScene *aboutScene = AboutScene::create();
 	CCDirector::sharedDirector()->replaceScene(aboutScene);		
 }
 void MenuScene::menuHelpCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	HelpScene *helpScene = HelpScene::create();
 	CCDirector::sharedDirector()->replaceScene(helpScene);
 }
 void MenuScene::menuOptionCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	OptionScene *optionScene = OptionScene::create();
 	CCDirector::sharedDirector()->replaceScene(optionScene);
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
-	MenuScene::playButtonEffect();
+	HelloWorld::playEffect(Config::sfxButton, false);
 	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();

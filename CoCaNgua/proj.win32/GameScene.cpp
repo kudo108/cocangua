@@ -1,8 +1,11 @@
+#include "HelloWorldScene.h"
 #include "GameScene.h"
 #include "Config.h"
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 using namespace cocos2d;
 
 GameScene::GameScene(void)
@@ -162,16 +165,19 @@ void GameScene::setGameType(int _t)
 void GameScene::saveGameCallback(CCObject *sender)
 {
 	//save game
+	HelloWorld::playEffect(Config::sfxButton, false);
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
+	//back to menu
+	HelloWorld::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
-	//back to menu
 }
 void GameScene::ruleCallback(CCObject *sender)
 {
 	//show rule
+	HelloWorld::playEffect(Config::sfxButton, false);
 }
 int GameScene::soXucXac()
 {
@@ -183,11 +189,13 @@ void GameScene::xucxacCallback(CCObject *sender)
 {	
 	if(!isCalledXucXac)
 	{
+		Config::setIdDice(HelloWorld::playEffect(Config::sfxDice, true));
 		isCalledXucXac = TRUE;
 		xucxac->stopAllActions();
 		xucxac->runAction( xucxacAminationAction);
 	}else
 	{
+		HelloWorld::stopEffect(Config::getIdDice());
 		xucxac->pauseSchedulerAndActions();
 		char fn[128];
 		int ketqua = soXucXac();

@@ -4,6 +4,7 @@
 #include "SimpleAudioEngine.h" 
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 CCScene* HelloWorld::scene()
 {
@@ -59,17 +60,36 @@ bool HelloWorld::init()
                                 CCCallFunc::create(this, 
                                 callfunc_selector(HelloWorld::call_Trailer)),
                                 NULL));
-		startMusic();
+		playBackgroundMusic(Config::backgroundMusic);
 		bRet = true;
     } while (0);
 
     return bRet;
 }
 
-void HelloWorld::startMusic(){
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(Config::backgroundMusic, true);   
+void HelloWorld::playBackgroundMusic(const char* _bgMusic){
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(_bgMusic, true);   
 }
 
+void HelloWorld::pauseBackgroundMusic(){
+	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+}
+
+void HelloWorld::resumeBackgroundMusic(){
+	SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+}
+
+int HelloWorld::playEffect(const char* _sfx, bool loop){
+	int id = -1;
+	if(Config::getIsSFXEffectPlaying()){
+		id = SimpleAudioEngine::sharedEngine()->playEffect(_sfx, loop);
+	}
+	return id;
+}
+
+void HelloWorld::stopEffect(int id){
+	SimpleAudioEngine::sharedEngine()->stopEffect(id);
+}
 
 void HelloWorld::call_Trailer(){
 	TrailerScene *trailerScene = TrailerScene::create();

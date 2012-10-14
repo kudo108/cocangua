@@ -7,14 +7,20 @@ public:
 	static void setVolume(int _v);
 	static void setIsBgMusicPlaying(bool _Bg);
 	static void setIsSFXEffectPlaying(bool _SFX);
+	static void setIdDice(int _id);
+	static void setIdButton(int _id);
 
 	static int getVolume();
 	static bool getIsBgMusicPlaying();
 	static bool getIsSFXEffectPlaying();
-
+	static int getIdDice();
+	static int getIdButton();
+	
 	const static char* sfxDirectory;
 	const static char* musicDirectory;
 	const static char* sfxButton;
+	const static char* sfxDice;
+
 	const static char* backgroundMusic;
 	const static int objectFontSize;
 	const static char* menuBackground;
@@ -36,6 +42,8 @@ private:
 	static bool isBgMusicPlaying;
 	static int volume;
 	static bool isSFXEffectPlaying;
+	static int idDice;
+	static int idButton;
 };
 
 #endif

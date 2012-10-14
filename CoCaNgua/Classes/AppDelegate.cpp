@@ -56,3 +56,4 @@ void AppDelegate::applicationWillEnterForeground()
 
     SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
+
