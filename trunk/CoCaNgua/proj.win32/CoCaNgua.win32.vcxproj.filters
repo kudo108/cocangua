@@ -89,6 +89,9 @@
     <ClInclude Include="Config.h">
       <Filter>include\Object</Filter>
     </ClInclude>
+    <ClInclude Include="RuleScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="Config.cpp">
       <Filter>source\object</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleScene.cpp">
+      <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

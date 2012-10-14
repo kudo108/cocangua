@@ -10,6 +10,8 @@ public:
 	CREATE_FUNC(HelpScene);
 private:
 	void menuCallback(CCObject *sender);
+	void previousCallBack(CCObject* sender);
+	void nextCallBack(CCObject* sender);
 };
 
 #endif
