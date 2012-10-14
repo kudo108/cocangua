@@ -3,7 +3,7 @@
 #include "Config.h"
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
-#include "SimpleAudioEngine.h"
+#include "RuleScene.h"
 
 using namespace CocosDenshion;
 using namespace cocos2d;
@@ -178,6 +178,8 @@ void GameScene::ruleCallback(CCObject *sender)
 {
 	//show rule
 	HelloWorld::playEffect(Config::sfxButton, false);
+	RuleScene *ruleScene = RuleScene::create();
+	CCDirector::sharedDirector()->replaceScene(ruleScene);
 }
 int GameScene::soXucXac()
 {

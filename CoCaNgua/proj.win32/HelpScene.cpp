@@ -11,7 +11,27 @@ bool HelpScene::init()
 	if(!CCScene::init()) return false;
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCArray *menuArray = CCArray::create();
+
 	//create button
+	CCMenuItemFont* previousButton = CCMenuItemFont::create(
+										"<",
+										this,
+										menu_selector(HelpScene::previousCallBack));
+
+	previousButton->setFontSizeObj(Config::objectFontSize);
+	previousButton->setPosition(ccp(20, size.height/2));
+	menuArray->addObject(previousButton);
+
+	CCMenuItemFont* nextButton = CCMenuItemFont::create(
+										">",
+										this,
+										menu_selector(HelpScene::nextCallBack));
+
+	nextButton->setFontSizeObj(Config::objectFontSize);
+	nextButton->setPosition(ccp(size.width - 20, size.height/2));
+	menuArray->addObject(nextButton);
+
 	CCMenuItemFont* pMenuButton = CCMenuItemFont::create(
 										"Menu",
 										this,
@@ -19,12 +39,23 @@ bool HelpScene::init()
 	
 	pMenuButton->setFontSizeObj(Config::objectFontSize);
 	pMenuButton->setPosition(ccp(size.width/2, 30));
-	CCMenu* pMenu = CCMenu::createWithItem(pMenuButton);
+	menuArray->addObject(pMenuButton);
+	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
+
 	pMenu->setPosition(CCPointZero);
 	this->addChild(pMenu);
 
 	return true;
 }
+
+void HelpScene::previousCallBack(CCObject* sender){
+	HelloWorld::playEffect(Config::sfxButton, false);
+}
+
+void HelpScene::nextCallBack(CCObject* sender){
+	HelloWorld::playEffect(Config::sfxButton, false);
+}
+
 void HelpScene::menuCallback(CCObject *sender)
 {
 	HelloWorld::playEffect(Config::sfxButton, false);

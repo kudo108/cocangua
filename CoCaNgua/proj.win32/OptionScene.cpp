@@ -20,7 +20,7 @@ bool OptionScene::init()
 										menu_selector(OptionScene::toggleMusic));
 	
 	pMusicButton->setFontSizeObj(Config::objectFontSize);
-	pMusicButton->setPosition(ccp(size.width/2, size.height - 30));
+	pMusicButton->setPosition(ccp(size.width/2, size.height/2 + 30));
 	//pMusicButton->unselected();
 	menuArray->addObject(pMusicButton);
 
@@ -30,7 +30,7 @@ bool OptionScene::init()
 										menu_selector(OptionScene::toggleSFX));
 	
 	pSFXButton->setFontSizeObj(Config::objectFontSize);
-	pSFXButton->setPosition(ccp(size.width/2, size.height - 90));
+	pSFXButton->setPosition(ccp(size.width/2, size.height/2 - 30));
 	//pMusicButton->unselected();
 	menuArray->addObject(pSFXButton);
 
@@ -51,6 +51,7 @@ bool OptionScene::init()
 }
 
 void OptionScene::toggleMusic(CCObject *sender){
+	HelloWorld::playEffect(Config::sfxButton, false);
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
 
 	bool isMusicPlaying = Config::getIsBgMusicPlaying();
@@ -63,6 +64,7 @@ void OptionScene::toggleMusic(CCObject *sender){
 }
 
 void OptionScene::toggleSFX(CCObject* sender){
+	HelloWorld::playEffect(Config::sfxButton, false);
 	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
 	
 	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
