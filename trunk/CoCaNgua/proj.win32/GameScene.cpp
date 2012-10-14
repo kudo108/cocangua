@@ -13,11 +13,6 @@ GameScene::GameScene(void)
 	isCalledXucXac = FALSE;
 
 	xucxac1 = CCSprite::create(Config::xucxac_texture1);
-	xucxac2 = CCSprite::create(Config::xucxac_texture2);
-	xucxac3 = CCSprite::create(Config::xucxac_texture3);
-	xucxac4 = CCSprite::create(Config::xucxac_texture4);
-	xucxac5 = CCSprite::create(Config::xucxac_texture5);
-	xucxac6 = CCSprite::create(Config::xucxac_texture6);
 	
 	int gameType = -1;
 
