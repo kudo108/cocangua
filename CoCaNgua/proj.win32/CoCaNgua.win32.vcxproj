@@ -146,6 +146,7 @@
     <ClInclude Include="ClassicGameLayer.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="GameLayer.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="main.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="ClassicGameLayer.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="GameLayer.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="main.cpp" />

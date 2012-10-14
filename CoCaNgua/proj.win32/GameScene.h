@@ -16,6 +16,8 @@ public:
 	void quitGameCallback(CCObject *sender);
 	void ruleCallback(CCObject *sender);
 	void xucxacCallback(CCObject *sender);
+	//test
+	void gameOverCallback(CCObject* sender);
 	MapLocation *map;	
 	//void changeXucXac(int x);
 	//cocos2d::CCAction *xucxacAction ;

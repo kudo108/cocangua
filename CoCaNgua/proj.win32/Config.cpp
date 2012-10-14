@@ -10,6 +10,7 @@ const char* Config::menuBackground			= "image/background_menu.jpg";
 const char* Config::flashBackground			= "image/flash.png";
 const char* Config::aboutBackground			= "image/about.jpg";
 const char* Config::classicGameBackground	= "image/Background_classic.jpg";
+const char* Config::gameOverBackground		= "image/gameover.png";
 const char* Config::xingau_init_image		= "image/ccn4.jpg";
 const char* Config::animal1_init_image		= "/image/animal/1.jpg";
 const char* Config::animal2_init_image		= "/image/animal/2.jpg";

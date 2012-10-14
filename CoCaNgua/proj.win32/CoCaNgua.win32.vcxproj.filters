@@ -92,6 +92,9 @@
     <ClInclude Include="RuleScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="RuleScene.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

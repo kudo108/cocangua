@@ -23,6 +23,7 @@ public:
 
 	const static char* backgroundMusic;
 	const static int objectFontSize;
+	const static char* gameOverBackground;
 	const static char* menuBackground;
 	const static char* flashBackground;
 	const static char* aboutBackground;
