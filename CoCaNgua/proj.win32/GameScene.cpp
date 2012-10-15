@@ -15,17 +15,12 @@ GameScene::GameScene(void)
 
 	isCalledXucXac = FALSE;
 
-	xucxac1 = CCSprite::create(Config::xucxac_texture1);
-	
 	int gameType = -1;
-
-	
-	
 }
 
 GameScene::~GameScene(void)
 {
-	//delete map;
+	//delete map;//khong can xai
 	//map=NULL;
 }
 
@@ -115,22 +110,15 @@ bool GameScene::init()
 	menuArray->addObject(p4Button);
 	p4Button->setPosition(ccp(size.width-200+175, numberButtonPositionY));
 	
-	//xuc xac button
-	CCMenuItemSprite *xucxacButton = CCMenuItemSprite::create(xucxac1,xucxac1,xucxac1,this,menu_selector(GameScene::xucxacCallback));
-	xucxacButton->setPosition(ccp(size.width-100, size.height-100));
-	menuArray->addObject(xucxacButton);
 	
-	// Create menu, it's an autorelease object
-	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
-	pMenu->setPosition(CCPointZero);
-	this->addChild(pMenu,100);//ngoai cung,tuong tac
+	
 	
 	
 	//set xucxac and xucxacAction
 //	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//xuc xac
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::xucxac_plist);
-	CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::batchNodeWithFile(Config::xucxac_texture);
+	CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::xucxac_texture);
 	char fn[128];
 	CCAnimation* xucxacAnim =CCAnimation::create();
 	
@@ -143,17 +131,40 @@ bool GameScene::init()
 	
     xucxacAnim->setDelayPerUnit(0.01f);
      //create sprite first frame from animation first frame
-	this->xucxac = CCSprite::createWithSpriteFrameName("1.gif");
-	this->xucxac->retain();
-	xucxac->setPosition(ccp(size.width-100, size.height-100));
-	CCAnimate *xucxacAnimate = CCAnimate::create(xucxacAnim);
-	//CCFiniteTimeAction* xucxacAmination =CCRepeatForever::create(xucxacAnimate);
+	this->xucxacA = CCSprite::createWithSpriteFrameName("1.gif");
+	this->xucxacA->retain();
+	xucxacA->setPosition(ccp(size.width-100-40, size.height-100));
 
-    xucxacAminationAction = CCRepeatForever::create(xucxacAnimate);
-	xucxacAminationAction->setOriginalTarget(xucxac);
-	xucxacAminationAction->retain();
+    xucxacAAminationAction = CCRepeatForever::create(CCAnimate::create(xucxacAnim));
+	xucxacAAminationAction->setOriginalTarget(xucxacA);
+	xucxacAAminationAction->retain();
+	this->addChild(xucxacA,101);
+	 //create sprite first frame from animation first frame
+	this->xucxacB = CCSprite::createWithSpriteFrameName("1.gif");
+	this->xucxacB->retain();
+	xucxacB->setPosition(ccp(size.width-100+40, size.height-100));
+
+    xucxacBAminationAction = CCRepeatForever::create(CCAnimate::create(xucxacAnim));
+	xucxacBAminationAction->setOriginalTarget(xucxacB);
+	xucxacBAminationAction->retain();
 	//xucxac->runAction(xucxacAminationAction);
-	this->addChild(xucxac,101);
+	this->addChild(xucxacB,101);
+	//xuc xac button 1
+	CCSprite *xucxac1 = CCSprite::create(Config::xucxac_texture1);
+	CCMenuItemSprite *xucxacButton1 = CCMenuItemSprite::create(xucxac1,xucxac1,xucxac1,this,menu_selector(GameScene::xucxacCallback));
+	xucxacButton1->setPosition(xucxacA->getPosition());
+	menuArray->addObject(xucxacButton1);
+	//xuc xac button 2
+	CCSprite *xucxac2 = CCSprite::create(Config::xucxac_texture1);
+	CCMenuItemSprite *xucxacButton2 = CCMenuItemSprite::create(xucxac2,xucxac2,xucxac2,this,menu_selector(GameScene::xucxacCallback));
+	xucxacButton2->setPosition(xucxacB->getPosition());
+	menuArray->addObject(xucxacButton2);
+
+	// Create menu, it's an autorelease object
+	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
+	pMenu->setPosition(CCPointZero);
+	this->addChild(pMenu,100);//ngoai cung,tuong tac
+	
 	return true;
 }
 
@@ -189,11 +200,6 @@ void GameScene::ruleCallback(CCObject *sender)
 	RuleScene *ruleScene = RuleScene::create();
 	CCDirector::sharedDirector()->replaceScene(ruleScene);
 }
-int GameScene::soXucXac()
-{
-	srand ( time(NULL) );
-	return rand()%6+1;
-}
 
 void GameScene::xucxacCallback(CCObject *sender)
 {	
@@ -201,16 +207,27 @@ void GameScene::xucxacCallback(CCObject *sender)
 	{
 		Config::setIdDice(Config::playEffect(Config::sfxDice, true));
 		isCalledXucXac = TRUE;
-		xucxac->stopAllActions();
-		xucxac->runAction( xucxacAminationAction);
+		xucxacA->stopAllActions();
+		xucxacA->runAction( xucxacAAminationAction);
+		xucxacB->stopAllActions();
+		xucxacB->runAction(xucxacBAminationAction);
 	}else
 	{
 		Config::stopEffect(Config::getIdDice());
-		xucxac->pauseSchedulerAndActions();
+		
 		char fn[128];
-		int ketqua = soXucXac();
-		sprintf(fn, "%d.gif", 7-ketqua);
-		xucxac->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+		srand ( time(NULL));
+		int kq=rand()%6+1;
+
+		xucxacA->pauseSchedulerAndActions();
+		sprintf(fn, "%d.gif", 7-kq);
+		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+
+		kq=rand()%6+1;
+		xucxacB->pauseSchedulerAndActions();
+		sprintf(fn, "%d.gif", 7-kq);
+		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+
 		isCalledXucXac =FALSE;
 	}
 }
