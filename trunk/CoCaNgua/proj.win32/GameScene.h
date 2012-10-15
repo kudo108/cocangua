@@ -26,18 +26,13 @@ private:
 	int gameType;
 	bool isCalledXucXac;
 	
-	cocos2d::CCSprite *xucxac1;
-	cocos2d::CCSprite *xucxac2;
-	cocos2d::CCSprite *xucxac3;
-	cocos2d::CCSprite *xucxac4;
-	cocos2d::CCSprite *xucxac5;
-	cocos2d::CCSprite *xucxac6;
+	//cocos2d::CCSprite *xucxac1;
+	//cocos2d::CCSprite *xucxac2;
 	
-	CC_SYNTHESIZE(CCSprite *,xucxac,Xucxac);
-	CC_SYNTHESIZE(CCAction *,xucxacAminationAction,XucxacAmination);
-	int soXucXac();
-
-
+	CC_SYNTHESIZE(CCSprite *,xucxacA,XucxacA);
+	CC_SYNTHESIZE(CCSprite *,xucxacB,XucxacB);
+	CC_SYNTHESIZE(CCAction *,xucxacAAminationAction,XucxacAAminationAction);
+	CC_SYNTHESIZE(CCAction *,xucxacBAminationAction,XucxacBAminationAction);
 };
 
 
