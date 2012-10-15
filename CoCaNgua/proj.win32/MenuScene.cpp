@@ -18,9 +18,8 @@ bool MenuScene::init()
 	// Init super first.
 	if ( !CCScene::init() ) return false;
 	//play background music(if haven't play yet)
-	if(!Config::getIsBgMusicPlaying()){
+	if(!Config::getIsBgMusicPlaying() && !Config::getHasTurnOffMusic()){
 		Config::playBackgroundMusic(Config::backgroundMusic);
-		Config::setIsBgMusicPlaying(false);
 	}
 
 	int jump=40;

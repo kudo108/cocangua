@@ -18,10 +18,14 @@ bool OptionScene::init()
 										"Music",
 										this,
 										menu_selector(OptionScene::toggleMusic));
-	
-	pMusicButton->setFontSizeObj(Config::objectFontSize);
+	if(Config::getIsBgMusicPlaying()){
+		pMusicButton->setFontSizeObj(Config::objectFontSize);
+		pMusicButton->setColor(ccWHITE);
+	}else{
+		pMusicButton->setFontSizeObj(Config::objectFontSize - 10);
+		pMusicButton->setColor(ccGRAY);
+	}
 	pMusicButton->setPosition(ccp(size.width/2, size.height/2 + 30));
-	//pMusicButton->unselected();
 	menuArray->addObject(pMusicButton);
 
 	CCMenuItemFont* pSFXButton = CCMenuItemFont::create(
@@ -29,7 +33,13 @@ bool OptionScene::init()
 										this,
 										menu_selector(OptionScene::toggleSFX));
 	
-	pSFXButton->setFontSizeObj(Config::objectFontSize);
+	if(Config::getIsSFXEffectPlaying()){
+		pSFXButton->setFontSizeObj(Config::objectFontSize);
+		pSFXButton->setColor(ccWHITE);
+	}else{
+		pSFXButton->setFontSizeObj(Config::objectFontSize - 10);
+		pSFXButton->setColor(ccGRAY);
+	}
 	pSFXButton->setPosition(ccp(size.width/2, size.height/2 - 30));
 	//pMusicButton->unselected();
 	menuArray->addObject(pSFXButton);
@@ -53,14 +63,19 @@ bool OptionScene::init()
 void OptionScene::toggleMusic(CCObject *sender){
 	Config::playEffect(Config::sfxButton, false);
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
-
+	
 	bool isMusicPlaying = Config::getIsBgMusicPlaying();
 	if(isMusicPlaying){
 		Config::pauseBackgroundMusic();
+		pMusicButton->setFontSizeObj(Config::objectFontSize - 10);
+		pMusicButton->setColor(ccGRAY);
 	}else{
 		Config::resumeBackgroundMusic();
+		pMusicButton->setFontSizeObj(Config::objectFontSize);
+		pMusicButton->setColor(ccWHITE);
 	}
 	Config::setIsBgMusicPlaying(!isMusicPlaying);
+	Config::setHasTurnOffMusic(!Config::getHasTurnOffMusic());
 }
 
 void OptionScene::toggleSFX(CCObject* sender){
@@ -68,7 +83,13 @@ void OptionScene::toggleSFX(CCObject* sender){
 	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
 	
 	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
-	//OutputDebugStringW(L"My output string.");
+	if(isSFXPlaying){
+		pSFXButton->setFontSizeObj(Config::objectFontSize - 10);
+		pSFXButton->setColor(ccGRAY);
+	}else{
+		pSFXButton->setFontSizeObj(Config::objectFontSize);
+		pSFXButton->setColor(ccWHITE);
+	}
 	Config::setIsSFXEffectPlaying(!isSFXPlaying);
 }
 

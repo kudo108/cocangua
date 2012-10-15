@@ -177,14 +177,17 @@ void GameScene::setGameType(int _t)
 void GameScene::gameOverCallback(CCObject *sender){
 	//save game
 	Config::playEffect(Config::sfxButton, false);
+	Config::stopAllEffect();
 	GameOverScene *menuScene = GameOverScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
+	
 }
 
 void GameScene::saveGameCallback(CCObject *sender)
 {
 	//save game
 	Config::playEffect(Config::sfxButton, false);
+	Config::stopAllEffect();
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
@@ -192,6 +195,7 @@ void GameScene::quitGameCallback(CCObject *sender)
 	Config::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
+	Config::stopAllEffect();
 }
 void GameScene::ruleCallback(CCObject *sender)
 {
@@ -199,6 +203,7 @@ void GameScene::ruleCallback(CCObject *sender)
 	Config::playEffect(Config::sfxButton, false);
 	RuleScene *ruleScene = RuleScene::create();
 	CCDirector::sharedDirector()->replaceScene(ruleScene);
+	Config::stopAllEffect();
 }
 
 void GameScene::xucxacCallback(CCObject *sender)
