@@ -2,7 +2,6 @@
 #define _MENU_SCENE_H_H
 
 #include <windows.h>
-#include "HelloWorldScene.h"
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "AboutScene.h"
@@ -18,6 +17,12 @@ bool MenuScene::init()
 {
 	// Init super first.
 	if ( !CCScene::init() ) return false;
+	//play background music(if haven't play yet)
+	if(!Config::getIsBgMusicPlaying()){
+		Config::playBackgroundMusic(Config::backgroundMusic);
+		Config::setIsBgMusicPlaying(false);
+	}
+
 	int jump=40;
 	//get window size
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -115,49 +120,49 @@ bool MenuScene::init()
 
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	AboutScene *aboutScene = AboutScene::create();
 	CCDirector::sharedDirector()->replaceScene(aboutScene);		
 }
 void MenuScene::menuHelpCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	HelpScene *helpScene = HelpScene::create();
 	CCDirector::sharedDirector()->replaceScene(helpScene);
 }
 void MenuScene::menuOptionCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	OptionScene *optionScene = OptionScene::create();
 	CCDirector::sharedDirector()->replaceScene(optionScene);
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();

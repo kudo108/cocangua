@@ -1,5 +1,6 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+#include "SimpleAudioEngine.h"
 
 class Config
 {
@@ -9,19 +10,28 @@ public:
 	static void setIsSFXEffectPlaying(bool _SFX);
 	static void setIdDice(int _id);
 	static void setIdButton(int _id);
+	static void setIdGameOver(int _id);
 
 	static int getVolume();
 	static bool getIsBgMusicPlaying();
 	static bool getIsSFXEffectPlaying();
 	static int getIdDice();
 	static int getIdButton();
+	static int getIdGameOver();
+
+	static void playBackgroundMusic(const char* _bgMusic);
+	static void stopBackgroundMusic();
+	static void pauseBackgroundMusic();
+	static void resumeBackgroundMusic();
+	static int playEffect(const char* _sfx, bool loop);
+	static void stopEffect(int id);
 	
-	const static char* sfxDirectory;
-	const static char* musicDirectory;
+	const static char* backgroundMusic;
 	const static char* sfxButton;
 	const static char* sfxDice;
+	const static char* sfxGameOver;
+	
 
-	const static char* backgroundMusic;
 	const static int objectFontSize;
 	const static char* gameOverBackground;
 	const static char* menuBackground;
@@ -45,6 +55,7 @@ private:
 	static bool isSFXEffectPlaying;
 	static int idDice;
 	static int idButton;
+	static int idGameOver;
 };
 
 #endif
