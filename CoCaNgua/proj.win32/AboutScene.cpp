@@ -1,7 +1,6 @@
 #include "AboutScene.h"
 #include "MenuScene.h"
 #include "Config.h"
-#include "HelloWorldScene.h"
 
 using namespace cocos2d;
 
@@ -33,7 +32,7 @@ bool AboutScene::init()
 
 void AboutScene::menuCallback(CCObject *sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

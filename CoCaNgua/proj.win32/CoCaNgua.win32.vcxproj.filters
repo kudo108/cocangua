@@ -93,7 +93,7 @@
       <Filter>include\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameOverScene.h">
-      <Filter>include</Filter>
+      <Filter>include\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +146,7 @@
       <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameOverScene.cpp">
-      <Filter>source</Filter>
+      <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

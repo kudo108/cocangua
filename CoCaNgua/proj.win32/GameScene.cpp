@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+
 #include "GameScene.h"
 #include "Config.h"
 #include "ClassicGameLayer.h"
@@ -56,10 +56,10 @@ bool GameScene::init()
 	int jump =60;
 	//save game
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
-										"Save",
+										"GameOver(demo)",
 										this,
 										menu_selector(GameScene::gameOverCallback));
-	pSaveGameButton->setFontSizeObj(fontSize);
+	pSaveGameButton->setFontSizeObj(fontSize/1.5);
 	menuArray->addObject(pSaveGameButton);
 	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
 	//Rule game
@@ -165,7 +165,7 @@ void GameScene::setGameType(int _t)
 //test
 void GameScene::gameOverCallback(CCObject *sender){
 	//save game
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	GameOverScene *menuScene = GameOverScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
@@ -173,19 +173,19 @@ void GameScene::gameOverCallback(CCObject *sender){
 void GameScene::saveGameCallback(CCObject *sender)
 {
 	//save game
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
 	//back to menu
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
 void GameScene::ruleCallback(CCObject *sender)
 {
 	//show rule
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	RuleScene *ruleScene = RuleScene::create();
 	CCDirector::sharedDirector()->replaceScene(ruleScene);
 }
@@ -199,13 +199,13 @@ void GameScene::xucxacCallback(CCObject *sender)
 {	
 	if(!isCalledXucXac)
 	{
-		Config::setIdDice(HelloWorld::playEffect(Config::sfxDice, true));
+		Config::setIdDice(Config::playEffect(Config::sfxDice, true));
 		isCalledXucXac = TRUE;
 		xucxac->stopAllActions();
 		xucxac->runAction( xucxacAminationAction);
 	}else
 	{
-		HelloWorld::stopEffect(Config::getIdDice());
+		Config::stopEffect(Config::getIdDice());
 		xucxac->pauseSchedulerAndActions();
 		char fn[128];
 		int ketqua = soXucXac();

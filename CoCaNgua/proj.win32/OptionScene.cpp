@@ -51,20 +51,20 @@ bool OptionScene::init()
 }
 
 void OptionScene::toggleMusic(CCObject *sender){
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
 
 	bool isMusicPlaying = Config::getIsBgMusicPlaying();
 	if(isMusicPlaying){
-		HelloWorld::pauseBackgroundMusic();
+		Config::pauseBackgroundMusic();
 	}else{
-		HelloWorld::resumeBackgroundMusic();
+		Config::resumeBackgroundMusic();
 	}
 	Config::setIsBgMusicPlaying(!isMusicPlaying);
 }
 
 void OptionScene::toggleSFX(CCObject* sender){
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
 	
 	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
@@ -74,7 +74,7 @@ void OptionScene::toggleSFX(CCObject* sender){
 
 void OptionScene::menuCallback(CCObject *sender)
 {
-	HelloWorld::playEffect(Config::sfxButton, false);
+	Config::playEffect(Config::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }
