@@ -2,15 +2,14 @@
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "Config.h"
-#include "SimpleAudioEngine.h"
 
 using namespace CocosDenshion;
 
 bool GameOverScene::init(){
 	if( !CCScene::init()) return false;
 	//stop background music and play sound of game over
-	Config::stopBackgroundMusic();
-	Config::setIdGameOver(SimpleAudioEngine::sharedEngine()->playEffect(Config::sfxGameOver));
+	Config::pauseBackgroundMusic();
+	Config::setIdGameOver(Config::playEffect(Config::sfxGameOver, false));
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//background

@@ -5,6 +5,7 @@ using namespace CocosDenshion;
 int Config::volume							= 100;
 bool Config::isBgMusicPlaying				= false;
 bool Config::isSFXEffectPlaying				= true;
+bool Config::hasTurnOffMusic				= false;
 int Config::idDice							= -1;
 int Config::idButton						= -1;
 int Config::idGameOver						= -1;
@@ -30,6 +31,14 @@ const char* Config::xucxac_plist			="/image/xucxac/xucxac.plist";
 const char* Config::xucxac_texture			="/image/xucxac/xucxac.png";
 const char* Config::xucxac_texture1			="/image/xucxac/1.png";
 
+
+void Config::setHasTurnOffMusic(bool _music){
+	hasTurnOffMusic = _music;
+}
+
+bool Config::getHasTurnOffMusic(){
+	return hasTurnOffMusic;
+}
 
 void Config::setIdGameOver(int _id){
 	idGameOver = _id;
@@ -82,19 +91,23 @@ void Config::setVolume(int _v)
 }
 
 void Config::playBackgroundMusic(const char* _bgMusic){
-	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(_bgMusic, true);   
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(_bgMusic, true);
+	Config::setIsBgMusicPlaying(true);
 }
 
 void Config::stopBackgroundMusic(){
 	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	Config::setIsBgMusicPlaying(false);
 }
 
 void Config::pauseBackgroundMusic(){
 	SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	Config::setIsBgMusicPlaying(false);
 }
 
 void Config::resumeBackgroundMusic(){
 	SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	Config::setIsBgMusicPlaying(true);
 }
 
 int Config::playEffect(const char* _sfx, bool loop){
@@ -105,6 +118,9 @@ int Config::playEffect(const char* _sfx, bool loop){
 	return id;
 }
 
+void Config::stopAllEffect(){
+	SimpleAudioEngine::sharedEngine()->stopAllEffects();
+}
 void Config::stopEffect(int id){
 	SimpleAudioEngine::sharedEngine()->stopEffect(id);
 }

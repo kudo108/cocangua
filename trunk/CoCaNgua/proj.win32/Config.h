@@ -11,10 +11,12 @@ public:
 	static void setIdDice(int _id);
 	static void setIdButton(int _id);
 	static void setIdGameOver(int _id);
+	static void setHasTurnOffMusic(bool _music);
 
-	static int getVolume();
 	static bool getIsBgMusicPlaying();
 	static bool getIsSFXEffectPlaying();
+	static bool getHasTurnOffMusic();
+	static int getVolume();
 	static int getIdDice();
 	static int getIdButton();
 	static int getIdGameOver();
@@ -25,7 +27,8 @@ public:
 	static void resumeBackgroundMusic();
 	static int playEffect(const char* _sfx, bool loop);
 	static void stopEffect(int id);
-	
+	static void stopAllEffect();
+
 	const static char* backgroundMusic;
 	const static char* sfxButton;
 	const static char* sfxDice;
@@ -51,8 +54,9 @@ public:
 	const static char* xucxac_texture1;
 private:
 	static bool isBgMusicPlaying;
-	static int volume;
+	static bool hasTurnOffMusic;
 	static bool isSFXEffectPlaying;
+	static int volume;
 	static int idDice;
 	static int idButton;
 	static int idGameOver;
