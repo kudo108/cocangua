@@ -34,10 +34,10 @@ public:
 	const static char* sfxDice;
 	const static char* sfxGameOver;
 	
-
 	const static int objectFontSize;
 	const static char* gameOverBackground;
 	const static char* menuBackground;
+	const static char* optionBackground;
 	const static char* flashBackground;
 	const static char* aboutBackground;
 	const static char* border1;
@@ -52,6 +52,9 @@ public:
 	const static char* xucxac_plist;
 	const static char* xucxac_texture;
 	const static char* xucxac_texture1;
+	const static char* loader_plist;
+	const static char* loader_texture;
+	const static char* loader_image;
 private:
 	static bool isBgMusicPlaying;
 	static bool hasTurnOffMusic;

@@ -11,6 +11,7 @@ int Config::idButton						= -1;
 int Config::idGameOver						= -1;
 const int Config::objectFontSize			= 40;
 const char* Config::menuBackground			= "image/background_menu.jpg";
+const char* Config::optionBackground		= "image/background_option.jpg";
 const char* Config::flashBackground			= "image/flash.png";
 const char* Config::aboutBackground			= "image/about.jpg";
 const char* Config::classicGameBackground	= "image/Background_classic.jpg";
@@ -30,6 +31,9 @@ const char* Config::menuBorder				= "/image/picture_border.png";
 const char* Config::xucxac_plist			="/image/xucxac/xucxac.plist";
 const char* Config::xucxac_texture			="/image/xucxac/xucxac.png";
 const char* Config::xucxac_texture1			="/image/xucxac/1.png";
+const char* Config::loader_plist			= "image/loader/AnimatedLoader.plist";
+const char* Config::loader_texture			= "image/loader/AnimatedLoader.png";
+const char* Config::loader_image			= "image/loader/IMG00000.png";
 
 
 void Config::setHasTurnOffMusic(bool _music){
