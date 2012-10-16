@@ -11,6 +11,7 @@ public:
 	static void setIdDice(int _id);
 	static void setIdButton(int _id);
 	static void setIdGameOver(int _id);
+	static void setIdGameWin(int _id);
 	static void setHasTurnOffMusic(bool _music);
 
 	static bool getIsBgMusicPlaying();
@@ -20,6 +21,7 @@ public:
 	static int getIdDice();
 	static int getIdButton();
 	static int getIdGameOver();
+	static int getIdGameWin();
 
 	static void playBackgroundMusic(const char* _bgMusic);
 	static void stopBackgroundMusic();
@@ -33,6 +35,7 @@ public:
 	const static char* sfxButton;
 	const static char* sfxDice;
 	const static char* sfxGameOver;
+	const static char* sfxGameWin;
 	
 	const static int objectFontSize;
 	const static char* gameOverBackground;
@@ -55,6 +58,9 @@ public:
 	const static char* loader_plist;
 	const static char* loader_texture;
 	const static char* loader_image;
+	const static char* gameWin_plist;
+	const static char* gameWin_texture;
+	const static char* gameWin_image;
 private:
 	static bool isBgMusicPlaying;
 	static bool hasTurnOffMusic;
@@ -63,6 +69,7 @@ private:
 	static int idDice;
 	static int idButton;
 	static int idGameOver;
+	static int idGameWin;
 };
 
 #endif

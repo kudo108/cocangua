@@ -20,11 +20,8 @@ bool GameOverScene::init(){
 	}
 
 	CCArray *menuArray = CCArray::create();
-
-	CCMenuItemFont* loseLabel = CCMenuItemFont::create(
-										"YOU LOSE",
-										this,
-										menu_selector(GameOverScene::menuCallBack));
+	
+	CCMenuItemFont* loseLabel = CCMenuItemFont::create("YOU LOSE");
 
 	loseLabel->setFontSizeObj(Config::objectFontSize*1.5);
 	loseLabel->setColor(ccBLACK);

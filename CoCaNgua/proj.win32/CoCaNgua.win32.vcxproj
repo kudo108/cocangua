@@ -148,6 +148,7 @@
     <ClInclude Include="GameLayer.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GameWinScene.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MapLocation.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="GameLayer.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GameWinScene.cpp" />
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLocation.cpp" />

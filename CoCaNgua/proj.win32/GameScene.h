@@ -18,6 +18,7 @@ public:
 	void xucxacCallback(CCObject *sender);
 	//test
 	void gameOverCallback(CCObject* sender);
+	void gameWinCallback(CCObject* sender);
 	MapLocation *map;	
 	//void changeXucXac(int x);
 	//cocos2d::CCAction *xucxacAction ;
