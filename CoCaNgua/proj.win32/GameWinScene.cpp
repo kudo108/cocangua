@@ -14,19 +14,19 @@ bool GameWinScene::init(){
 
 	CCArray *menuArray = CCArray::create();
 
-	CCMenuItemFont* loseLabel = CCMenuItemFont::create("YOU WIN");
+	CCMenuItemFont* winLabel = CCMenuItemFont::create("YOU WIN");
 
-	loseLabel->setFontSizeObj(Config::objectFontSize*1.5);
-	loseLabel->setPosition(ccp(size.width/2, size.height - 120));
-	menuArray->addObject(loseLabel);
+	
+	winLabel->setFontSizeObj(Config::objectFontSize*1.5);
+	winLabel->setPosition(ccp(size.width/2, size.height - 120));
+	menuArray->addObject(winLabel);
 
 	CCMenuItemFont* menuButton = CCMenuItemFont::create(
 										"Back to Menu",
 										this,
 										menu_selector(GameWinScene::menuCallback));
 
-	menuButton->setFontSizeObj(Config::objectFontSize);
-	menuButton->setColor(ccBLACK);
+	menuButton->setFontSizeObj(Config::objectFontSize - 10);
 	menuButton->setPosition(ccp(size.width/2, 120));
 	menuArray->addObject(menuButton);
 
