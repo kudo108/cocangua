@@ -30,9 +30,27 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::loader_plist);
+	CCSpriteBatchNode* loaderSpriteSheet = CCSpriteBatchNode::batchNodeWithFile(Config::loader_texture);
+
+	char fn[128];
+	CCAnimation* loaderAnim =CCAnimation::create();
+	
+	for (int i = 1; i <= 6; i++) 
+	{
+		sprintf(fn, "%d.gif", i);
+		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+		loaderAnim->addSpriteFrame(pFrame);
+	}
+
+	loaderAnim->setDelayPerUnit(0.01f);
+	this->loader = CCSprite::createWithSpriteFrameName(Config::loader_image);
+	
     bool bRet = false;
     do 
     {
+		
         //////////////////////////////////////////////////////////////////////////
         // super init first
         //////////////////////////////////////////////////////////////////////////

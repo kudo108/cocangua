@@ -133,6 +133,7 @@ bool GameScene::init()
      //create sprite first frame from animation first frame
 	this->xucxacA = CCSprite::createWithSpriteFrameName("1.gif");
 	this->xucxacA->retain();
+	
 	xucxacA->setPosition(ccp(size.width-100-40, size.height-100));
 
     xucxacAAminationAction = CCRepeatForever::create(CCAnimate::create(xucxacAnim));

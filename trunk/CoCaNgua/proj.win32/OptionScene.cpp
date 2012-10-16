@@ -11,6 +11,13 @@ bool OptionScene::init()
 	
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
+	//set background
+	CCSprite* background = CCSprite::create(Config::optionBackground);
+	if(background){
+		background->setPosition(ccp(size.width/2, size.height/2));
+		this->addChild(background);
+	}
+
 	CCArray *menuArray = CCArray::create();
 
 	//create button
