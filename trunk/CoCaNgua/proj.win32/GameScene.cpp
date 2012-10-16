@@ -4,7 +4,11 @@
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
+//test
 #include "GameOverScene.h"
+#include "GameWinScene.h"
+
+
 using namespace CocosDenshion;
 using namespace cocos2d;
 
@@ -50,6 +54,15 @@ bool GameScene::init()
 	int fontSize=Config::objectFontSize;
 	int jump =60;
 	//save game
+	//demo game win
+	CCMenuItemFont* pButtonGameWin = CCMenuItemFont::create(
+										"GameWin(demo)",
+										this,
+										menu_selector(GameScene::gameWinCallback));
+	pButtonGameWin->setFontSizeObj(fontSize/1.5);
+	menuArray->addObject(pButtonGameWin);
+	pButtonGameWin->setPosition(ccp(size.width-100, 4*jump));
+
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"GameOver(demo)",
 										this,
@@ -182,6 +195,14 @@ void GameScene::gameOverCallback(CCObject *sender){
 	GameOverScene *menuScene = GameOverScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 	
+}
+
+void GameScene::gameWinCallback(CCObject* sender){
+	//save game
+	Config::playEffect(Config::sfxButton, false);
+	Config::stopAllEffect();
+	GameWinScene *menuScene = GameWinScene::create();
+	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
 
 void GameScene::saveGameCallback(CCObject *sender)

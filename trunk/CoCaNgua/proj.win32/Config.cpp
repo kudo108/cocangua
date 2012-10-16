@@ -9,6 +9,7 @@ bool Config::hasTurnOffMusic				= false;
 int Config::idDice							= -1;
 int Config::idButton						= -1;
 int Config::idGameOver						= -1;
+int Config::idGameWin						= -1;
 const int Config::objectFontSize			= 40;
 const char* Config::menuBackground			= "image/background_menu.jpg";
 const char* Config::optionBackground		= "image/background_option.jpg";
@@ -25,6 +26,7 @@ const char* Config::backgroundMusic			= "music/background-music.wav";
 const char* Config::sfxButton				= "sound/Button.wav";
 const char* Config::sfxDice					= "sound/RollDice.wav";
 const char* Config::sfxGameOver				= "sound/GameOver.wav";
+const char* Config::sfxGameWin				= "sound/GameWin.wav";
 const char* Config::border1					= "/image/ngua1.png";
 const char* Config::miniMenu				= "/image/background_mini_menu.jpg";
 const char* Config::menuBorder				= "/image/picture_border.png";
@@ -33,8 +35,10 @@ const char* Config::xucxac_texture			="/image/xucxac/xucxac.png";
 const char* Config::xucxac_texture1			="/image/xucxac/1.png";
 const char* Config::loader_plist			= "image/loader/AnimatedLoader.plist";
 const char* Config::loader_texture			= "image/loader/AnimatedLoader.png";
-const char* Config::loader_image			= "image/loader/IMG00000.png";
-
+const char* Config::loader_image			= "IMG00000.png";
+const char* Config::gameWin_plist			= "image/gamewin/Gangnam.plist";
+const char* Config::gameWin_texture			= "image/gamewin/Gangnam.png";
+const char* Config::gameWin_image			= "gw0.png";
 
 void Config::setHasTurnOffMusic(bool _music){
 	hasTurnOffMusic = _music;
@@ -42,6 +46,14 @@ void Config::setHasTurnOffMusic(bool _music){
 
 bool Config::getHasTurnOffMusic(){
 	return hasTurnOffMusic;
+}
+
+void Config::setIdGameWin(int _id){
+	idGameWin = _id;
+}
+
+int Config::getIdGameWin(){
+	return idGameWin;
 }
 
 void Config::setIdGameOver(int _id){

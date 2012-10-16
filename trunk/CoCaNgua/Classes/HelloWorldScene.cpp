@@ -30,24 +30,7 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::loader_plist);
-	CCSpriteBatchNode* loaderSpriteSheet = CCSpriteBatchNode::batchNodeWithFile(Config::loader_texture);
-
-	char fn[128];
-	CCAnimation* loaderAnim =CCAnimation::create();
-	
-	for (int i = 1; i <= 6; i++) 
-	{
-		sprintf(fn, "%d.gif", i);
-		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
-		loaderAnim->addSpriteFrame(pFrame);
-	}
-
-	loaderAnim->setDelayPerUnit(0.01f);
-	this->loader = CCSprite::createWithSpriteFrameName(Config::loader_image);
-	
-    bool bRet = false;
+	if (!CCLayer::init()) return false;
     do 
     {
 		
@@ -55,7 +38,7 @@ bool HelloWorld::init()
         // super init first
         //////////////////////////////////////////////////////////////////////////
 
-        CC_BREAK_IF(! CCLayer::init());
+      //  CC_BREAK_IF(! CCLayer::init());
 
         //////////////////////////////////////////////////////////////////////////
         // add your codes below...
@@ -72,17 +55,39 @@ bool HelloWorld::init()
 		}
 		//sleep(3);
 	//	call_Trailer();
+		//loader animation
+		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::loader_plist);
+		CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::loader_texture);
+		char fn[128];
+		CCAnimation* loaderAnimation = CCAnimation::create();
+	
+		for (int i = 0; i <= 7; i++) 
+		{
+			sprintf(fn, "IMG0000%d.png", i);
+			CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+			loaderAnimation->addSpriteFrame(pFrame);
+		}
+	
+		loaderAnimation->setDelayPerUnit(0.1f);
+		 //create sprite first frame from animation first frame
+		CCSprite* loader = CCSprite::createWithSpriteFrameName(Config::loader_image);
+	
+		loader->setPosition(ccp(20, 20));
+
+		CCAction* loadAction = CCRepeatForever::create(CCAnimate::create(loaderAnimation));
+		loadAction->setOriginalTarget(loader);
+		loader->runAction(loadAction);
+		this->addChild(loader);
 		
 		this->runAction( CCSequence::create(
                                 CCDelayTime::create(3),
                                 CCCallFunc::create(this, 
                                 callfunc_selector(HelloWorld::call_Trailer)),
                                 NULL));
-		bRet = true;
     } while (0);
 
 	
-    return bRet;
+    return true;
 }
 
 

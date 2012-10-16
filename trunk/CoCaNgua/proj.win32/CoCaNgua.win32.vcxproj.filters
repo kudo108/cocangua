@@ -95,6 +95,9 @@
     <ClInclude Include="GameOverScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="GameWinScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +149,9 @@
       <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameOverScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWinScene.cpp">
       <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
