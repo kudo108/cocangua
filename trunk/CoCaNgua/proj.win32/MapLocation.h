@@ -7,23 +7,27 @@ class MapLocation
 public:
 	MapLocation(int winSize);
 	~MapLocation(void);
-	CCPoint *getPointNextOf( CCPoint currentLocation,int step);
-	CCPoint *getFinishPoint(int step, int tag);
-	CCPoint getFirstWayPoint(int tag);
-	//use for init Animal
-	CCPoint getInitLocation(int tag, int num);//lay con tro chi den vi tri ra quan
+	int way;
+	int fnR;
+	int fnG;
+	int fnB;
+	int fnY;
+	CCPoint getNextPoint(int type,CCPoint current,int step);
+	CCPoint getPoint(int map,int index);
+	int getIndexLocation(int map,CCPoint point);
 private:
-	int winSize;
+	float winSize;
 	float scale;
-	CCPoint getPoint(int index);
-	CCPoint wayLocation[48];
-	CCPoint finishLocation[24];
-	CCPoint initLocation[16];
-	int getIndexLocation(CCPoint point);
-	float p1;
-	float pMid;
-	float pStep1;
-	float pStepMid;
+	CCPoint wayLocation[56];
+	CCPoint finishLocationYellow[24];
+	CCPoint finishLocationGreen[24];
+	CCPoint finishLocationRed[24];
+	CCPoint finishLocationBlue[24];
+	float margin;
+	float stepLength;
+	float stepEnd;
+	float center;
+
 };
 
 #endif
