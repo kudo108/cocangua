@@ -6,29 +6,43 @@ using namespace cocos2d;
 
 MapLocation::MapLocation(int _winSize)
 {
-	this->winSize = _winSize;
-	this->scale = winSize/1024;
-	p1 = 45*scale;
-	pMid=512*scale;
-	pStep1 = 50*scale;
-	pStepMid = 117*scale;
-	//init wayLocation
-	wayLocation[0] = ccp(p1,pMid);
-		//anyone do here for me, for love, for neptune
-		//TODO
-	wayLocation[55]=ccp(p1,(pMid-pStepMid));
+	//waylocation[0] la vi tri xuat phat cua quan co mau vang 
+	//
+	way = 0;
+	fnY = 1;
+	fnG = 2;
+	fnR = 3;
+	fnB = 4;
+	//
+	winSize = _winSize;
+	scale = winSize/1024;
+	margin = 45*scale;
+	center = 512*scale;
+	stepEnd = 117*scale;
+	stepLength = (350/6)*this->scale;
+	for(int i=0;i<=6;i++){
+		wayLocation[i]= ccp(margin+i*stepLength,center-stepEnd);
+		wayLocation[6+i]=ccp(center-stepEnd,(center-stepEnd)-i*stepLength);
+		wayLocation[14+i]=ccp(center+stepEnd,margin+i*stepLength);
+		wayLocation[20+i]=ccp(center+stepEnd+i*stepLength,center-stepEnd);
+		wayLocation[28+i]=ccp(2*center-margin-i*stepLength,center+stepEnd);
+		wayLocation[34+i]=ccp(center+stepLength,center+stepEnd+i*stepLength);
+		wayLocation[42+i]=ccp(center-stepEnd,2*center-margin-i*stepLength);
+		wayLocation[48+i]=ccp(center-stepEnd-i*stepLength,center+stepEnd);
+	}
+	wayLocation[13]=ccp(center,margin);
+	wayLocation[27]=ccp(2*center-margin,center);
+	wayLocation[41]=ccp(center,2*center-margin);
+	wayLocation[55]=ccp(margin,center);
+	//Finish location yellow,red,green,blue
+	for(int i=0;i<6;i++)
+	{
+		finishLocationYellow[i]=ccp(margin+(i+1)*stepLength,center);
+		finishLocationGreen[i]=ccp(center,margin+(i+1)*stepLength);
+		finishLocationRed[i]=ccp(2*center-margin-(i+1)*stepLength,center);
+		finishLocationBlue[i]=ccp(center,2*center-margin-(i+1)*stepLength);
+	}
 	
-	//init finishLocation
-	//quan dau tien, tag=0, theo dung thu tu cua wayLocation
-	//1,2,3,4,5,6
-	finishLocation[0] = ccp((p1+pStep1),pMid);
-	//TODO
-	finishLocation[15] = ccp(pMid, (p1+6*pStep1));
-	
-	//init initLocation - diem trong chuong
-	initLocation[0] = ccp(0,0);
-	//TODO
-	initLocation[15] = ccp(0,0);
 }
 
 
@@ -38,64 +52,139 @@ MapLocation::~MapLocation(void)
 	{
 		wayLocation[i].autorelease();
 	}
-	for(int i = 0; i<24; i++)
+	for(int i = 0; i<6; i++)
 	{
-		finishLocation[i].autorelease();
+		finishLocationYellow[i].autorelease();
+		finishLocationBlue[i].autorelease();
+		finishLocationGreen[i].autorelease();
+		finishLocationRed[i].autorelease();
 	}
-	for(int i = 0; i<16; i++)
-	{
-		finishLocation[i].autorelease();
-	}
+
 }
 
-CCPoint MapLocation::getPoint(int index)
+CCPoint MapLocation::getPoint(int map,int index)
 {
-	return this->wayLocation[index];
+	switch(map)
+	{
+	case 0:
+		if(index>=0&&index<=55)
+			return this->wayLocation[index]; else return ccp(-1,-1);
+		break;
+	case 1:
+		if(index>=0&&index<=5)
+			return this->finishLocationYellow[index]; else return ccp(-1,-1);
+		break;
+	case 2:
+		if(index>=0&&index<=5)
+			return this->finishLocationGreen[index]; else return ccp(-1,-1);
+		break;
+	case 3:
+		if(index>=0&&index<=5)
+			return this->finishLocationRed[index]; else return ccp(-1,-1);
+		break;
+	case 4:
+		if(index>=0&&index<=5)
+			return this->finishLocationBlue[index]; else return ccp(-1,-1);
+		break;
+	default:
+		return ccp(-1,-1);
+		break;
+	}
+}
+int MapLocation::getIndexLocation(int map,CCPoint point)
+{
+	
+	switch(map)
+	{
+	case 0:
+		for(int i=0;i<56;i++) if(wayLocation[i].equals(point)) return i;
+		return -1;
+		break;
+	case 1:
+		for(int i=0;i<6;i++) if(finishLocationYellow[i].equals(point)) return i;
+		return -1;
+		break;
+	case 2:
+		for(int i=0;i<6;i++) if(finishLocationGreen[i].equals(point)) return i;
+		return -1;
+		break;
+	case 3:
+		for(int i=0;i<6;i++) if(finishLocationRed[i].equals(point)) return i;
+		return -1;
+		break;
+	case 4:
+		for(int i=0;i<6;i++) if(finishLocationBlue[i].equals(point)) return i;
+		return -1;
+		break;
+	default: 
+			
+			return -1;
+		break;
+	}	
 }
 
-CCPoint *MapLocation::getPointNextOf(CCPoint currentLocation,int step)
-	//tra ve cac diem tiep theo khi so xuc xac dc step buoc
+CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 {
-	static CCPoint result[12];
-	int currentIndex = getIndexLocation(currentLocation);
-	int i =1;
-	for(i; i <=step; i++)
+	int i=0,j=0;
+	switch(type)
 	{
-		if(currentIndex+i >=48)
-		{
-			currentIndex = currentIndex+step-48;
+	case 1:
+		if(step<=0) return current;
+		i = getIndexLocation(way,current);
+		if(i==-1){
+			j = getIndexLocation(fnY,current);
+			if(j==-1) return ccp(-1,-1);
+			if((step+j)>5) return ccp(-1,-1);
+			return finishLocationYellow[step+j];
 		}
-		result[i] = wayLocation[currentIndex];
+		if((i+step)>55) return finishLocationYellow[i+step-56];
+		return wayLocation[i+step];
+		break;
+	case 2:
+		//13
+		if(step<=0) return current;
+		i = getIndexLocation(way,current);
+		if(i==-1){
+			j = getIndexLocation(fnG,current);
+			if(j==-1) return ccp(-1,-1);
+			if((step+j)>5) return ccp(-1,-1);
+			return finishLocationGreen[step+j];
+		}
+		if((i+step)>13&&i>=0&&i<=13) return finishLocationGreen[i+step-14];
+		if((i+step)>13&&i>=0&&i<=13&&(step+i-13)>5) return ccp(-1,-1);
+		if((i+step)>55) return wayLocation[i+step-56];
+		return wayLocation[i+step];
+		break;
+	case 3:
+		//27
+		if(step<=0) return current;
+		i = getIndexLocation(way,current);
+		if(i==-1){
+			j = getIndexLocation(fnR,current);
+			if(j==-1) return ccp(-1,-1);
+			if((step+j)>5) return ccp(-1,-1);
+			return finishLocationRed[step+j];
+		}
+		if((i+step)>27&&i>=0&&i<=27) return finishLocationRed[i+step-28];
+		if((i+step)>27&&i>=0&&i<=27&&(i+step-27)>5) return ccp(-1,-1);
+		if((i+step)>55) return wayLocation[i+step-56];
+		return wayLocation[i+step];
+		break;
+	case 4:
+		if(step<=0) return current;
+		i = getIndexLocation(way,current);
+		if(i==-1){
+			j = getIndexLocation(fnB,current);
+			if(j==-1) return ccp(-1,-1);
+			if((step+j)>5) return ccp(-1,-1);
+			return finishLocationBlue[step+j];
+		}
+		if((i+step)>41&&i>=0&&i<=41) return finishLocationRed[i+step-42];
+		if((i+step)>41&&i>=0&&i<=41&&(i+step-41)>5) return ccp(-1,-1);
+		if((i+step)>55) return wayLocation[i+step-56];
+		return wayLocation[i+step];
+		break;
+	default:
+		return ccp(-1,-1);break;
 	}
-	if (step <12) result[i+1] = ccp(-1,-1);
-	return result;
-	//tu ket qua nay, nhay tung nac qua cac diem:D
-}
-int MapLocation::getIndexLocation(cocos2d::CCPoint point)
-{
-	for(int i = 0; i < 56; i++)
-	{
-		if(wayLocation[i].equals(point)) return i;
-	}
-	return -1;
-}
-
-CCPoint *MapLocation::getFinishPoint(int step, int tag)
-{
-	static CCPoint result[12];
-	int i = 0;
-	for(i; i < step; i++)
-	{
-		result[i] = finishLocation[tag*4+i];
-	}
-	if(step < 5) result[i+1] = ccp(-1,-1);
-	return result;
-}
-CCPoint MapLocation::getFirstWayPoint(int tag)
-{
-	return wayLocation[14*tag];
-}
-CCPoint MapLocation::getInitLocation(int tag, int num)
-{
-	return initLocation[tag*4+num];
 }
