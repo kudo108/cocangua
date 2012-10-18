@@ -4,12 +4,14 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
+
 using namespace CocosDenshion;
 
 USING_NS_CC;
 
 AppDelegate::AppDelegate()
 {
+	
 }
 
 AppDelegate::~AppDelegate()
