@@ -1,5 +1,6 @@
 #ifndef _MAP_LOCATION_H_
 #define _MAP_LOCATION_H_
+
 #include "cocos2d.h"
 using namespace cocos2d;
 class MapLocation

@@ -2,12 +2,14 @@
 #define _ANIMAL_UNIT_H_
 
 #include "cocos2d.h"
+#include "MapLocation.h"
+
 using namespace cocos2d;
 
 class AnimalUnit
 {
 public:
-	AnimalUnit(CCPoint _initLocation, const char* imageLink, CCNode *parent);
+	AnimalUnit(int offset, CCNode *parent,CCPoint _initLocation, MapLocation *_m);
 	~AnimalUnit(void);
 	CCPoint getLocation();
 	void born();//tu chuong ra duong
@@ -20,6 +22,8 @@ private:
 	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di
 	CC_SYNTHESIZE(CCSprite*, sprite, Sprite);
+	CC_SYNTHESIZE(CCAction*, danceAction, DanceAction);
+	MapLocation *map;
 };
 
 #endif

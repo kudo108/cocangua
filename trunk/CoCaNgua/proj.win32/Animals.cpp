@@ -1,19 +1,18 @@
 #include "Animals.h"
-#include "Config.h"
 /*
 Chua thong tin ve 1 phe
 */
 
-Animals::Animals(int tag)
+Animals::Animals(int tag, CCNode* _p, MapLocation *_m)
 {
+	this->map = _m;
+	this->parent = _p;
 	switch(tag)
 	{
 	case 0:
 		{
-			/*unit0 = new AnimalUnit(&(map->getInitLocation(tag, 0)), Config::animal0_init_image);
-			unit1 = new AnimalUnit(&(map->getInitLocation(tag, 1)), Config::animal0_init_image);
-			unit2 = new AnimalUnit(&(map->getInitLocation(tag, 2)), Config::animal0_init_image);
-			unit3 = new AnimalUnit(&(map->getInitLocation(tag, 3)), Config::animal0_init_image);*/
+			unit0 = new AnimalUnit(0,_p,map->getPoint(0,0),map);
+			//TODO
 			break;
 		}
 	case 1:
@@ -32,20 +31,13 @@ Animals::Animals(int tag)
 			break;
 		}
 	default:
-		{
 			break;
-		}
 	};
-
+	
 }
 
 
 Animals::~Animals(void)
 {
 	//TODO release all unit
-}
-
-void Animals::setMap(MapLocation *m)
-{
-	this->map = m;
 }

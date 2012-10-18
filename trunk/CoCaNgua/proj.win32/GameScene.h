@@ -1,8 +1,7 @@
 #ifndef _GAME_SCENE_H_
 #define _GAME_SCENE_H_
 
-//#include "cocos2d.h"
-#include "MapLocation.h"
+#include "Animals.h"
 
 class GameScene : public cocos2d::CCScene
 {
@@ -35,7 +34,7 @@ private:
 	CC_SYNTHESIZE(CCAction *,xucxacAAminationAction,XucxacAAminationAction);
 	CC_SYNTHESIZE(CCAction *,xucxacBAminationAction,XucxacBAminationAction);
 	//test
-	//CC_SYNTHESIZE(AnimalUnit *,heo,Heo);
+	CC_SYNTHESIZE(Animals *,heo,Heo);
 };
 
 

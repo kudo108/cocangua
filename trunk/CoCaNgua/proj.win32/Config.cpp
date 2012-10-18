@@ -18,10 +18,14 @@ const char* Config::aboutBackground			= "image/about.jpg";
 const char* Config::classicGameBackground	= "image/Background_classic.jpg";
 const char* Config::gameOverBackground		= "image/gameover.png";
 const char* Config::xingau_init_image		= "image/ccn4.jpg";
-const char* Config::animal1_init_image		= "/image/animal/1.jpg";
-const char* Config::animal2_init_image		= "/image/animal/2.jpg";
-const char* Config::animal3_init_image		= "/image/animal/3.jpg";
-const char* Config::animal0_init_image		= "/image/animal/0.jpg";
+const char* Config::animal1_init_image		= "/image/animal/heo/heo.png";
+const char* Config::animal2_init_image		= "/image/animal/heo/heo.png";
+const char* Config::animal3_init_image		= "/image/animal/heo/heo.png";
+const char* Config::animal0_init_image		= "/image/animal/heo/heo2.png";
+const char* Config::animal1_init_plist		= "/image/animal/heo/heo.plist";
+const char* Config::animal2_init_plist		= "/image/animal/heo/heo.plist";
+const char* Config::animal3_init_plist		= "/image/animal/heo/heo.plist";
+const char* Config::animal0_init_plist		= "/image/animal/heo/heo2.plist";
 const char* Config::backgroundMusic			= "music/background-music.wav";
 const char* Config::sfxButton				= "sound/Button.wav";
 const char* Config::sfxDice					= "sound/RollDice.wav";
@@ -39,6 +43,10 @@ const char* Config::loader_image			= "IMG00000.png";
 const char* Config::gameWin_plist			= "image/gamewin/Gangnam.plist";
 const char* Config::gameWin_texture			= "image/gamewin/Gangnam.png";
 const char* Config::gameWin_image			= "gw0.png";
+
+const int Config::WAYMAP = 0;
+const int Config::INITMAP = -1;
+const int Config::FINISHMAP = 1;
 
 void Config::setHasTurnOffMusic(bool _music){
 	hasTurnOffMusic = _music;
