@@ -36,6 +36,11 @@ bool GameScene::init()
 {
 	if(! CCScene::init() ) return false;
 	
+	if(!Config::getHasTurnOffMusic()){
+		Config::stopBackgroundMusic();
+		Config::playBackgroundMusic(Config::gameplayMusic, GP_MUSIC);
+	}
+
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	
 	//background

@@ -2,11 +2,14 @@
 #define _CONFIG_H_
 #include "SimpleAudioEngine.h"
 
+#define BG_MUSIC 1
+#define GP_MUSIC 2
 class Config
 {
 public:
 	static void setVolume(int _v);
-	static void setIsBgMusicPlaying(bool _Bg);
+	static void setIsBgMusicPlaying(bool _bg);
+	static void setIsGameplayMusicPlaying(bool _gp);
 	static void setIsSFXEffectPlaying(bool _SFX);
 	static void setIdDice(int _id);
 	static void setIdButton(int _id);
@@ -15,6 +18,7 @@ public:
 	static void setHasTurnOffMusic(bool _music);
 
 	static bool getIsBgMusicPlaying();
+	static bool getIsGameplayMusicPlaying();
 	static bool getIsSFXEffectPlaying();
 	static bool getHasTurnOffMusic();
 	static int getVolume();
@@ -23,7 +27,7 @@ public:
 	static int getIdGameOver();
 	static int getIdGameWin();
 
-	static void playBackgroundMusic(const char* _bgMusic);
+	static void playBackgroundMusic(const char* _bgMusic, int type);
 	static void stopBackgroundMusic();
 	static void pauseBackgroundMusic();
 	static void resumeBackgroundMusic();
@@ -32,6 +36,7 @@ public:
 	static void stopAllEffect();
 
 	const static char* backgroundMusic;
+	const static char* gameplayMusic;
 	const static char* sfxButton;
 	const static char* sfxDice;
 	const static char* sfxGameOver;
@@ -71,6 +76,7 @@ public:
 	const static int FINISHMAP;
 private:
 	static bool isBgMusicPlaying;
+	static bool isGameplayMusicPlaying;
 	static bool hasTurnOffMusic;
 	static bool isSFXEffectPlaying;
 	static int volume;
