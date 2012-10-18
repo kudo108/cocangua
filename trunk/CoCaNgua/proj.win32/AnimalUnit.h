@@ -7,19 +7,19 @@ using namespace cocos2d;
 class AnimalUnit
 {
 public:
-	AnimalUnit(CCPoint* _initLocation, const char* imageLink);
+	AnimalUnit(CCPoint _initLocation, const char* imageLink, CCNode *parent);
 	~AnimalUnit(void);
-	CCPoint* getLocation();
+	CCPoint getLocation();
 	void born();//tu chuong ra duong
 	void go(int step);//di them dc step buoc
 	void finish(int step);//den dich buoc thu x
 	void die();//chet, ve lai chuong
 	void dance();//luc lac luc lac =))
 private:
-	CCPoint* location;//vi tri hien tai
-	CCPoint* initLocation;//vi tri trong chuong
+	CCPoint location;//vi tri hien tai
+	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di
-	cocos2d::CCSprite* sprite;
+	CC_SYNTHESIZE(CCSprite*, sprite, Sprite);
 };
 
 #endif

@@ -19,21 +19,23 @@ public:
 	//test
 	void gameOverCallback(CCObject* sender);
 	void gameWinCallback(CCObject* sender);
+	//unit callback
+	void go1Callback(CCObject *sender);
+	void go2Callback(CCObject *sender);
+	void go3Callback(CCObject *sender);
+	void go4Callback(CCObject *sender);
 	MapLocation *map;	
-	//void changeXucXac(int x);
-	//cocos2d::CCAction *xucxacAction ;
-	//cocos2d::CCSprite *xucxac;
 private:	
 	int gameType;
 	bool isCalledXucXac;
-	
-	//cocos2d::CCSprite *xucxac1;
-	//cocos2d::CCSprite *xucxac2;
-	
+	int kqXucXac[2];
+
 	CC_SYNTHESIZE(CCSprite *,xucxacA,XucxacA);
 	CC_SYNTHESIZE(CCSprite *,xucxacB,XucxacB);
 	CC_SYNTHESIZE(CCAction *,xucxacAAminationAction,XucxacAAminationAction);
 	CC_SYNTHESIZE(CCAction *,xucxacBAminationAction,XucxacBAminationAction);
+	//test
+	//CC_SYNTHESIZE(AnimalUnit *,heo,Heo);
 };
 
 
