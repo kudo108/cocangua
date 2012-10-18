@@ -4,6 +4,7 @@
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
+#include "AnimalUnit.h"
 //test
 #include "GameOverScene.h"
 #include "GameWinScene.h"
@@ -18,8 +19,8 @@ GameScene::GameScene(void)
 	map = new MapLocation(600);
 
 	isCalledXucXac = FALSE;
-
 	int gameType = -1;
+	kqXucXac[0]=kqXucXac[1]=0;
 }
 
 GameScene::~GameScene(void)
@@ -33,6 +34,13 @@ bool GameScene::init()
 	if(! CCScene::init() ) return false;
 	
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	
+	//test
+	AnimalUnit *heo0 = new AnimalUnit(map->getPoint(0,0),"/image/animal/heo/pig1.png", this);
+	AnimalUnit *heo1 = new AnimalUnit(map->getPoint(1,0),"/image/animal/heo/pig1.png", this);
+	AnimalUnit *heo2 = new AnimalUnit(map->getPoint(2,0),"/image/animal/heo/pig1.png", this);
+	AnimalUnit *heo3 = new AnimalUnit(map->getPoint(3,0),"/image/animal/heo/pig1.png", this);
+	AnimalUnit *heo4 = new AnimalUnit(map->getPoint(4,0),"/image/animal/heo/pig1.png", this);
 	//background
 	CCSprite* background = CCSprite::create(Config::classicGameBackground);
     if(background)
@@ -42,6 +50,7 @@ bool GameScene::init()
 		background->setPosition(ccp(size.width/2-100, size.height/2));
 		this->addChild(background,-1);//uu tien (nam duoi cung)
 	}
+	
 	//menu border
 	CCSprite* menuBorder = CCSprite::create(Config::menuBorder);
     if(menuBorder)
@@ -49,6 +58,7 @@ bool GameScene::init()
 		menuBorder->setPosition(ccp(size.width-100, size.height/2));
 		this->addChild(menuBorder,-1);//uu tien (nam duoi cung)
 	}
+	
 	//menu
 	CCArray *menuArray = CCArray::create();
 	int fontSize=Config::objectFontSize;
@@ -94,7 +104,7 @@ bool GameScene::init()
 	CCMenuItemFont* p1Button = CCMenuItemFont::create(
 										"1",
 										this,
-										menu_selector(ClassicGameLayer::go1Callback));
+										menu_selector(GameScene::go1Callback));
 	p1Button->setFontSizeObj(fontSize);
 	menuArray->addObject(p1Button);
 	p1Button->setPosition(ccp(size.width-200 + 25, numberButtonPositionY));
@@ -102,7 +112,7 @@ bool GameScene::init()
 	CCMenuItemFont* p2Button = CCMenuItemFont::create(
 										"2",
 										this,
-										menu_selector(ClassicGameLayer::go2Callback));
+										menu_selector(GameScene::go2Callback));
 	p2Button->setFontSizeObj(fontSize);
 	menuArray->addObject(p2Button);
 	p2Button->setPosition(ccp(size.width-200+75, numberButtonPositionY));
@@ -110,7 +120,7 @@ bool GameScene::init()
 	CCMenuItemFont* p3Button = CCMenuItemFont::create(
 										"3",
 										this,
-										menu_selector(ClassicGameLayer::go3Callback));
+										menu_selector(GameScene::go3Callback));
 	p3Button->setFontSizeObj(fontSize);
 	menuArray->addObject(p3Button);
 	p3Button->setPosition(ccp(size.width-200+125, numberButtonPositionY));
@@ -118,15 +128,12 @@ bool GameScene::init()
 	CCMenuItemFont* p4Button = CCMenuItemFont::create(
 										"4",
 										this,
-										menu_selector(ClassicGameLayer::go4Callback));
+										menu_selector(GameScene::go4Callback));
 	p4Button->setFontSizeObj(fontSize);
 	menuArray->addObject(p4Button);
 	p4Button->setPosition(ccp(size.width-200+175, numberButtonPositionY));
 	
-	
-	
-	
-	
+		
 	//set xucxac and xucxacAction
 //	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//xuc xac
@@ -177,7 +184,7 @@ bool GameScene::init()
 	// Create menu, it's an autorelease object
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
 	pMenu->setPosition(CCPointZero);
-	this->addChild(pMenu,100);//ngoai cung,tuong tac
+	this->addChild(pMenu,1);//ngoai cung,tuong tac
 	
 	return true;
 }
@@ -238,6 +245,7 @@ void GameScene::xucxacCallback(CCObject *sender)
 		xucxacA->runAction( xucxacAAminationAction);
 		xucxacB->stopAllActions();
 		xucxacB->runAction(xucxacBAminationAction);
+		this->kqXucXac[0]=this->kqXucXac[1]=0;
 	}else
 	{
 		Config::stopEffect(Config::getIdDice());
@@ -248,13 +256,32 @@ void GameScene::xucxacCallback(CCObject *sender)
 
 		xucxacA->pauseSchedulerAndActions();
 		sprintf(fn, "%d.gif", 7-kq);
+		this->kqXucXac[0]=7-kq;
 		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		kq=rand()%6+1;
 		xucxacB->pauseSchedulerAndActions();
 		sprintf(fn, "%d.gif", 7-kq);
+		this->kqXucXac[1]=7-kq;
 		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		isCalledXucXac =FALSE;
 	}
+}
+
+void GameScene::go1Callback(CCObject *sender)
+{
+
+}
+void GameScene::go2Callback(CCObject *sender)
+{
+
+}
+void GameScene::go3Callback(CCObject *sender)
+{
+
+}
+void GameScene::go4Callback(CCObject *sender)
+{
+
 }
