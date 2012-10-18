@@ -4,6 +4,7 @@ using namespace CocosDenshion;
 
 int Config::volume							= 100;
 bool Config::isBgMusicPlaying				= false;
+bool Config::isGameplayMusicPlaying			= false;
 bool Config::isSFXEffectPlaying				= true;
 bool Config::hasTurnOffMusic				= false;
 int Config::idDice							= -1;
@@ -26,7 +27,8 @@ const char* Config::animal1_init_plist		= "/image/animal/heo/heo.plist";
 const char* Config::animal2_init_plist		= "/image/animal/heo/heo.plist";
 const char* Config::animal3_init_plist		= "/image/animal/heo/heo.plist";
 const char* Config::animal0_init_plist		= "/image/animal/heo/heo2.plist";
-const char* Config::backgroundMusic			= "music/background-music.wav";
+const char* Config::backgroundMusic			= "music/background-music.mp3";
+const char* Config::gameplayMusic			= "music/gameplay-music.mp3";
 const char* Config::sfxButton				= "sound/Button.wav";
 const char* Config::sfxDice					= "sound/RollDice.wav";
 const char* Config::sfxGameOver				= "sound/GameOver.wav";
@@ -104,6 +106,14 @@ bool Config::getIsBgMusicPlaying(){
 	return isBgMusicPlaying;
 }
 
+void Config::setIsGameplayMusicPlaying(bool _gp){
+	isGameplayMusicPlaying = _gp;
+}
+
+bool Config::getIsGameplayMusicPlaying(){
+	return isGameplayMusicPlaying;
+}
+
 int Config::getVolume()
 {
 	return volume;
@@ -114,9 +124,14 @@ void Config::setVolume(int _v)
 	volume = _v;
 }
 
-void Config::playBackgroundMusic(const char* _bgMusic){
+void Config::playBackgroundMusic(const char* _bgMusic, int type){
 	SimpleAudioEngine::sharedEngine()->playBackgroundMusic(_bgMusic, true);
-	Config::setIsBgMusicPlaying(true);
+	
+	if(type == BG_MUSIC){
+		Config::setIsBgMusicPlaying(true);
+	}else{
+		Config::setIsGameplayMusicPlaying(true);
+	}
 }
 
 void Config::stopBackgroundMusic(){
