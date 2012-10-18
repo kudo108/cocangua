@@ -80,7 +80,7 @@ bool HelloWorld::init()
 		this->addChild(loader);
 		
 		this->runAction( CCSequence::create(
-                                CCDelayTime::create(3),
+                                CCDelayTime::create(2),
                                 CCCallFunc::create(this, 
                                 callfunc_selector(HelloWorld::call_Trailer)),
                                 NULL));

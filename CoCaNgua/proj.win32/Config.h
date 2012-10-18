@@ -52,6 +52,10 @@ public:
 	const static char* animal2_init_image;
 	const static char* animal3_init_image;
 	const static char* animal0_init_image;
+	const static char* animal1_init_plist;
+	const static char* animal2_init_plist;
+	const static char* animal3_init_plist;
+	const static char* animal0_init_plist;
 	const static char* xucxac_plist;
 	const static char* xucxac_texture;
 	const static char* xucxac_texture1;
@@ -61,6 +65,10 @@ public:
 	const static char* gameWin_plist;
 	const static char* gameWin_texture;
 	const static char* gameWin_image;
+
+	const static int WAYMAP;
+	const static int INITMAP;
+	const static int FINISHMAP;
 private:
 	static bool isBgMusicPlaying;
 	static bool hasTurnOffMusic;

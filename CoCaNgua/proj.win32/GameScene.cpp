@@ -4,7 +4,7 @@
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
-#include "AnimalUnit.h"
+#include "Animals.h"
 //test
 #include "GameOverScene.h"
 #include "GameWinScene.h"
@@ -21,6 +21,9 @@ GameScene::GameScene(void)
 	isCalledXucXac = FALSE;
 	int gameType = -1;
 	kqXucXac[0]=kqXucXac[1]=0;
+
+	//init animals
+	heo = new Animals(0,this,map);
 }
 
 GameScene::~GameScene(void)
@@ -35,12 +38,6 @@ bool GameScene::init()
 	
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	
-	//test
-	AnimalUnit *heo0 = new AnimalUnit(map->getPoint(0,0),"/image/animal/heo/pig1.png", this);
-	AnimalUnit *heo1 = new AnimalUnit(map->getPoint(1,0),"/image/animal/heo/pig1.png", this);
-	AnimalUnit *heo2 = new AnimalUnit(map->getPoint(2,0),"/image/animal/heo/pig1.png", this);
-	AnimalUnit *heo3 = new AnimalUnit(map->getPoint(3,0),"/image/animal/heo/pig1.png", this);
-	AnimalUnit *heo4 = new AnimalUnit(map->getPoint(4,0),"/image/animal/heo/pig1.png", this);
 	//background
 	CCSprite* background = CCSprite::create(Config::classicGameBackground);
     if(background)
@@ -71,7 +68,7 @@ bool GameScene::init()
 										menu_selector(GameScene::gameWinCallback));
 	pButtonGameWin->setFontSizeObj(fontSize/1.5);
 	menuArray->addObject(pButtonGameWin);
-	pButtonGameWin->setPosition(ccp(size.width-100, 4*jump));
+	pButtonGameWin->setPosition(ccp(size.width-100, 5*jump));
 
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"GameOver(demo)",
@@ -271,7 +268,7 @@ void GameScene::xucxacCallback(CCObject *sender)
 
 void GameScene::go1Callback(CCObject *sender)
 {
-
+	heo->unit0->go(kqXucXac[0]+kqXucXac[1]);
 }
 void GameScene::go2Callback(CCObject *sender)
 {
