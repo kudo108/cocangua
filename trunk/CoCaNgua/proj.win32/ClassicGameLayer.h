@@ -11,6 +11,7 @@ public:
 	virtual bool init();
 	CREATE_FUNC(ClassicGameLayer);
 	void goCallback(CCObject *sender);
+	void effectActionDone(CCObject *sender);
 private:
 	MapLocation *map;	
 	//animals

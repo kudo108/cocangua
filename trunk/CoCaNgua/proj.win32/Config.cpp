@@ -50,6 +50,9 @@ const char* Config::gameWin_image			= "gw0.png";
 const char* Config::fireWorks_plist			= "image/phaohoa/phaohoa.plist";
 const char* Config::fireWorks_texture		= "image/phaohoa/phaohoa.png";
 const char* Config::fireWorks_image			= "1.png";
+const char* Config::disappearEffect_plist	= "image/effect/effect.plist";
+const char* Config::disappearEffect_texture	= "image/effect/effect.png";
+const char* Config::disappearEffect_image	= "move-effect-0.png";
 
 int Config::kqXucXac1=0;
 int Config::kqXucXac2=0;
