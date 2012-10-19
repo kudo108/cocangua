@@ -57,6 +57,8 @@ const char* Config::disappearEffect_image	= "move-effect-0.png";
 int Config::kqXucXac1=0;
 int Config::kqXucXac2=0;
 
+int Config::isExploring=0;
+
 const int Config::WAYMAP = 0;
 const int Config::INITMAP = -1;
 const int Config::FINISHMAP = 1;

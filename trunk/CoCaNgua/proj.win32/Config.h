@@ -84,6 +84,8 @@ public:
 
 	static int kqXucXac1;
 	static int kqXucXac2;
+
+	static int isExploring;
 private:
 	static bool isBgMusicPlaying;
 	static bool isGameplayMusicPlaying;
