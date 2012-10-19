@@ -41,7 +41,8 @@ public:
 	const static char* sfxDice;
 	const static char* sfxGameOver;
 	const static char* sfxGameWin;
-	
+	const static char* sfxFireworks;
+
 	const static int objectFontSize;
 	const static char* gameOverBackground;
 	const static char* menuBackground;
@@ -70,6 +71,9 @@ public:
 	const static char* gameWin_plist;
 	const static char* gameWin_texture;
 	const static char* gameWin_image;
+	const static char* fireWorks_plist;
+	const static char* fireWorks_texture;
+	const static char* fireWorks_image;
 
 	const static int WAYMAP;
 	const static int INITMAP;
@@ -87,6 +91,7 @@ private:
 	static int idButton;
 	static int idGameOver;
 	static int idGameWin;
+	
 };
 
 #endif
