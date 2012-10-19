@@ -74,6 +74,9 @@ public:
 	const static int WAYMAP;
 	const static int INITMAP;
 	const static int FINISHMAP;
+
+	static int kqXucXac1;
+	static int kqXucXac2;
 private:
 	static bool isBgMusicPlaying;
 	static bool isGameplayMusicPlaying;

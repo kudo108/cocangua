@@ -4,7 +4,6 @@
 #include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
-#include "Animals.h"
 //test
 #include "GameOverScene.h"
 #include "GameWinScene.h"
@@ -13,33 +12,20 @@
 using namespace CocosDenshion;
 using namespace cocos2d;
 
-GameScene::GameScene(void)
-{
-	//Create map manager
-	map = new MapLocation(600);
-
-	isCalledXucXac = FALSE;
-	int gameType = -1;
-	kqXucXac[0]=kqXucXac[1]=0;
-
-	//init animals
-	heo = new Animals(0,this,map);
-}
-
-GameScene::~GameScene(void)
-{
-	//delete map;//khong can xai
-	//map=NULL;
-}
 
 bool GameScene::init()
 {
 	if(! CCScene::init() ) return false;
 	
+
+	isCalledXucXac = FALSE;
+	int gameType = -1;
+
 	if(!Config::getHasTurnOffMusic()){
 		Config::stopBackgroundMusic();
 		Config::playBackgroundMusic(Config::gameplayMusic, GP_MUSIC);
 	}
+
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	
@@ -99,45 +85,8 @@ bool GameScene::init()
 	pQuitGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pQuitGameButton);
 	pQuitGameButton->setPosition(ccp(size.width-100, jump));
-
-	
-	//button 1
-	float numberButtonPositionY = 4*jump;
-	CCMenuItemFont* p1Button = CCMenuItemFont::create(
-										"1",
-										this,
-										menu_selector(GameScene::go1Callback));
-	p1Button->setFontSizeObj(fontSize);
-	menuArray->addObject(p1Button);
-	p1Button->setPosition(ccp(size.width-200 + 25, numberButtonPositionY));
-	//button 2
-	CCMenuItemFont* p2Button = CCMenuItemFont::create(
-										"2",
-										this,
-										menu_selector(GameScene::go2Callback));
-	p2Button->setFontSizeObj(fontSize);
-	menuArray->addObject(p2Button);
-	p2Button->setPosition(ccp(size.width-200+75, numberButtonPositionY));
-	//button 3
-	CCMenuItemFont* p3Button = CCMenuItemFont::create(
-										"3",
-										this,
-										menu_selector(GameScene::go3Callback));
-	p3Button->setFontSizeObj(fontSize);
-	menuArray->addObject(p3Button);
-	p3Button->setPosition(ccp(size.width-200+125, numberButtonPositionY));
-	//button 4
-	CCMenuItemFont* p4Button = CCMenuItemFont::create(
-										"4",
-										this,
-										menu_selector(GameScene::go4Callback));
-	p4Button->setFontSizeObj(fontSize);
-	menuArray->addObject(p4Button);
-	p4Button->setPosition(ccp(size.width-200+175, numberButtonPositionY));
-	
-		
+			
 	//set xucxac and xucxacAction
-//	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//xuc xac
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::xucxac_plist);
 	CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::xucxac_texture);
@@ -188,6 +137,9 @@ bool GameScene::init()
 	pMenu->setPosition(CCPointZero);
 	this->addChild(pMenu,1);//ngoai cung,tuong tac
 	
+	ClassicGameLayer *classic = ClassicGameLayer::create();
+	this->addChild(classic, 100);
+
 	return true;
 }
 
@@ -247,7 +199,7 @@ void GameScene::xucxacCallback(CCObject *sender)
 		xucxacA->runAction( xucxacAAminationAction);
 		xucxacB->stopAllActions();
 		xucxacB->runAction(xucxacBAminationAction);
-		this->kqXucXac[0]=this->kqXucXac[1]=0;
+		Config::kqXucXac1=Config::kqXucXac2=0;
 	}else
 	{
 		Config::stopEffect(Config::getIdDice());
@@ -258,32 +210,15 @@ void GameScene::xucxacCallback(CCObject *sender)
 
 		xucxacA->pauseSchedulerAndActions();
 		sprintf(fn, "%d.gif", 7-kq);
-		this->kqXucXac[0]=7-kq;
+		Config::kqXucXac1=7-kq;
 		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		kq=rand()%6+1;
 		xucxacB->pauseSchedulerAndActions();
 		sprintf(fn, "%d.gif", 7-kq);
-		this->kqXucXac[1]=7-kq;
+		Config::kqXucXac2=7-kq;
 		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		isCalledXucXac =FALSE;
 	}
-}
-
-void GameScene::go1Callback(CCObject *sender)
-{
-	heo->unit0->go(kqXucXac[0]+kqXucXac[1]);
-}
-void GameScene::go2Callback(CCObject *sender)
-{
-
-}
-void GameScene::go3Callback(CCObject *sender)
-{
-
-}
-void GameScene::go4Callback(CCObject *sender)
-{
-
 }

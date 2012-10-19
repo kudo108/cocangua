@@ -1,5 +1,4 @@
 #include "AboutScene.h"
-#include "MenuScene.h"
 #include "Config.h"
 
 using namespace cocos2d;

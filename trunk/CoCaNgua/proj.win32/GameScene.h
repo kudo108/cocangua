@@ -6,8 +6,6 @@
 class GameScene : public cocos2d::CCScene
 {
 public:
-	GameScene(void);
-	~GameScene(void);
 	virtual bool init();
 	CREATE_FUNC(GameScene);
 	void setGameType(int _t);//1 = classic, 2 = modern, 3 = AI
@@ -18,24 +16,14 @@ public:
 	//test
 	void gameOverCallback(CCObject* sender);
 	void gameWinCallback(CCObject* sender);
-	//unit callback
-	void go1Callback(CCObject *sender);
-	void go2Callback(CCObject *sender);
-	void go3Callback(CCObject *sender);
-	void go4Callback(CCObject *sender);
-	MapLocation *map;	
 private:	
 	int gameType;
 	bool isCalledXucXac;
-	int kqXucXac[2];
 
-	CC_SYNTHESIZE(CCSprite *,xucxacA,XucxacA);
-	CC_SYNTHESIZE(CCSprite *,xucxacB,XucxacB);
-	CC_SYNTHESIZE(CCAction *,xucxacAAminationAction,XucxacAAminationAction);
-	CC_SYNTHESIZE(CCAction *,xucxacBAminationAction,XucxacBAminationAction);
-	//test
-	CC_SYNTHESIZE(Animals *,heo,Heo);
+	CC_SYNTHESIZE(CCSprite *, xucxacA, XucxacA);
+	CC_SYNTHESIZE(CCSprite *, xucxacB, XucxacB);
+	CC_SYNTHESIZE(CCAction *, xucxacAAminationAction, XucxacAAminationAction);
+	CC_SYNTHESIZE(CCAction *, xucxacBAminationAction, XucxacBAminationAction);	
 };
-
 
 #endif
