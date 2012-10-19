@@ -74,6 +74,9 @@ public:
 	const static char* fireWorks_plist;
 	const static char* fireWorks_texture;
 	const static char* fireWorks_image;
+	const static char* disappearEffect_plist;
+	const static char* disappearEffect_texture;
+	const static char* disappearEffect_image;
 
 	const static int WAYMAP;
 	const static int INITMAP;
