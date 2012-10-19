@@ -17,13 +17,17 @@ public:
 	void finish(int step);//den dich buoc thu x
 	void die();//chet, ve lai chuong
 	void dance();//luc lac luc lac =))
+	void explore();
 private:
 	CCPoint location;//vi tri hien tai
 	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di
+
+	CCNode *parent;
 	CC_SYNTHESIZE(CCSprite*, sprite, Sprite);
 	CC_SYNTHESIZE(CCMenuItemSprite*, button,Button);
 	CC_SYNTHESIZE(CCAction*, danceAction, DanceAction);
+	CC_SYNTHESIZE(CCFiniteTimeAction*, exploreAction, ExploreAction);
 	MapLocation *map;
 };
 

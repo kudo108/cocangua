@@ -6,12 +6,14 @@
 Chua nhung thong tin ve 1 con co
 */
 
-AnimalUnit::AnimalUnit(int offset, CCNode* parent,CCPoint _initLocation, MapLocation *_m)
+AnimalUnit::AnimalUnit(int offset, CCNode* _p,CCPoint _initLocation, MapLocation *_m)
 {
 	this->map = _m;
 	this->initLocation = _initLocation;//vi tri trong chuong
 	this->location = _initLocation;
 	this->path_went = -1;
+	//this->isExploring = false;
+	parent = _p;
 
 	//setup danceAction
 	const char* imageLink="";
@@ -79,7 +81,23 @@ AnimalUnit::AnimalUnit(int offset, CCNode* parent,CCPoint _initLocation, MapLoca
 	CCMenu* pMenu = CCMenu::createWithItem(button);
 	pMenu->setPosition(CCPointZero);
 	parent->addChild(pMenu,1);
-	//run action
+
+	//explore Action 
+	//load effect
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::disappearEffect_plist);
+	CCSpriteBatchNode *effectSpriteSheet =  CCSpriteBatchNode::create(Config::disappearEffect_texture);
+//	char fn[128];
+	CCAnimation* effectAnimation =CCAnimation::create();
+	for (int i = 0; i <= 7; i++) 
+	{
+		sprintf(fn, "move-effect-%d.png", i);
+		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+		effectAnimation->addSpriteFrame(pFrame);
+	}
+    effectAnimation->setDelayPerUnit(0.1f);
+	exploreAction = CCAnimate::create(effectAnimation);
+	exploreAction->setOriginalTarget(sprite);
+	exploreAction->retain();
 	dance();
 }
 CCPoint AnimalUnit::getLocation(){
@@ -88,8 +106,8 @@ CCPoint AnimalUnit::getLocation(){
 
 AnimalUnit::~AnimalUnit(void)
 {
-	this->sprite->autorelease();
 	this->button->autorelease();
+	this->sprite->autorelease();
 	this->danceAction->autorelease();
 }
 void AnimalUnit::born()
@@ -99,9 +117,14 @@ void AnimalUnit::born()
 void AnimalUnit::go(int step)
 {//di them dc step buoc
 	//TODO 
+	this->sprite->stopAllActions();
+	explore();
 	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
-	CCAction *moveAction = CCMoveTo::create(5.0f,next);
+	CCFiniteTimeAction *moveAction = CCMoveTo::create(5.0f,next);
+
 	this->button->runAction(moveAction);
+	dance();
+	this->location = next;
 }
 void AnimalUnit::finish(int x)
 {//den dich buoc thu x
@@ -114,4 +137,8 @@ void AnimalUnit::die()
 void AnimalUnit::dance()
 {
 	this->sprite->runAction(danceAction);
+}
+void AnimalUnit::explore()
+{
+	this->sprite->runAction(exploreAction);
 }
