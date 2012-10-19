@@ -34,6 +34,7 @@ const char* Config::sfxButton				= "sound/Button.wav";
 const char* Config::sfxDice					= "sound/RollDice.wav";
 const char* Config::sfxGameOver				= "sound/GameOver.wav";
 const char* Config::sfxGameWin				= "sound/GameWin.wav";
+const char* Config::sfxFireworks			= "sound/Fireworks.wav";
 const char* Config::border1					= "/image/ngua1.png";
 const char* Config::miniMenu				= "/image/background_mini_menu.jpg";
 const char* Config::menuBorder				= "/image/picture_border.png";
@@ -46,6 +47,9 @@ const char* Config::loader_image			= "IMG00000.png";
 const char* Config::gameWin_plist			= "image/gamewin/Gangnam.plist";
 const char* Config::gameWin_texture			= "image/gamewin/Gangnam.png";
 const char* Config::gameWin_image			= "gw0.png";
+const char* Config::fireWorks_plist			= "image/phaohoa/phaohoa.plist";
+const char* Config::fireWorks_texture		= "image/phaohoa/phaohoa.png";
+const char* Config::fireWorks_image			= "1.png";
 
 int Config::kqXucXac1=0;
 int Config::kqXucXac2=0;
