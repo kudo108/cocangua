@@ -11,6 +11,7 @@ int Config::idDice							= -1;
 int Config::idButton						= -1;
 int Config::idGameOver						= -1;
 int Config::idGameWin						= -1;
+
 const int Config::objectFontSize			= 40;
 const char* Config::menuBackground			= "image/background_menu.jpg";
 const char* Config::optionBackground		= "image/background_option.jpg";
@@ -45,6 +46,9 @@ const char* Config::loader_image			= "IMG00000.png";
 const char* Config::gameWin_plist			= "image/gamewin/Gangnam.plist";
 const char* Config::gameWin_texture			= "image/gamewin/Gangnam.png";
 const char* Config::gameWin_image			= "gw0.png";
+
+int Config::kqXucXac1=0;
+int Config::kqXucXac2=0;
 
 const int Config::WAYMAP = 0;
 const int Config::INITMAP = -1;

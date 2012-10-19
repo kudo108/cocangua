@@ -33,7 +33,6 @@
     <None Include="res\CoCaNgua.ico">
       <Filter>resource</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CoCaNgua.rc">
@@ -60,9 +59,6 @@
       <Filter>include\Object</Filter>
     </ClInclude>
     <ClInclude Include="ClassicGameLayer.h">
-      <Filter>include\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLayer.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
@@ -98,6 +94,9 @@
     <ClInclude Include="GameWinScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="UnderBuildingScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -116,9 +115,6 @@
       <Filter>source\object</Filter>
     </ClCompile>
     <ClCompile Include="ClassicGameLayer.cpp">
-      <Filter>source\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameLayer.cpp">
       <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
@@ -152,6 +148,9 @@
       <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameWinScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderBuildingScene.cpp">
       <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>

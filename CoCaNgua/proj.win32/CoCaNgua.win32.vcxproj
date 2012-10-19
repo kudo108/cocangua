@@ -131,7 +131,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="res\CoCaNgua.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +144,6 @@
     <ClInclude Include="AnimalUnit.h" />
     <ClInclude Include="ClassicGameLayer.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="GameLayer.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameWinScene.h" />
@@ -157,6 +155,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="RuleScene.h" />
     <ClInclude Include="TrailerScene.h" />
+    <ClInclude Include="UnderBuildingScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
@@ -166,7 +165,6 @@
     <ClCompile Include="AnimalUnit.cpp" />
     <ClCompile Include="ClassicGameLayer.cpp" />
     <ClCompile Include="Config.cpp" />
-    <ClCompile Include="GameLayer.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameWinScene.cpp" />
@@ -177,6 +175,7 @@
     <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="TrailerScene.cpp" />
+    <ClCompile Include="UnderBuildingScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,6 +8,7 @@
 #include "HelpScene.h"
 #include "OptionScene.h"
 #include "Config.h"
+#include "UnderBuildingScene.h"
 
 using namespace cocos2d;
 //using namespace CocosDenshion;
@@ -121,49 +122,42 @@ bool MenuScene::init()
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	AboutScene *aboutScene = AboutScene::create();
-	CCDirector::sharedDirector()->replaceScene(aboutScene);		
+	CCDirector::sharedDirector()->replaceScene(AboutScene::create());		
 }
 void MenuScene::menuHelpCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	HelpScene *helpScene = HelpScene::create();
-	CCDirector::sharedDirector()->replaceScene(helpScene);
+	CCDirector::sharedDirector()->replaceScene(HelpScene::create());
 }
 void MenuScene::menuOptionCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	OptionScene *optionScene = OptionScene::create();
-	CCDirector::sharedDirector()->replaceScene(optionScene);
+	CCDirector::sharedDirector()->replaceScene(OptionScene::create());
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
 	Config::playEffect(Config::sfxButton, false);
-	if(MessageBox( NULL, L"Are you sure ? ",NULL, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+	if(MessageBox( NULL, L"Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();
 		CCDirector::sharedDirector()->end();

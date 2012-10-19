@@ -10,6 +10,9 @@ public:
 	Animals(int offset, CCNode *_parent, MapLocation* _m);
 	~Animals(void);
 	AnimalUnit *unit0;
+	AnimalUnit *unit1;
+	AnimalUnit *unit2;
+	AnimalUnit *unit3;
 	/*
 	CC_SYNTHESIZE(AnimalUnit *,unit0,Unit0);
 	CC_SYNTHESIZE(AnimalUnit *,unit1,Unit1);

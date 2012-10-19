@@ -22,6 +22,7 @@ private:
 	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di
 	CC_SYNTHESIZE(CCSprite*, sprite, Sprite);
+	CC_SYNTHESIZE(CCMenuItemSprite*, button,Button);
 	CC_SYNTHESIZE(CCAction*, danceAction, DanceAction);
 	MapLocation *map;
 };
