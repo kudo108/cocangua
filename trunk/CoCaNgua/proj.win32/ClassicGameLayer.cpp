@@ -37,6 +37,14 @@ void ClassicGameLayer::goCallback(CCObject *sender)
 
 	OutputDebugStringW(L"go...............");
 	AnimalUnit* unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
+	CCPoint currentPosition = unit->getLocation();
+	unit->go(Config::kqXucXac1+Config::kqXucXac2);
+
+	//load effect
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::disappearEffect_plist);
+	CCSpriteBatchNode *effectSpriteSheet =  CCSpriteBatchNode::create(Config::disappearEffect_texture);
+	char fn[128];
+	CCAnimation* effectAnimation =CCAnimation::create();
 	
 	//unload kqXucXac
 	Config::kqXucXac1=Config::kqXucXac2=0;
