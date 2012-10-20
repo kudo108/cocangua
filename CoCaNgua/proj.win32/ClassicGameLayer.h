@@ -10,10 +10,12 @@ class ClassicGameLayer: public cocos2d::CCLayer
 public:
 	virtual bool init();
 	CREATE_FUNC(ClassicGameLayer);
-	void goCallback(CCObject *sender);
+	void selectCallback(CCObject *sender);
 	void effectActionDone(CCObject *sender);
+	void buttonGoCallBack(CCObject *sender);
 private:
 	MapLocation *map;	
+	CC_SYNTHESIZE(AnimalUnit *, unit, Unit);//current select unit
 	//animals
 	CC_SYNTHESIZE(Animals *, animal0, Animal0);
 	CC_SYNTHESIZE(Animals *, animal1, Animal1);

@@ -77,6 +77,12 @@ public:
 	const static char* disappearEffect_plist;
 	const static char* disappearEffect_texture;
 	const static char* disappearEffect_image;
+	const static char* lightup_image;
+	const static char* lightup_plist;
+	const static char* lightup_init_image;
+	const static char* select_image;
+	const static char* select_plist;
+	const static char* select_init_image;
 
 	const static int WAYMAP;
 	const static int INITMAP;

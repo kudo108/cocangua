@@ -1,3 +1,8 @@
+//this 3 below line for detect mem leak
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include "main.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
@@ -7,7 +12,7 @@ USING_NS_CC;
 static bool isBackgroundMusicPlaying = false;
 
 // uncomment below line, open debug console
-// #define USE_WIN32_CONSOLE
+ #define USE_WIN32_CONSOLE
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,
@@ -25,6 +30,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #endif
 
     // create the application instance
+	_CrtDumpMemoryLeaks();//print out if mem leak
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
     eglView->setFrameSize(800, 600);

@@ -73,7 +73,7 @@ AnimalUnit::AnimalUnit(int offset, CCNode* _p,CCPoint _initLocation, MapLocation
 	danceAction->retain();
 
 	//create menu
-	button = CCMenuItemSprite::create(sprite,sprite,sprite,parent,menu_selector(ClassicGameLayer::goCallback));
+	button = CCMenuItemSprite::create(sprite,sprite,sprite,parent,menu_selector(ClassicGameLayer::selectCallback));
 	button->setUserData(this);
 	button->setPosition(location);
 	button->retain();
@@ -118,7 +118,7 @@ void AnimalUnit::go(int step)
 {//di them dc step buoc
 	//TODO 
 	this->sprite->stopAllActions();
-	explore();
+	//explore();
 	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(5.0f,next);
 

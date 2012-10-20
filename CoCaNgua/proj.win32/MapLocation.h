@@ -7,7 +7,7 @@ using namespace cocos2d;
 class MapLocation
 {
 public:
-	MapLocation(int winSize);
+	MapLocation(int winSize, CCNode* parent);
 	~MapLocation(void);
 	int way;
 	int fnR;
@@ -17,6 +17,10 @@ public:
 	CCPoint getNextPoint(int type,CCPoint current,int step);
 	CCPoint getPoint(int map,int index);
 	int getIndexLocation(int map,CCPoint point);
+	void lightUp(CCPoint point);
+	void deleteAllLightUp();
+	void select(CCPoint point);
+	void unSelect(CCPoint point);
 private:
 	float winSize;
 	float scale;
@@ -30,6 +34,11 @@ private:
 	float stepEnd;
 	float center;
 
+	CC_SYNTHESIZE(CCAction*, lightupAction, LightupAction);
+	CC_SYNTHESIZE(CCArray*, lightupArray, LightupArray);
+	CC_SYNTHESIZE(CCNode*, parent, Parent);
+	CC_SYNTHESIZE(CCAction*, selectAction, SelectAction);
+	CC_SYNTHESIZE(CCSprite*, selectSprite, SelectSprite);
 };
 
 #endif
