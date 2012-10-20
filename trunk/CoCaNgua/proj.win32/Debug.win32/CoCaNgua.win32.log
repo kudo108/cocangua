@@ -1,10 +1,12 @@
-﻿Build started 10/20/2012 3:49:42 PM.
+﻿Build started 10/20/2012 10:39:03 PM.
      1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug.win32\CoCaNgua.win32.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D BG_MUSIC=1 /D GP_MUSIC=2 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt main.cpp
-         main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D BG_MUSIC=1 /D GP_MUSIC=2 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt Config.cpp MapLocation.cpp
+         MapLocation.cpp
+         Config.cpp
+         Generating Code...
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -43,4 +45,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.21
+Time Elapsed 00:00:07.97
