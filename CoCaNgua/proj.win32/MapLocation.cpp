@@ -67,7 +67,7 @@ MapLocation::MapLocation(int _winSize, CCNode* _parent)
 	CCAnimation* selectAnimation =CCAnimation::create();
 	for (int i = 1; i <= 3; i++) 
 	{
-		sprintf(fn, "select%d.png", i);
+		sprintf(fn, "lightup%d.png", i);
 		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
 		selectAnimation->addSpriteFrame(pFrame);
 	}
