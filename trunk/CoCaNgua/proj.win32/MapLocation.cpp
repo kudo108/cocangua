@@ -1,9 +1,9 @@
 #include "MapLocation.h"
+#include "Config.h"
 
-using namespace cocos2d;
-
-MapLocation::MapLocation(int _winSize)
+MapLocation::MapLocation(int _winSize, CCNode* _parent)
 {
+	this->parent = _parent;
 	//waylocation[0] la vi tri xuat phat cua quan co mau vang 
 	//
 	way = 0;
@@ -41,6 +41,39 @@ MapLocation::MapLocation(int _winSize)
 		finishLocationBlue[i]=ccp(center,2*center-margin-(i+1)*stepLength);
 	}
 	
+	//setup LightupAction
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::lightup_plist);
+	CCSpriteBatchNode *lightupSpriteSheet =  CCSpriteBatchNode::create(Config::lightup_image);
+	char fn[128];
+	CCAnimation* lightupAnimation =CCAnimation::create();
+	for (int i = 1; i <= 3; i++) 
+	{
+		sprintf(fn, "lightup%d.png", i);
+		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+		lightupAnimation->addSpriteFrame(pFrame);
+	}
+    lightupAnimation->setDelayPerUnit(0.2f);
+	lightupAction = CCRepeatForever::create( CCAnimate::create(lightupAnimation));
+	lightupAction->retain();
+
+	//setup lightup Array
+	lightupArray = CCArray::create();
+	lightupArray->retain();
+
+	//setup select amination
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::select_plist);
+	CCSpriteBatchNode *selectSpriteSheet =  CCSpriteBatchNode::create(Config::select_image);
+	//char fn[128];
+	CCAnimation* selectAnimation =CCAnimation::create();
+	for (int i = 1; i <= 3; i++) 
+	{
+		sprintf(fn, "select%d.png", i);
+		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+		selectAnimation->addSpriteFrame(pFrame);
+	}
+    selectAnimation->setDelayPerUnit(0.2f);
+	selectAction = CCRepeatForever::create( CCAnimate::create(selectAnimation));
+	selectAction->retain();
 }
 
 
@@ -185,4 +218,37 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 	default:
 		return ccp(-1,-1);break;
 	}
+}
+void MapLocation::lightUp(CCPoint point)
+{
+	CCSprite* sprite = CCSprite::create(Config::lightup_init_image);
+	sprite->setPosition(point);
+	sprite->runAction((CCAction*)lightupAction->copy());
+	parent->addChild(sprite);
+	sprite->retain();
+	lightupArray->addObject(sprite);
+}
+void MapLocation::deleteAllLightUp()
+{
+	for(unsigned int i = 0; i < lightupArray->count(); i++)
+	{
+		CCSprite* sprite = (CCSprite*)lightupArray->objectAtIndex(i);
+		sprite->removeFromParentAndCleanup(true);
+	};
+	lightupArray->removeAllObjects();
+}
+void  MapLocation::select(CCPoint point)
+{
+	//amination select at point
+	selectSprite = CCSprite::create(Config::select_init_image);
+	selectSprite->setPosition(point);
+	selectSprite->runAction((CCAction*)selectAction->copy());
+	parent->addChild(selectSprite);
+	selectSprite->retain();
+}
+void  MapLocation::unSelect(CCPoint point)
+{
+	//unload amination select at point
+	selectSprite->removeFromParentAndCleanup(true);
+	selectSprite->autorelease();
 }

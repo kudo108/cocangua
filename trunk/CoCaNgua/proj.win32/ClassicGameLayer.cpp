@@ -13,7 +13,7 @@ bool ClassicGameLayer::init()
 	if(! CCLayer::init()) return false;
 	
 	//init map
-	map = new MapLocation(600);
+	map = new MapLocation(600, this);
 
 	//init animals
 	animal0 = new Animals(0,this,map);
@@ -21,41 +21,58 @@ bool ClassicGameLayer::init()
 	//animal2 = new Animals(2,this,map);
 	//animal3 = new Animals(3,this,map);
 
+
+	//create button go
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCMenuItemFont* pButtonGo = CCMenuItemFont::create(
+										"Go",
+										this,
+										menu_selector(ClassicGameLayer::buttonGoCallBack));
+	pButtonGo->setFontSizeObj(Config::objectFontSize);
+	pButtonGo->setPosition(ccp(size.width-100, 5*60));
+	CCMenu* menu= CCMenu::createWithItem(pButtonGo);
+	menu->setPosition(CCPointZero);
+	this->addChild(menu,10);
+
+	//currentTurn
 	currentTurn=animal0;
 
 	return true;
 }
 
-void ClassicGameLayer::goCallback(CCObject *sender)
+void ClassicGameLayer::selectCallback(CCObject *sender)
 {
 
 	//CCObject o day la CCMENUitemsprite	
 	if(Config::kqXucXac1<=0 || Config::kqXucXac2<=0) return;
-	
-	//get winsize
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-	OutputDebugStringW(L"go...............");
-	AnimalUnit* unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
-	CCPoint currentPosition = unit->getLocation();
-	unit->go(Config::kqXucXac1+Config::kqXucXac2);
-
-	//load effect
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::disappearEffect_plist);
-	CCSpriteBatchNode *effectSpriteSheet =  CCSpriteBatchNode::create(Config::disappearEffect_texture);
-	char fn[128];
-	CCAnimation* effectAnimation =CCAnimation::create();
+	//OutputDebugStringW(L"selected...............");
+	unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
 	
-	//unload kqXucXac
-	Config::kqXucXac1=Config::kqXucXac2=0;
-	
-	//move button
-	unit->go(Config::kqXucXac1+Config::kqXucXac2);
+	//get array of next point can go
+	//lightup these point
+	map->lightUp(map->getPoint(0,5));
+	map->lightUp(map->getPoint(0,6));
+	//select amination unit
+	map->select(unit->getLocation());
 }
 
 
-void ClassicGameLayer::effectActionDone (CCObject *sender){
+void ClassicGameLayer::effectActionDone (CCObject *sender)
+{
 	CCSprite* sprite = (CCSprite*) sender;
 	sprite->release();
+}
+void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
+{
+	//delete lightup
+	map->deleteAllLightUp();
+	//delete select
+	map->unSelect(unit->getLocation());
+	//move 
+	unit->go(Config::kqXucXac1+Config::kqXucXac2);
+	
+	//unload kqXucXac
+	Config::kqXucXac1=Config::kqXucXac2=0;
 }
 #endif

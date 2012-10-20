@@ -59,7 +59,7 @@ bool GameScene::init()
 										menu_selector(GameScene::gameWinCallback));
 	pButtonGameWin->setFontSizeObj(fontSize/1.5);
 	menuArray->addObject(pButtonGameWin);
-	pButtonGameWin->setPosition(ccp(size.width-100, 5*jump));
+	pButtonGameWin->setPosition(ccp(size.width-100, 4*jump));
 
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"GameOver(demo)",
