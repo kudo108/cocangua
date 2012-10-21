@@ -1,6 +1,7 @@
 #include "AnimalUnit.h"
 #include "Config.h"
 #include "ClassicGameLayer.h"
+#include "MapLocation.h"
 
 /*
 Chua nhung thong tin ve 1 con co
@@ -119,6 +120,12 @@ void AnimalUnit::go(int step)
 	//TODO 
 	this->sprite->stopAllActions();
 	//explore();
+	// may con heo o trong chuong, cho no vao vi tri dau tien de di
+	if( this->location.equals(map->wayLocation[56])||
+		this->location.equals(map->wayLocation[57])||
+		this->location.equals(map->wayLocation[58])||
+		this->location.equals(map->wayLocation[59]))
+		this->location = map->wayLocation[0];
 	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(5.0f,next);
 	location = next;

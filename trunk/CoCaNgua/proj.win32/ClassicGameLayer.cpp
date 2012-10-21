@@ -1,5 +1,6 @@
 #ifndef _CLASSIC_GAME_SCENE_H_
 #define _CLASSIC_GAME_SCENE_H_
+#define COCOS_DEBUG 1
 
 #include "ClassicGameLayer.h"
 #include "Config.h"
@@ -51,8 +52,8 @@ void ClassicGameLayer::selectCallback(CCObject *sender)
 	
 	//get array of next point can go
 	//lightup these point
-	map->lightUp(map->getPoint(0,5));
-	map->lightUp(map->getPoint(0,6));
+	//map->lightUp(map->getPoint(0,5));
+	//map->lightUp(map->getPoint(0,6));
 	//select amination unit
 	map->select(unit->getLocation());
 }

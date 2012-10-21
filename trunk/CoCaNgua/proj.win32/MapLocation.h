@@ -21,10 +21,10 @@ public:
 	void deleteAllLightUp();
 	void select(CCPoint point);
 	void unSelect(CCPoint point);
+	CCPoint wayLocation[60];
 private:
 	float winSize;
 	float scale;
-	CCPoint wayLocation[56];
 	CCPoint finishLocationYellow[24];
 	CCPoint finishLocationGreen[24];
 	CCPoint finishLocationRed[24];
