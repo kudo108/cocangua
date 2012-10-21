@@ -252,6 +252,7 @@ void  MapLocation::select(CCPoint point)
 }
 void  MapLocation::unSelect(CCPoint point)
 {
+	if (!selectSprite) return;
 	//unload amination select at point
 	selectSprite->removeFromParentAndCleanup(true);
 	selectSprite->autorelease();

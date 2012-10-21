@@ -18,9 +18,9 @@ bool ClassicGameLayer::init()
 
 	//init animals
 	animal0 = new Animals(0,this,map);
-	//animal1 = new Animals(1,this,map);
-	//animal2 = new Animals(2,this,map);
-	//animal3 = new Animals(3,this,map);
+	animal1 = new Animals(1,this,map);
+	animal2 = new Animals(2,this,map);
+	animal3 = new Animals(3,this,map);
 
 
 	//create button go
@@ -37,6 +37,8 @@ bool ClassicGameLayer::init()
 
 	//currentTurn
 	currentTurn=animal0;
+	//unit
+	unit = NULL;
 
 	return true;
 }
@@ -66,6 +68,7 @@ void ClassicGameLayer::effectActionDone (CCObject *sender)
 }
 void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
 {
+	if (unit==NULL) return;
 	//delete lightup
 	map->deleteAllLightUp();
 	//delete select
@@ -75,5 +78,7 @@ void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
 	
 	//unload kqXucXac
 	Config::kqXucXac1=Config::kqXucXac2=0;
+	//unload unit
+	unit = NULL;
 }
 #endif
