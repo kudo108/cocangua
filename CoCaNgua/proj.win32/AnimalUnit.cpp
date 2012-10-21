@@ -121,7 +121,7 @@ void AnimalUnit::go(int step)
 	//explore();
 	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(5.0f,next);
-
+	location = next;
 	this->button->runAction(moveAction);
 	dance();
 	this->location = next;

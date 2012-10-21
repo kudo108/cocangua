@@ -159,7 +159,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 	int i=0,j=0;
 	switch(type)
 	{
-	case 1:
+	case 0:
 		if(step<=0) return current;
 		i = getIndexLocation(way,current);
 		if(i==-1){
@@ -171,7 +171,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 		if((i+step)>55) return finishLocationYellow[i+step-56];
 		return wayLocation[i+step];
 		break;
-	case 2:
+	case 1:
 		//13
 		if(step<=0) return current;
 		i = getIndexLocation(way,current);
@@ -186,7 +186,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 		if((i+step)>55) return wayLocation[i+step-56];
 		return wayLocation[i+step];
 		break;
-	case 3:
+	case 2:
 		//27
 		if(step<=0) return current;
 		i = getIndexLocation(way,current);
@@ -201,7 +201,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 		if((i+step)>55) return wayLocation[i+step-56];
 		return wayLocation[i+step];
 		break;
-	case 4:
+	case 3:
 		if(step<=0) return current;
 		i = getIndexLocation(way,current);
 		if(i==-1){
