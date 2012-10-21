@@ -32,6 +32,12 @@ MapLocation::MapLocation(int _winSize, CCNode* _parent)
 	wayLocation[27]=ccp(2*center-margin,center);
 	wayLocation[41]=ccp(center,2*center-margin);
 	wayLocation[55]=ccp(margin,center);
+
+	//vitri trong chuong
+	wayLocation[56]=ccp(margin+stepLength*2,margin+stepLength*2);
+	wayLocation[57]=ccp(margin+stepLength*3,margin+stepLength*2);
+	wayLocation[58]=ccp(margin+stepLength*3,margin+stepLength*3);
+	wayLocation[59]=ccp(margin+stepLength*2,margin+stepLength*3);
 	//Finish location yellow,red,green,blue
 	for(int i=0;i<6;i++)
 	{
@@ -90,7 +96,6 @@ MapLocation::~MapLocation(void)
 		finishLocationGreen[i].autorelease();
 		finishLocationRed[i].autorelease();
 	}
-
 }
 
 CCPoint MapLocation::getPoint(int map,int index)
@@ -98,8 +103,7 @@ CCPoint MapLocation::getPoint(int map,int index)
 	switch(map)
 	{
 	case 0:
-		if(index>=0&&index<=55)
-			return this->wayLocation[index]; else return ccp(-1,-1);
+			return this->wayLocation[index]; 
 		break;
 	case 1:
 		if(index>=0&&index<=5)
