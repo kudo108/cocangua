@@ -209,14 +209,14 @@ void GameScene::xucxacCallback(CCObject *sender)
 		int kq=rand()%6+1;
 
 		xucxacA->pauseSchedulerAndActions();
-		sprintf(fn, "%d.png", 7-kq);
-		Config::kqXucXac1=7-kq;
+		sprintf(fn, "%d.png", kq);
+		Config::kqXucXac1=kq;
 		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		kq=rand()%6+1;
 		xucxacB->pauseSchedulerAndActions();
-		sprintf(fn, "%d.png", 7-kq);
-		Config::kqXucXac2=7-kq;
+		sprintf(fn, "%d.png", kq);
+		Config::kqXucXac2=kq;
 		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		isCalledXucXac =FALSE;

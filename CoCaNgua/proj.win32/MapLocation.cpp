@@ -170,7 +170,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 		if(i==-1){
 			j = getIndexLocation(fnY,current);
 			if(j==-1) return ccp(-1,-1);
-			if((step+j)>5) return ccp(-1,-1);
+			if((step+j) > 5) return ccp(-1,-1);
 			return finishLocationYellow[step+j];
 		}
 		if((i+step)>55) return finishLocationYellow[i+step-56];

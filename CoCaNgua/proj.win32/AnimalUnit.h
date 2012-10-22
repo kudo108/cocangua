@@ -31,6 +31,8 @@ private:
 	CC_SYNTHESIZE(CCMenuItemSprite*, button,Button);
 	CC_SYNTHESIZE(CCAction*, danceAction, DanceAction);
 	CC_SYNTHESIZE(CCFiniteTimeAction*, exploreAction, ExploreAction);
+	CC_SYNTHESIZE(CCArray*, listGo, ListGo);
+
 	MapLocation *map;
 };
 

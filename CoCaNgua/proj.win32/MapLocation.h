@@ -14,6 +14,7 @@ public:
 	int fnG;
 	int fnB;
 	int fnY;
+	CCPoint wayLocation[56];
 	CCPoint getNextPoint(int type,CCPoint current,int step);
 	CCPoint getPoint(int map,int index);
 	int getIndexLocation(int map,CCPoint point);
@@ -31,7 +32,7 @@ public:
 	void unSelect();
 private:
 	CCPoint initLocation[16];
-	CCPoint wayLocation[56];
+	
 	CCPoint finishLocation[24];
 	float winSize;
 	float scale;
