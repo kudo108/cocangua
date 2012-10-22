@@ -268,28 +268,16 @@ void  MapLocation::unSelect()
 	selectSprite = NULL;
 }
 
-bool MapLocation::canBorn(int k1, int k2)
+bool MapLocation::canInit(int k1, int k2)
 {
 	//kiem tra thu ket qua xuc xac la k1 va k2 thi co ra quan dc ko?
 	if(k1==k2) return true;
 	return false;
 }
-bool MapLocation::canContinueRoll(int k1, int k2)
-{
-	if(k1 ==k2 && ( k1 ==1 || k1==6) ) return true;
-	return false;
-}
-CCPoint MapLocation::getBornLocation(int teamNo)
+
+CCPoint MapLocation::getInitLocation(int teamNo)
 {
 	if(teamNo <0 || teamNo >=4) return ccp(-1,-1);
 	return wayLocation[teamNo*14];
 }
-float MapLocation::distance(CCPoint p1, CCPoint p2)
-{
-	return ccpDistance(p1, p2);
-}
 
-CCPoint MapLocation::getFinishLocation(int teamNo, int step)
-{
-	return finishLocation[teamNo*6+step];
-}
