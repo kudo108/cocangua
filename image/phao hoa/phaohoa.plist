@@ -11,12 +11,12 @@
 	</dict>
 	<key>frames</key>
 	<dict>
-		<key>1.png</key>
+		<key>fw1.png</key>
 		<dict>
 			<key>x</key>
-			<integer>971</integer>
+			<integer>829</integer>
 			<key>y</key>
-			<integer>120</integer>
+			<integer>726</integer>
 			<key>width</key>
 			<integer>38</integer>
 			<key>height</key>
@@ -30,12 +30,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>2.png</key>
+		<key>fw2.png</key>
 		<dict>
 			<key>x</key>
-			<integer>885</integer>
+			<integer>247</integer>
 			<key>y</key>
-			<integer>120</integer>
+			<integer>241</integer>
 			<key>width</key>
 			<integer>86</integer>
 			<key>height</key>
@@ -49,12 +49,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>3.png</key>
+		<key>fw3.png</key>
 		<dict>
 			<key>x</key>
-			<integer>971</integer>
+			<integer>941</integer>
 			<key>y</key>
-			<integer>161</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>25</integer>
 			<key>height</key>
@@ -68,12 +68,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>4.png</key>
+		<key>fw4.png</key>
 		<dict>
 			<key>x</key>
-			<integer>885</integer>
+			<integer>802</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>138</integer>
 			<key>height</key>
@@ -87,12 +87,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>5.png</key>
+		<key>fw5.png</key>
 		<dict>
 			<key>x</key>
-			<integer>655</integer>
+			<integer>653</integer>
 			<key>y</key>
-			<integer>689</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>148</integer>
 			<key>height</key>
@@ -106,12 +106,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>6.png</key>
+		<key>fw6.png</key>
 		<dict>
 			<key>x</key>
-			<integer>655</integer>
+			<integer>492</integer>
 			<key>y</key>
-			<integer>476</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>160</integer>
 			<key>height</key>
@@ -125,12 +125,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>7.png</key>
+		<key>fw7.png</key>
 		<dict>
 			<key>x</key>
-			<integer>815</integer>
+			<integer>343</integer>
 			<key>y</key>
-			<integer>476</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>148</integer>
 			<key>height</key>
@@ -144,12 +144,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>8.png</key>
+		<key>fw8.png</key>
 		<dict>
 			<key>x</key>
-			<integer>479</integer>
+			<integer>178</integer>
 			<key>y</key>
-			<integer>715</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>164</integer>
 			<key>height</key>
@@ -163,12 +163,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>9.png</key>
+		<key>fw9.png</key>
 		<dict>
 			<key>x</key>
-			<integer>479</integer>
+			<integer>1</integer>
 			<key>y</key>
-			<integer>476</integer>
+			<integer>1</integer>
 			<key>width</key>
 			<integer>176</integer>
 			<key>height</key>
@@ -182,12 +182,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>10.png</key>
+		<key>fw10.png</key>
 		<dict>
 			<key>x</key>
-			<integer>696</integer>
+			<integer>639</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>726</integer>
 			<key>width</key>
 			<integer>189</integer>
 			<key>height</key>
@@ -201,12 +201,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>11.png</key>
+		<key>fw11.png</key>
 		<dict>
 			<key>x</key>
-			<integer>494</integer>
+			<integer>436</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>726</integer>
 			<key>width</key>
 			<integer>202</integer>
 			<key>height</key>
@@ -220,12 +220,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>12.png</key>
+		<key>fw12.png</key>
 		<dict>
 			<key>x</key>
-			<integer>701</integer>
+			<integer>224</integer>
 			<key>y</key>
-			<integer>234</integer>
+			<integer>726</integer>
 			<key>width</key>
 			<integer>211</integer>
 			<key>height</key>
@@ -239,12 +239,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>13.png</key>
+		<key>fw13.png</key>
 		<dict>
 			<key>x</key>
-			<integer>479</integer>
+			<integer>1</integer>
 			<key>y</key>
-			<integer>234</integer>
+			<integer>726</integer>
 			<key>width</key>
 			<integer>222</integer>
 			<key>height</key>
@@ -258,12 +258,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>14.png</key>
+		<key>fw14.png</key>
 		<dict>
 			<key>x</key>
-			<integer>245</integer>
+			<integer>718</integer>
 			<key>y</key>
-			<integer>722</integer>
+			<integer>479</integer>
 			<key>width</key>
 			<integer>230</integer>
 			<key>height</key>
@@ -277,12 +277,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>15.png</key>
+		<key>fw15.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>481</integer>
 			<key>y</key>
-			<integer>717</integer>
+			<integer>479</integer>
 			<key>width</key>
 			<integer>236</integer>
 			<key>height</key>
@@ -296,12 +296,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>16.png</key>
+		<key>fw16.png</key>
 		<dict>
 			<key>x</key>
 			<integer>246</integer>
 			<key>y</key>
-			<integer>232</integer>
+			<integer>479</integer>
 			<key>width</key>
 			<integer>234</integer>
 			<key>height</key>
@@ -315,12 +315,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>17.png</key>
+		<key>fw17.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>y</key>
-			<integer>471</integer>
+			<integer>479</integer>
 			<key>width</key>
 			<integer>244</integer>
 			<key>height</key>
@@ -334,12 +334,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>18.png</key>
+		<key>fw18.png</key>
 		<dict>
 			<key>x</key>
-			<integer>248</integer>
+			<integer>583</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>241</integer>
 			<key>width</key>
 			<integer>246</integer>
 			<key>height</key>
@@ -353,12 +353,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>19.png</key>
+		<key>fw19.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>334</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>241</integer>
 			<key>width</key>
 			<integer>248</integer>
 			<key>height</key>
@@ -372,12 +372,12 @@
 			<key>originalHeight</key>
 			<integer>255</integer>
 		</dict>
-		<key>20.png</key>
+		<key>fw20.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>y</key>
-			<integer>234</integer>
+			<integer>241</integer>
 			<key>width</key>
 			<integer>245</integer>
 			<key>height</key>
@@ -386,25 +386,6 @@
 			<real>-1</real>
 			<key>offsetY</key>
 			<real>3</real>
-			<key>originalWidth</key>
-			<integer>255</integer>
-			<key>originalHeight</key>
-			<integer>255</integer>
-		</dict>
-		<key>21.png</key>
-		<dict>
-			<key>x</key>
-			<integer>245</integer>
-			<key>y</key>
-			<integer>480</integer>
-			<key>width</key>
-			<integer>234</integer>
-			<key>height</key>
-			<integer>242</integer>
-			<key>offsetX</key>
-			<real>-5.5</real>
-			<key>offsetY</key>
-			<real>-1.5</real>
 			<key>originalWidth</key>
 			<integer>255</integer>
 			<key>originalHeight</key>
