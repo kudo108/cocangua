@@ -1,0 +1,7 @@
+[Header]
+Type=GifSplitter Frames
+Version=2.0
+Count=2
+[Frames]
+IMG00000=D:\Be\Be\dhbk\2012-2013\hk1\Game Programming\Project\image\heo_TramAnh\demo_pig.gif.ifl\IMG00000.bmp
+IMG00001=D:\Be\Be\dhbk\2012-2013\hk1\Game Programming\Project\image\heo_TramAnh\demo_pig.gif.ifl\IMG00001.bmp
