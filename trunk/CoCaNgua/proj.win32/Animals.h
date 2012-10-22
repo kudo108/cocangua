@@ -4,6 +4,7 @@
 #include "AnimalUnit.h"
 #include "cocos2d.h"
 
+class AnimalUnit;
 class Animals
 {
 public:
@@ -13,13 +14,14 @@ public:
 	AnimalUnit *unit1;
 	AnimalUnit *unit2;
 	AnimalUnit *unit3;
-	/*
-	CC_SYNTHESIZE(AnimalUnit *,unit0,Unit0);
-	CC_SYNTHESIZE(AnimalUnit *,unit1,Unit1);
-	CC_SYNTHESIZE(AnimalUnit *,unit2,Unit2);
-	CC_SYNTHESIZE(AnimalUnit *,unit3,Unit3);
-	*/
+	int teamNo;
+	unsigned int getPoint();
+	void increasePointByGo(int step);
+	void increasePointByKick();
+	void increasePointByBorn();
+	void increasePointByFinish(int x);
 private:
+	int point;
 	MapLocation *map;
 	CCNode *parent;
 };

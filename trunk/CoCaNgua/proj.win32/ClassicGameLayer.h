@@ -22,6 +22,14 @@ private:
 	CC_SYNTHESIZE(Animals *, animal2, Animal2);
 	CC_SYNTHESIZE(Animals *, animal3, Animal3);
 	CC_SYNTHESIZE(Animals *, currentTurn,CurrentTurn);
+
+	CC_SYNTHESIZE(CCMenuItemFont*, team0PointLable, Team0PointLable);
+	CC_SYNTHESIZE(CCMenuItemFont*, team1PointLable, Team1PointLable);
+	CC_SYNTHESIZE(CCMenuItemFont*, team2PointLable, Team2PointLable);
+	CC_SYNTHESIZE(CCMenuItemFont*, team3PointLable, Team3PointLable);
+
+	void updatePoint(int teamNo);
+
 };
 
 #endif

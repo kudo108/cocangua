@@ -4,6 +4,7 @@
 MapLocation::MapLocation(int _winSize, CCNode* _parent)
 {
 	this->parent = _parent;
+	selectSprite = NULL;
 	//waylocation[0] la vi tri xuat phat cua quan co mau vang 
 	//
 	way = 0;
@@ -225,6 +226,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 }
 void MapLocation::lightUp(CCPoint point)
 {
+	//CCLog("light up %d %d",point.x, point.y);
 	CCSprite* sprite = CCSprite::create(Config::lightup_init_image);
 	sprite->setPosition(point);
 	sprite->runAction((CCAction*)lightupAction->copy());
@@ -243,6 +245,12 @@ void MapLocation::deleteAllLightUp()
 }
 void  MapLocation::select(CCPoint point)
 {
+	//unload prev selectPoint
+	if(selectSprite!= NULL)
+	{
+		unSelect();
+	}
+	CCLog("Selected at %d, %d",point.x,point.y);
 	//amination select at point
 	selectSprite = CCSprite::create(Config::select_init_image);
 	selectSprite->setPosition(point);
@@ -250,10 +258,12 @@ void  MapLocation::select(CCPoint point)
 	parent->addChild(selectSprite);
 	selectSprite->retain();
 }
-void  MapLocation::unSelect(CCPoint point)
+void  MapLocation::unSelect()
 {
 	if (!selectSprite) return;
+	CCLog("Unselected");
 	//unload amination select at point
 	selectSprite->removeFromParentAndCleanup(true);
 	selectSprite->autorelease();
+	selectSprite = NULL;
 }

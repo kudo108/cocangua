@@ -20,7 +20,7 @@ public:
 	void lightUp(CCPoint point);
 	void deleteAllLightUp();
 	void select(CCPoint point);
-	void unSelect(CCPoint point);
+	void unSelect();
 	CCPoint wayLocation[60];
 private:
 	float winSize;

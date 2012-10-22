@@ -3,13 +3,15 @@
 
 #include "cocos2d.h"
 #include "MapLocation.h"
+#include "Animals.h"
 
 using namespace cocos2d;
 
+class Animals;
 class AnimalUnit
 {
 public:
-	AnimalUnit(int offset, CCNode *parent,CCPoint _initLocation, MapLocation *_m);
+	AnimalUnit(Animals* team, CCNode *parent,CCPoint _initLocation, MapLocation *_m);
 	~AnimalUnit(void);
 	CCPoint getLocation();
 	void born();//tu chuong ra duong
@@ -19,6 +21,7 @@ public:
 	void dance();//luc lac luc lac =))
 	void explore();
 private:
+	Animals* team;
 	CCPoint location;//vi tri hien tai
 	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di
