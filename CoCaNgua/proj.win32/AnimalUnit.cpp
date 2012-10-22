@@ -34,7 +34,7 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 		{
 			imageLink=Config::animal1_init_image;
 			plistLink=Config::animal1_init_plist;
-			temp="pig%d copy.png";//TODO
+			temp="Duck-%d.png";//TODO
 			break;
 		}
 	case 2:
@@ -146,19 +146,20 @@ void AnimalUnit::go(int step)
 		}
 		else listGo[i] = this->location;
 	}
+	float time = ccpDistance(location, map->getNextPoint(Config::WAYMAP,location,1))/(Config::animalNormalSpeed);
 	CCFiniteTimeAction *moveAction = CCSequence::actions(
-		CCMoveTo::create(5.0f,listGo[0]),
-		CCMoveTo::create(5.0f,listGo[1]),
-		CCMoveTo::create(5.0f,listGo[2]),
-		CCMoveTo::create(5.0f,listGo[3]),
-		CCMoveTo::create(5.0f,listGo[4]),
-		CCMoveTo::create(5.0f,listGo[5]),
-		CCMoveTo::create(5.0f,listGo[6]),
-		CCMoveTo::create(5.0f,listGo[7]),
-		CCMoveTo::create(5.0f,listGo[8]),
-		CCMoveTo::create(5.0f,listGo[9]),
-		CCMoveTo::create(5.0f,listGo[10]),
-		CCMoveTo::create(5.0f,listGo[11]),NULL
+		CCMoveTo::create(time,listGo[0]),
+		CCMoveTo::create(time,listGo[1]),
+		CCMoveTo::create(time,listGo[2]),
+		CCMoveTo::create(time,listGo[3]),
+		CCMoveTo::create(time,listGo[4]),
+		CCMoveTo::create(time,listGo[5]),
+		CCMoveTo::create(time,listGo[6]),
+		CCMoveTo::create(time,listGo[7]),
+		CCMoveTo::create(time,listGo[8]),
+		CCMoveTo::create(time,listGo[9]),
+		CCMoveTo::create(time,listGo[10]),
+		CCMoveTo::create(time,listGo[11]),NULL
 	);
 	this->button->runAction(moveAction);
 
