@@ -114,8 +114,8 @@ AnimalUnit::~AnimalUnit(void)
 }
 void AnimalUnit::born()
 {//tu chuong ra duong
-	CCPoint next = map->getBornLocation(team->teamNo);;
-	float time = map->distance(location, next)/(Config::animalNormalSpeed*2);//2x faster
+	CCPoint next = map->getInitLocation(team->teamNo);;
+	float time = ccpDistance(location, next)/(Config::animalNormalSpeed*2);//2x faster
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
 	location = next;
 	this->button->runAction(moveAction);
