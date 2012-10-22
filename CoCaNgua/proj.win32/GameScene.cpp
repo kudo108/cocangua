@@ -89,20 +89,20 @@ bool GameScene::init()
 	//set xucxac and xucxacAction
 	//xuc xac
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::xucxac_plist);
-	CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::xucxac_texture);
+	//CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::xucxac_texture);
 	char fn[128];
 	CCAnimation* xucxacAnim =CCAnimation::create();
 	
 	for (int i = 1; i <= 6; i++) 
 	{
-		sprintf(fn, "%d.gif", i);
+		sprintf(fn, "%d.png", i);
 		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
 		xucxacAnim->addSpriteFrame(pFrame);
 	}
 	
     xucxacAnim->setDelayPerUnit(0.01f);
      //create sprite first frame from animation first frame
-	this->xucxacA = CCSprite::createWithSpriteFrameName("1.gif");
+	this->xucxacA = CCSprite::createWithSpriteFrameName("1.png");
 	this->xucxacA->retain();
 	
 	xucxacA->setPosition(ccp(size.width-100-40, size.height-100));
@@ -112,7 +112,7 @@ bool GameScene::init()
 	xucxacAAminationAction->retain();
 	this->addChild(xucxacA,101);
 	 //create sprite first frame from animation first frame
-	this->xucxacB = CCSprite::createWithSpriteFrameName("1.gif");
+	this->xucxacB = CCSprite::createWithSpriteFrameName("1.png");
 	this->xucxacB->retain();
 	xucxacB->setPosition(ccp(size.width-100+40, size.height-100));
 
@@ -209,16 +209,17 @@ void GameScene::xucxacCallback(CCObject *sender)
 		int kq=rand()%6+1;
 
 		xucxacA->pauseSchedulerAndActions();
-		sprintf(fn, "%d.gif", 7-kq);
-		Config::kqXucXac1=kq;
+		sprintf(fn, "%d.png", 7-kq);
+		Config::kqXucXac1=7-kq;
 		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		kq=rand()%6+1;
 		xucxacB->pauseSchedulerAndActions();
-		sprintf(fn, "%d.gif", 7-kq);
-		Config::kqXucXac2=kq;
+		sprintf(fn, "%d.png", 7-kq);
+		Config::kqXucXac2=7-kq;
 		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		isCalledXucXac =FALSE;
+		CCLog("kq xuc xac %d %d",Config::kqXucXac1,Config::kqXucXac2);
 	}
 }

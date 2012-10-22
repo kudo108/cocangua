@@ -7,12 +7,13 @@
 Chua nhung thong tin ve 1 con co
 */
 
-AnimalUnit::AnimalUnit(int offset, CCNode* _p,CCPoint _initLocation, MapLocation *_m)
+AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLocation *_m)
 {
 	this->map = _m;
 	this->initLocation = _initLocation;//vi tri trong chuong
 	this->location = _initLocation;
 	this->path_went = -1;
+	this->team = _team;
 	//this->isExploring = false;
 	parent = _p;
 
@@ -20,7 +21,7 @@ AnimalUnit::AnimalUnit(int offset, CCNode* _p,CCPoint _initLocation, MapLocation
 	const char* imageLink="";
 	const char* plistLink="";
 	char* temp="";
-	switch(offset)
+	switch(team->teamNo)
 	{
 	case 0:
 		{
@@ -113,7 +114,9 @@ AnimalUnit::~AnimalUnit(void)
 }
 void AnimalUnit::born()
 {//tu chuong ra duong
-	this->location = this->initLocation;
+	this->location.setPoint(initLocation.x,initLocation.y);;
+	this->team->increasePointByBorn();
+	CCLog("Unit born at %d, %d", location.x, location.y);
 }
 void AnimalUnit::go(int step)
 {//di them dc step buoc
@@ -132,10 +135,16 @@ void AnimalUnit::go(int step)
 	this->button->runAction(moveAction);
 	dance();
 	this->location = next;
+
+	//increase point of team
+	this->team->increasePointByGo(step);
+
+	CCLog("Move unit %d step to %d, %d", step, next.x, next.y);
 }
 void AnimalUnit::finish(int x)
 {//den dich buoc thu x
 	//TODO
+	this->team->increasePointByFinish(x);
 }
 void AnimalUnit::die()
 {//chet, ve lai chuong
