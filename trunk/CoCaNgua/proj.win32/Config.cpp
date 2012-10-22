@@ -56,9 +56,9 @@ const char* Config::disappearEffect_image	= "move-effect-0.png";
 const char* Config::lightup_image			= "/image/lighup/lightup.png";
 const char* Config::lightup_plist			= "/image/lighup/lightup.plist";
 const char* Config::lightup_init_image		= "/image/lighup/lightup1.png";
-const char* Config::select_image			= "/image/lighup/lightup.png";
-const char* Config::select_plist			= "/image/lighup/lightup.plist";
-const char* Config::select_init_image		= "/image/lighup/lightup1.png";
+const char* Config::select_image			= "/image/select/select.png";
+const char* Config::select_plist			= "/image/select/select.plist";
+const char* Config::select_init_image		= "/image/select/select1.png";
 
 int Config::kqXucXac1=0;
 int Config::kqXucXac2=0;
