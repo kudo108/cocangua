@@ -128,25 +128,44 @@ void AnimalUnit::go(int step)
 	this->sprite->stopAllActions();
 	//explore();
 	// may con heo o trong chuong, cho no vao vi tri dau tien de di
-	/*
 	if( this->location.equals(map->wayLocation[56])||
 		this->location.equals(map->wayLocation[57])||
 		this->location.equals(map->wayLocation[58])||
 		this->location.equals(map->wayLocation[59]))
 		this->location = map->wayLocation[0];
-	*/
-	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
-	float time = map->distance(location, next)/Config::animalNormalSpeed;
-	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
-	location = next;
-	this->button->runAction(moveAction);
-	dance();
-	this->location = next;
 
+	int i = 1 ;
+	CCPoint listGo [12];
+	listGo[0] = this->location;
+	//listGo = CCArray::create();
+	for(i; i < 12; i++){
+		if(i <= step){
+			CCPoint next = map->getNextPoint(Config::WAYMAP,location,1);
+			listGo[i] = next;
+			this->location = next;
+		}
+		else listGo[i] = this->location;
+	}
+	CCFiniteTimeAction *moveAction = CCSequence::actions(
+		CCMoveTo::create(5.0f,listGo[0]),
+		CCMoveTo::create(5.0f,listGo[1]),
+		CCMoveTo::create(5.0f,listGo[2]),
+		CCMoveTo::create(5.0f,listGo[3]),
+		CCMoveTo::create(5.0f,listGo[4]),
+		CCMoveTo::create(5.0f,listGo[5]),
+		CCMoveTo::create(5.0f,listGo[6]),
+		CCMoveTo::create(5.0f,listGo[7]),
+		CCMoveTo::create(5.0f,listGo[8]),
+		CCMoveTo::create(5.0f,listGo[9]),
+		CCMoveTo::create(5.0f,listGo[10]),
+		CCMoveTo::create(5.0f,listGo[11]),NULL
+	);
+	this->button->runAction(moveAction);
+
+	//dance();
 	//increase point of team
 	this->team->increasePointByGo(step);
-
-	CCLog("Move unit %d step to %d, %d", step, next.x, next.y);
+	//CCLog("Move unit %d step to %d, %d", step, next.x, next.y);
 }
 void AnimalUnit::finish(int x)
 {//den dich buoc thu x
