@@ -92,6 +92,8 @@ public:
 	static int kqXucXac2;
 
 	static int isExploring;
+
+	static float animalNormalSpeed;
 private:
 	static bool isBgMusicPlaying;
 	static bool isGameplayMusicPlaying;

@@ -64,6 +64,7 @@ int Config::kqXucXac1=0;
 int Config::kqXucXac2=0;
 
 int Config::isExploring=0;
+float Config::animalNormalSpeed = 50.0f;
 
 const int Config::WAYMAP = 0;
 const int Config::INITMAP = -1;

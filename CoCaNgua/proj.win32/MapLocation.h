@@ -17,12 +17,22 @@ public:
 	CCPoint getNextPoint(int type,CCPoint current,int step);
 	CCPoint getPoint(int map,int index);
 	int getIndexLocation(int map,CCPoint point);
+	//some function to get point
+	CCPoint getBornLocation(int teamNo);
+	CCPoint getFinishLocation(int teamNo, int step);
+	//some help function for game rule
+	bool canBorn(int k1, int k2);
+	bool canContinueRoll(int k1, int k2);
+	float distance(CCPoint p1, CCPoint p2);
+	//some animaltion fucntion
 	void lightUp(CCPoint point);
 	void deleteAllLightUp();
 	void select(CCPoint point);
 	void unSelect();
-	CCPoint wayLocation[60];
 private:
+	CCPoint initLocation[16];
+	CCPoint wayLocation[56];
+	CCPoint finishLocation[24];
 	float winSize;
 	float scale;
 	CCPoint finishLocationYellow[24];
