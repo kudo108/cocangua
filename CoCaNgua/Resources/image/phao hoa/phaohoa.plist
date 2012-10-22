@@ -14,9 +14,9 @@
 		<key>fw1.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>971</integer>
 			<key>y</key>
-			<integer>974</integer>
+			<integer>120</integer>
 			<key>width</key>
 			<integer>38</integer>
 			<key>height</key>
@@ -33,9 +33,9 @@
 		<key>fw2.png</key>
 		<dict>
 			<key>x</key>
-			<integer>890</integer>
+			<integer>885</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>120</integer>
 			<key>width</key>
 			<integer>86</integer>
 			<key>height</key>
@@ -52,9 +52,9 @@
 		<key>fw3.png</key>
 		<dict>
 			<key>x</key>
-			<integer>38</integer>
+			<integer>971</integer>
 			<key>y</key>
-			<integer>974</integer>
+			<integer>161</integer>
 			<key>width</key>
 			<integer>25</integer>
 			<key>height</key>
@@ -71,9 +71,9 @@
 		<key>fw4.png</key>
 		<dict>
 			<key>x</key>
-			<integer>691</integer>
+			<integer>885</integer>
 			<key>y</key>
-			<integer>871</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>138</integer>
 			<key>height</key>
@@ -90,9 +90,9 @@
 		<key>fw5.png</key>
 		<dict>
 			<key>x</key>
-			<integer>691</integer>
+			<integer>655</integer>
 			<key>y</key>
-			<integer>696</integer>
+			<integer>689</integer>
 			<key>width</key>
 			<integer>148</integer>
 			<key>height</key>
@@ -109,9 +109,9 @@
 		<key>fw6.png</key>
 		<dict>
 			<key>x</key>
-			<integer>691</integer>
+			<integer>655</integer>
 			<key>y</key>
-			<integer>483</integer>
+			<integer>476</integer>
 			<key>width</key>
 			<integer>160</integer>
 			<key>height</key>
@@ -128,9 +128,9 @@
 		<key>fw7.png</key>
 		<dict>
 			<key>x</key>
-			<integer>851</integer>
+			<integer>815</integer>
 			<key>y</key>
-			<integer>483</integer>
+			<integer>476</integer>
 			<key>width</key>
 			<integer>148</integer>
 			<key>height</key>
@@ -147,9 +147,9 @@
 		<key>fw8.png</key>
 		<dict>
 			<key>x</key>
-			<integer>234</integer>
+			<integer>479</integer>
 			<key>y</key>
-			<integer>484</integer>
+			<integer>715</integer>
 			<key>width</key>
 			<integer>164</integer>
 			<key>height</key>
@@ -166,9 +166,9 @@
 		<key>fw9.png</key>
 		<dict>
 			<key>x</key>
-			<integer>714</integer>
+			<integer>479</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>476</integer>
 			<key>width</key>
 			<integer>176</integer>
 			<key>height</key>
@@ -185,9 +185,9 @@
 		<key>fw10.png</key>
 		<dict>
 			<key>x</key>
-			<integer>445</integer>
+			<integer>696</integer>
 			<key>y</key>
-			<integer>717</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>189</integer>
 			<key>height</key>
@@ -204,9 +204,9 @@
 		<key>fw11.png</key>
 		<dict>
 			<key>x</key>
-			<integer>234</integer>
+			<integer>494</integer>
 			<key>y</key>
-			<integer>717</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>202</integer>
 			<key>height</key>
@@ -223,9 +223,9 @@
 		<key>fw12.png</key>
 		<dict>
 			<key>x</key>
-			<integer>234</integer>
+			<integer>701</integer>
 			<key>y</key>
-			<integer>246</integer>
+			<integer>234</integer>
 			<key>width</key>
 			<integer>211</integer>
 			<key>height</key>
@@ -242,9 +242,9 @@
 		<key>fw13.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>479</integer>
 			<key>y</key>
-			<integer>732</integer>
+			<integer>234</integer>
 			<key>width</key>
 			<integer>222</integer>
 			<key>height</key>
@@ -261,9 +261,9 @@
 		<key>fw14.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>245</integer>
 			<key>y</key>
-			<integer>246</integer>
+			<integer>722</integer>
 			<key>width</key>
 			<integer>230</integer>
 			<key>height</key>
@@ -280,9 +280,9 @@
 		<key>fw15.png</key>
 		<dict>
 			<key>x</key>
-			<integer>234</integer>
-			<key>y</key>
 			<integer>0</integer>
+			<key>y</key>
+			<integer>717</integer>
 			<key>width</key>
 			<integer>236</integer>
 			<key>height</key>
@@ -299,9 +299,9 @@
 		<key>fw16.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>245</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>234</integer>
 			<key>width</key>
 			<integer>234</integer>
 			<key>height</key>
@@ -318,9 +318,9 @@
 		<key>fw17.png</key>
 		<dict>
 			<key>x</key>
-			<integer>470</integer>
-			<key>y</key>
 			<integer>0</integer>
+			<key>y</key>
+			<integer>471</integer>
 			<key>width</key>
 			<integer>244</integer>
 			<key>height</key>
@@ -337,9 +337,9 @@
 		<key>fw18.png</key>
 		<dict>
 			<key>x</key>
-			<integer>445</integer>
+			<integer>248</integer>
 			<key>y</key>
-			<integer>483</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>246</integer>
 			<key>height</key>
@@ -356,9 +356,9 @@
 		<key>fw19.png</key>
 		<dict>
 			<key>x</key>
-			<integer>690</integer>
+			<integer>0</integer>
 			<key>y</key>
-			<integer>246</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>248</integer>
 			<key>height</key>
@@ -375,9 +375,9 @@
 		<key>fw20.png</key>
 		<dict>
 			<key>x</key>
-			<integer>445</integer>
+			<integer>0</integer>
 			<key>y</key>
-			<integer>246</integer>
+			<integer>234</integer>
 			<key>width</key>
 			<integer>245</integer>
 			<key>height</key>
@@ -394,9 +394,9 @@
 		<key>fw21.png</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>245</integer>
 			<key>y</key>
-			<integer>490</integer>
+			<integer>480</integer>
 			<key>width</key>
 			<integer>234</integer>
 			<key>height</key>
