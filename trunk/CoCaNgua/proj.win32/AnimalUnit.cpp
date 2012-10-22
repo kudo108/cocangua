@@ -114,7 +114,11 @@ AnimalUnit::~AnimalUnit(void)
 }
 void AnimalUnit::born()
 {//tu chuong ra duong
-	this->location.setPoint(initLocation.x,initLocation.y);;
+	CCPoint next = map->getBornLocation(team->teamNo);;
+	float time = map->distance(location, next)/(Config::animalNormalSpeed*2);//2x faster
+	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
+	location = next;
+	this->button->runAction(moveAction);
 	this->team->increasePointByBorn();
 	CCLog("Unit born at %d, %d", location.x, location.y);
 }
@@ -124,13 +128,16 @@ void AnimalUnit::go(int step)
 	this->sprite->stopAllActions();
 	//explore();
 	// may con heo o trong chuong, cho no vao vi tri dau tien de di
+	/*
 	if( this->location.equals(map->wayLocation[56])||
 		this->location.equals(map->wayLocation[57])||
 		this->location.equals(map->wayLocation[58])||
 		this->location.equals(map->wayLocation[59]))
 		this->location = map->wayLocation[0];
+	*/
 	CCPoint next = map->getNextPoint(Config::WAYMAP,location,step);
-	CCFiniteTimeAction *moveAction = CCMoveTo::create(5.0f,next);
+	float time = map->distance(location, next)/Config::animalNormalSpeed;
+	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
 	location = next;
 	this->button->runAction(moveAction);
 	dance();

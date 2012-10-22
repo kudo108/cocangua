@@ -126,7 +126,9 @@ void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
 	map->deleteAllLightUp();
 	//delete select
 	map->unSelect();
-	//move 
+	//neu o trong chuong + ra quan dc=> ra quan
+	unit->born();
+	//neu o tren duong di + khong bi can => di chuyen
 	unit->go(Config::kqXucXac1+Config::kqXucXac2);
 	
 	//unload kqXucXac
