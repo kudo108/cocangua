@@ -9,10 +9,10 @@ Animals::Animals(int offset, CCNode* _p, MapLocation *_m)
 	this->parent = _p;
 	point = 0;
 	teamNo = offset;
-	unit0 = new AnimalUnit(this,_p,map->getPoint(0,56),map);
-	unit1 = new AnimalUnit(this,_p,map->getPoint(0,57),map);
-	unit2 = new AnimalUnit(this,_p,map->getPoint(0,58),map);
-	unit3 = new AnimalUnit(this,_p,map->getPoint(0,59),map);
+	unit0 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,0),map);
+	unit1 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,1),map);
+	unit2 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,2),map);
+	unit3 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,3),map);
 	//TODO anything difference here
 }
 

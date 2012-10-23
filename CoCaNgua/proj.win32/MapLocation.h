@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 using namespace cocos2d;
-
+class AnimalUnit;
 class MapLocation
 {
 public:
@@ -24,6 +24,9 @@ public:
 	CCPoint getStartPoint(int teamNo);
 	CCPoint getFinishPoint(int teamNo,int step);
 	CCPoint getInitPoint(int teamNo,int teamUnit);
+	bool havingUnitOnInitLocation(int teamNo);
+	int havingUnitOnWay(CCPoint currentLocation, int step);
+	AnimalUnit *getUnitOnInitLocation(int teamNo);
 	//some help function for game rule
 	bool canInit(int k1, int k2);
 	//some animaltion fucntion

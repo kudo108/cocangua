@@ -14,6 +14,7 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 	this->location = _initLocation;
 	this->path_went = -1;
 	this->team = _team;
+	onWay = false;
 	//this->isExploring = false;
 	parent = _p;
 
@@ -120,6 +121,7 @@ void AnimalUnit::born()
 	location = next;
 	this->button->runAction(moveAction);
 	this->team->increasePointByBorn();
+	onWay = true;
 	CCLog("Unit born at %d, %d", location.x, location.y);
 }
 void AnimalUnit::go(int step)
@@ -176,6 +178,7 @@ void AnimalUnit::finish(int x)
 void AnimalUnit::die()
 {//chet, ve lai chuong
 	//TODO
+	onWay=false;
 }
 void AnimalUnit::dance()
 {
@@ -184,4 +187,13 @@ void AnimalUnit::dance()
 void AnimalUnit::explore()
 {
 	this->sprite->runAction(exploreAction);
+}
+bool AnimalUnit::isOnInitLocation()
+{
+	if (location.equals(initLocation)) return true;
+	return false;
+}
+bool AnimalUnit::isOnWay()
+{
+	return onWay;
 }
