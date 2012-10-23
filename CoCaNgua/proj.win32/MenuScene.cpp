@@ -9,6 +9,7 @@
 #include "OptionScene.h"
 #include "Config.h"
 #include "UnderBuildingScene.h"
+#include "MapLocation.h"
 
 using namespace cocos2d;
 //using namespace CocosDenshion;
@@ -23,6 +24,9 @@ bool MenuScene::init()
 
 		Config::playBackgroundMusic(Config::backgroundMusic, BG_MUSIC);
 	}
+	//
+	
+	//
 
 	int jump=40;
 	//get window size
