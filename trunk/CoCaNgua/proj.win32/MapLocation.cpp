@@ -224,6 +224,73 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 		return ccp(-1,-1);break;
 	}
 }
+// getnextpoint return array
+CCPoint * MapLocation::getNextPoints(int type,CCPoint current,int step){
+	
+	CCPoint *ret = new CCPoint[13];
+	for(int i=1;i<=step;i++)
+		{
+			ret[i-1]= getNextPoint(type,current,i);
+		}
+	ret[step]=ccp(-1,-1);
+	return ret;
+}
+//get startPoint: Diem ra quan cau moi ben
+CCPoint MapLocation::getStartPoint(int teamNo)
+{
+if(teamNo <0 || teamNo >=4) return ccp(-1,-1);
+	return wayLocation[teamNo*14];
+}
+//get FinishPoint: 
+CCPoint MapLocation::getFinishPoint(int teamNo,int step)
+{
+	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
+	switch(teamNo-1)
+		{
+		case 0:
+			return finishLocationYellow[step];
+		case 1:
+			return finishLocationGreen[step];
+		case 2:
+			return finishLocationRed[step];
+		case 3:
+			return finishLocationBlue[step];
+		default:
+			return ccp(-1,-1);
+		}
+}
+//get Init Location
+CCPoint MapLocation::getInitPoint(int teamNo,int teamUnit)
+{	
+	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
+	switch(teamNo)
+	{
+	case 0:
+		if(teamUnit==0) return ccp((175-25)*scale,(175-25)*scale);
+		if(teamUnit==1) return ccp((175+25)*scale,(175-25)*scale);
+		if(teamUnit==2) return ccp((175+25)*scale,(175+25)*scale);
+		if(teamUnit==3) return ccp((175-25)*scale,(175+25)*scale);
+	case 1:
+		if(teamUnit==0) return ccp((850-25)*scale,(175-25)*scale);
+		if(teamUnit==1) return ccp((850+25)*scale,(175-25)*scale);
+		if(teamUnit==2) return ccp((850+25)*scale,(175+25)*scale);
+		if(teamUnit==3) return ccp((850-25)*scale,(175+25)*scale);
+	case 2:
+		if(teamUnit==0) return ccp((850-25)*scale,(850-25)*scale);
+		if(teamUnit==1) return ccp((850+25)*scale,(850-25)*scale);
+		if(teamUnit==2) return ccp((850+25)*scale,(850+25)*scale);
+		if(teamUnit==3) return ccp((850-25)*scale,(850+25)*scale);
+	case 3:
+		if(teamUnit==0) return ccp((175-25)*scale,(850-25)*scale);
+		if(teamUnit==1) return ccp((175+25)*scale,(850-25)*scale);
+		if(teamUnit==2) return ccp((175+25)*scale,(850+25)*scale);
+		if(teamUnit==3) return ccp((175-25)*scale,(850+25)*scale);
+	default:
+		return ccp(-1,-1);	
+	}
+	
+}
+
 void MapLocation::lightUp(CCPoint point)
 {
 	//CCLog("light up %d %d",point.x, point.y);
