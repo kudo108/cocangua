@@ -15,11 +15,15 @@ public:
 	int fnB;
 	int fnY;
 	CCPoint wayLocation[56];
-	CCPoint getNextPoint(int type,CCPoint current,int step);
 	CCPoint getPoint(int map,int index);
 	int getIndexLocation(int map,CCPoint point);
 	//some function to get point
 	CCPoint getInitLocation(int teamNo);
+	CCPoint* getNextPoints(int type,CCPoint current,int step);
+	CCPoint getNextPoint(int type,CCPoint current,int step);
+	CCPoint getStartPoint(int teamNo);
+	CCPoint getFinishPoint(int teamNo,int step);
+	CCPoint getInitPoint(int teamNo,int teamUnit);
 	//some help function for game rule
 	bool canInit(int k1, int k2);
 	//some animaltion fucntion
