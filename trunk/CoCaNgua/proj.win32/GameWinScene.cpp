@@ -42,7 +42,7 @@ bool GameWinScene::init(){
 	
 	for (int i = 1; i <= 21; i++) 
 	{
-		sprintf(fn, "%d.png", i);
+		sprintf(fn, "fw%d.png", i);
 		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
 		gameWinAnimation->addSpriteFrame(pFrame);
 	}

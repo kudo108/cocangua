@@ -27,9 +27,10 @@ private:
 	CC_SYNTHESIZE(CCMenuItemFont*, team1PointLable, Team1PointLable);
 	CC_SYNTHESIZE(CCMenuItemFont*, team2PointLable, Team2PointLable);
 	CC_SYNTHESIZE(CCMenuItemFont*, team3PointLable, Team3PointLable);
+	CC_SYNTHESIZE(CCMenuItemFont*, teamLable, TeamLable);
 
 	void updatePoint(int teamNo);
-
+	void updateTeamLable();
 };
 
 #endif

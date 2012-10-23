@@ -83,7 +83,13 @@ bool ClassicGameLayer::init()
 	pButtonGo->setPosition(ccp(size.width-100, size.height*2/3+20));
 	menuArray->addObject(pButtonGo);
 
-	
+	//Lable team
+	teamLable = CCMenuItemFont::create("Team 0");
+	teamLable->setColor(ccRED);
+	teamLable->setFontSizeObj(Config::objectFontSize*2/3);
+	teamLable->setPosition(ccp(size.width-100, size.height-40));
+	menuArray->addObject(teamLable);
+	teamLable->retain();
 	//create menu
 	CCMenu* menu= CCMenu::createWithArray(menuArray);
 	menu->setPosition(CCPointZero);
@@ -166,5 +172,11 @@ void ClassicGameLayer::updatePoint(int teamNo)
 	default:
 		break;
 	}
+}
+void ClassicGameLayer::updateTeamLable()
+{
+	char lable[128];
+	sprintf(lable, "Turn: Team %d", currentTurn->teamNo);
+	teamLable->setString(lable);
 }
 #endif
