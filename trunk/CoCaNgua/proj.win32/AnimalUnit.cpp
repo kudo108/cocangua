@@ -42,14 +42,14 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 		{
 			imageLink=Config::animal2_init_image;
 			plistLink=Config::animal2_init_plist;
-			temp="pig%d copy.png";//TODO
+			temp="horse%d.png";//TODO
 			break;
 		}
 	case 3:
 		{
 			imageLink=Config::animal3_init_image;
 			plistLink=Config::animal3_init_plist;
-			temp="pig%d copy.png";//TODO
+			temp="dog%d.png";//TODO
 			break;
 		}
 	default: 
@@ -103,9 +103,6 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 	exploreAction->retain();
 	dance();
 }
-CCPoint AnimalUnit::getLocation(){
-	return this->location;
-}
 
 AnimalUnit::~AnimalUnit(void)
 {
@@ -115,7 +112,7 @@ AnimalUnit::~AnimalUnit(void)
 }
 void AnimalUnit::born()
 {//tu chuong ra duong
-	CCPoint next = map->getInitLocation(team->teamNo);;
+	CCPoint next = getBornLocation();
 	float time = ccpDistance(location, next)/(Config::animalNormalSpeed*2);//2x faster
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
 	location = next;
@@ -126,46 +123,17 @@ void AnimalUnit::born()
 }
 void AnimalUnit::go(int step)
 {//di them dc step buoc
-	//TODO 
-	this->sprite->stopAllActions();
-	//explore();
-	// may con heo o trong chuong, cho no vao vi tri dau tien de di
-	if( this->location.equals(map->wayLocation[56])||
-		this->location.equals(map->wayLocation[57])||
-		this->location.equals(map->wayLocation[58])||
-		this->location.equals(map->wayLocation[59]))
-		this->location = map->wayLocation[0];
-
-	int i = 1 ;
-	CCPoint listGo [12];
-	listGo[0] = this->location;
-	//listGo = CCArray::create();
-	for(i; i < 12; i++){
-		if(i <= step){
-			CCPoint next = map->getNextPoint(Config::WAYMAP,location,1);
-			listGo[i] = next;
-			this->location = next;
-		}
-		else listGo[i] = this->location;
+	float time = Config::animalNormalMoveTime;
+	CCArray *listGo = CCArray::create();
+	CCPoint* next = map->getNextPoints(location, step);
+	for(int i = 0; i < step; i++)
+	{
+		listGo->addObject(CCMoveTo::create(time, next[i]));
 	}
-	float time = ccpDistance(location, map->getNextPoint(Config::WAYMAP,location,1))/(Config::animalNormalSpeed);
-	CCFiniteTimeAction *moveAction = CCSequence::actions(
-		CCMoveTo::create(time,listGo[0]),
-		CCMoveTo::create(time,listGo[1]),
-		CCMoveTo::create(time,listGo[2]),
-		CCMoveTo::create(time,listGo[3]),
-		CCMoveTo::create(time,listGo[4]),
-		CCMoveTo::create(time,listGo[5]),
-		CCMoveTo::create(time,listGo[6]),
-		CCMoveTo::create(time,listGo[7]),
-		CCMoveTo::create(time,listGo[8]),
-		CCMoveTo::create(time,listGo[9]),
-		CCMoveTo::create(time,listGo[10]),
-		CCMoveTo::create(time,listGo[11]),NULL
-	);
+	CCFiniteTimeAction *moveAction = CCSequence::create(listGo);
+	this->location = next[step-1];
 	this->button->runAction(moveAction);
 
-	//dance();
 	//increase point of team
 	this->team->increasePointByGo(step);
 	//CCLog("Move unit %d step to %d, %d", step, next.x, next.y);
@@ -196,4 +164,8 @@ bool AnimalUnit::isOnInitLocation()
 bool AnimalUnit::isOnWay()
 {
 	return onWay;
+}
+CCPoint AnimalUnit::getBornLocation()
+{
+	return map->getInitLocation(team->teamNo);
 }

@@ -31,6 +31,7 @@ private:
 
 	void updatePoint(int teamNo);
 	void updateTeamLable();
+	void changeTurn();
 };
 
 #endif

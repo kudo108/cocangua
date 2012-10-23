@@ -84,7 +84,7 @@ bool ClassicGameLayer::init()
 	menuArray->addObject(pButtonGo);
 
 	//Lable team
-	teamLable = CCMenuItemFont::create("Team 0");
+	teamLable = CCMenuItemFont::create("Turn: Team 0");
 	teamLable->setColor(ccRED);
 	teamLable->setFontSizeObj(Config::objectFontSize*2/3);
 	teamLable->setPosition(ccp(size.width-100, size.height-40));
@@ -104,19 +104,45 @@ bool ClassicGameLayer::init()
 
 void ClassicGameLayer::selectCallback(CCObject *sender)
 {
-
-	//CCObject o day la CCMENUitemsprite	
 	if(Config::kqXucXac1<=0 || Config::kqXucXac2<=0) return;
+	
+	//clear another lightup
+	map->deleteAllLightUp();
 
-	//OutputDebugStringW(L"selected...............");
 	unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
 	
-	//get array of next point can go
-	//lightup these point
-	//map->lightUp(map->getPoint(0,5));
-	//map->lightUp(map->getPoint(0,6));
+	if(unit->getTeam() != currentTurn)
+	{
+		unit = NULL;
+		return;//khac team ko cho di
+	}
 	//select amination unit
 	map->select(unit->getLocation());
+	//get array of next point can go lightup these point
+	if(unit->isOnInitLocation())
+	{
+		if(map->canInit(Config::kqXucXac1, Config::kqXucXac2))
+		{
+			map->lightUp(unit->getBornLocation());
+		}
+	}
+	else if (unit->isOnWay())
+	{
+		int step = Config::kqXucXac1+Config::kqXucXac2;
+		int check = map->havingUnitOnWay(unit->getLocation(), step);
+		if(check==0 || check == -1)
+		{
+			//neu o tren duong di + khong bi can  hoac da
+			CCPoint * next = map->getNextPoints(unit->getLocation(),step);
+			for(int i = 0; i < step; i++)
+			{
+				map->lightUp(next[i]);
+			}
+		}
+		else {
+			//TODO
+		}
+	}
 }
 
 
@@ -164,13 +190,18 @@ void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
 		else {
 			//TODO
 		}
-	}
+	}else if(false)
+		{
+	}else//dung truoc cua chuong va o tren chuong
+	{
+	};
+
+	//update turn
+	changeTurn();
 	//unload kqXucXac
 	Config::kqXucXac1=Config::kqXucXac2=0;
 	//unload unit
 	unit = NULL;
-	//update point
-	updatePoint(currentTurn->teamNo);
 }
 void ClassicGameLayer::updatePoint(int teamNo)
 {
@@ -206,5 +237,29 @@ void ClassicGameLayer::updateTeamLable()
 	char lable[128];
 	sprintf(lable, "Turn: Team %d", currentTurn->teamNo);
 	teamLable->setString(lable);
+}
+void ClassicGameLayer::changeTurn()
+{
+	switch(currentTurn->teamNo)
+	{
+	case 0:
+		currentTurn = this->animal1;
+		break;
+	case 1:
+		currentTurn = this->animal2;
+		break;
+	case 2:
+		currentTurn = this ->animal3;
+		break;
+	case 3:
+		currentTurn = this->animal0;
+		break;
+	default:
+		break;
+	}
+	//update team turn lable;
+	updateTeamLable();
+	//update point
+	updatePoint(currentTurn->teamNo);
 }
 #endif

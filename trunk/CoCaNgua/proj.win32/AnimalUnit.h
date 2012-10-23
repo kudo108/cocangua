@@ -15,7 +15,6 @@ class AnimalUnit
 public:
 	AnimalUnit(Animals* team, CCNode *parent,CCPoint _initLocation, MapLocation *_m);
 	~AnimalUnit(void);
-	CCPoint getLocation();
 	void born();//tu chuong ra duong
 	void go(int step);//di them dc step buoc
 	void finish(int step);//den dich buoc thu x
@@ -24,11 +23,12 @@ public:
 	void explore();
 	bool isOnInitLocation();//o trong chuong
 	bool isOnWay();//dang o tren duong di
+	CCPoint getBornLocation();
 private:
-	Animals* team;
+	CC_SYNTHESIZE(Animals* ,team, Team);
 	bool onWay;
-	CCPoint location;//vi tri hien tai
-	CCPoint initLocation;//vi tri trong chuong
+	CC_SYNTHESIZE(CCPoint, location, Location);//vi tri hien tai
+	CC_SYNTHESIZE(CCPoint, initLocation, InitLocation);//vi tri trong chuong
 	int path_went;//doan duong da di
 
 	CCNode *parent;

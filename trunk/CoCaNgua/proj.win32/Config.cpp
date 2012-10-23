@@ -22,12 +22,12 @@ const char* Config::gameOverBackground		= "image/gameover.png";
 const char* Config::xingau_init_image		= "image/ccn4.jpg";
 const char* Config::animal0_init_image		= "/image/animal/heo/heo2.png";
 const char* Config::animal1_init_image		= "/image/animal/vit/vit.png";
-const char* Config::animal2_init_image		= "/image/animal/heo/heo.png";
-const char* Config::animal3_init_image		= "/image/animal/heo/heo2.png";
+const char* Config::animal2_init_image		= "/image/animal/ngua/horse.png";
+const char* Config::animal3_init_image		= "/image/animal/cho/dog.png";
 const char* Config::animal0_init_plist		= "/image/animal/heo/heo2.plist";
 const char* Config::animal1_init_plist		= "/image/animal/vit/vit.plist";
-const char* Config::animal2_init_plist		= "/image/animal/heo/heo2.plist";
-const char* Config::animal3_init_plist		= "/image/animal/heo/heo2.plist";
+const char* Config::animal2_init_plist		= "/image/animal/ngua/horse.plist";
+const char* Config::animal3_init_plist		= "/image/animal/cho/dog.plist";
 const char* Config::backgroundMusic			= "music/background-music.mp3";
 const char* Config::gameplayMusic			= "music/gameplay-music.mp3";
 const char* Config::sfxButton				= "sound/Button.wav";
@@ -65,6 +65,7 @@ int Config::kqXucXac2=0;
 
 int Config::isExploring=0;
 float Config::animalNormalSpeed = 50.0f;
+float Config::animalNormalMoveTime = 0.5;//s
 
 const int Config::WAYMAP = 0;
 const int Config::INITMAP = -1;
