@@ -348,3 +348,20 @@ CCPoint MapLocation::getInitLocation(int teamNo)
 	return wayLocation[teamNo*14];
 }
 
+bool MapLocation::havingUnitOnInitLocation(int teamNo)
+{
+	//TODO
+	return false;
+}
+
+AnimalUnit * MapLocation::getUnitOnInitLocation(int teamNo)
+{
+	//TODO
+	return NULL;//neu ko co thi return null
+}
+
+int MapLocation::havingUnitOnWay(CCPoint currentLocation, int step)
+{
+	//TODO
+	return 0;// khong co
+}

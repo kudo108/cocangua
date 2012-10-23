@@ -8,6 +8,8 @@
 using namespace cocos2d;
 
 class Animals;
+class MapLocation;
+
 class AnimalUnit
 {
 public:
@@ -20,8 +22,11 @@ public:
 	void die();//chet, ve lai chuong
 	void dance();//luc lac luc lac =))
 	void explore();
+	bool isOnInitLocation();//o trong chuong
+	bool isOnWay();//dang o tren duong di
 private:
 	Animals* team;
+	bool onWay;
 	CCPoint location;//vi tri hien tai
 	CCPoint initLocation;//vi tri trong chuong
 	int path_went;//doan duong da di

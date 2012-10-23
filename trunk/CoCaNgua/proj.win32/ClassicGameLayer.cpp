@@ -19,8 +19,8 @@ bool ClassicGameLayer::init()
 	//init animals
 	animal0 = new Animals(0,this,map);
 	animal1 = new Animals(1,this,map);
-	//animal2 = new Animals(2,this,map);
-	//animal3 = new Animals(3,this,map);
+	animal2 = new Animals(2,this,map);
+	animal3 = new Animals(3,this,map);
 
 	CCArray *menuArray = CCArray::create();
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -133,10 +133,38 @@ void ClassicGameLayer::buttonGoCallBack(CCObject *sender)
 	//delete select
 	map->unSelect();
 	//neu o trong chuong + ra quan dc=> ra quan
-	unit->born();
-	//neu o tren duong di + khong bi can => di chuyen
-	unit->go(Config::kqXucXac1+Config::kqXucXac2);
-	
+	if(unit->isOnInitLocation())
+	{
+		if(map->canInit(Config::kqXucXac1, Config::kqXucXac2))
+		{
+			unit->born();
+			CCLog("Ra quan");
+			//xem thu co da dc ko
+			if(map->havingUnitOnInitLocation(currentTurn->teamNo))
+			{
+				//da
+				AnimalUnit* unluckyUnit = map->getUnitOnInitLocation(currentTurn->teamNo);
+				unluckyUnit->die();
+			}
+		}
+	}
+	else if (unit->isOnWay())
+	{
+		int step = Config::kqXucXac1+Config::kqXucXac2;
+		int check = map->havingUnitOnWay(unit->getLocation(), step);
+		if(check==0)
+		{
+			//neu o tren duong di + khong bi can => di chuyen
+			unit->go(step);
+		}
+		else if (check == 1)
+		{
+			//TODO
+		}
+		else {
+			//TODO
+		}
+	}
 	//unload kqXucXac
 	Config::kqXucXac1=Config::kqXucXac2=0;
 	//unload unit
