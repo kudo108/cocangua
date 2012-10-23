@@ -19,7 +19,7 @@ public:
 	int getIndexLocation(int map,CCPoint point);
 	//some function to get point
 	CCPoint getInitLocation(int teamNo);
-	CCPoint* getNextPoints(int type,CCPoint current,int step);
+	CCPoint* getNextPoints(CCPoint current,int step);
 	CCPoint getNextPoint(int type,CCPoint current,int step);
 	CCPoint getStartPoint(int teamNo);
 	CCPoint getFinishPoint(int teamNo,int step);

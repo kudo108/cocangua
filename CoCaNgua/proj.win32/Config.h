@@ -94,6 +94,7 @@ public:
 	static int isExploring;
 
 	static float animalNormalSpeed;
+	static float animalNormalMoveTime;
 private:
 	static bool isBgMusicPlaying;
 	static bool isGameplayMusicPlaying;

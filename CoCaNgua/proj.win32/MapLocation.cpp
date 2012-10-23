@@ -225,12 +225,12 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 	}
 }
 // getnextpoint return array
-CCPoint * MapLocation::getNextPoints(int type,CCPoint current,int step){
+CCPoint * MapLocation::getNextPoints(CCPoint current,int step){
 	
 	CCPoint *ret = new CCPoint[13];
 	for(int i=1;i<=step;i++)
 		{
-			ret[i-1]= getNextPoint(type,current,i);
+			ret[i-1]= getNextPoint(0,current,i);
 		}
 	ret[step]=ccp(-1,-1);
 	return ret;

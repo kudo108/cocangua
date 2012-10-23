@@ -11,43 +11,43 @@
 	</dict>
 	<key>frames</key>
 	<dict>
-		<key>Duck-1.png</key>
+		<key>horse1.png</key>
 		<dict>
 			<key>x</key>
 			<integer>1</integer>
 			<key>y</key>
 			<integer>1</integer>
 			<key>width</key>
-			<integer>34</integer>
+			<integer>40</integer>
 			<key>height</key>
-			<integer>35</integer>
-			<key>offsetX</key>
-			<real>0</real>
-			<key>offsetY</key>
-			<real>0.5</real>
-			<key>originalWidth</key>
-			<integer>36</integer>
-			<key>originalHeight</key>
-			<integer>36</integer>
-		</dict>
-		<key>Duck-2.png</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
 			<integer>37</integer>
-			<key>width</key>
-			<integer>34</integer>
-			<key>height</key>
-			<integer>35</integer>
 			<key>offsetX</key>
 			<real>0</real>
 			<key>offsetY</key>
 			<real>0.5</real>
 			<key>originalWidth</key>
-			<integer>36</integer>
+			<integer>40</integer>
 			<key>originalHeight</key>
-			<integer>36</integer>
+			<integer>40</integer>
+		</dict>
+		<key>horse2.png</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>39</integer>
+			<key>width</key>
+			<integer>40</integer>
+			<key>height</key>
+			<integer>37</integer>
+			<key>offsetX</key>
+			<real>0</real>
+			<key>offsetY</key>
+			<real>0.5</real>
+			<key>originalWidth</key>
+			<integer>40</integer>
+			<key>originalHeight</key>
+			<integer>40</integer>
 		</dict>
 	</dict>
 </dict>
