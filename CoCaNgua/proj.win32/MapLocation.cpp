@@ -12,6 +12,11 @@ MapLocation::MapLocation(int _winSize, CCNode* _parent)
 	fnG = 2;
 	fnR = 3;
 	fnB = 4;
+	for(int i=0;i<56;i++){
+		wayColision[i]=-1;
+		if(i<16) startColision[i]=i;
+		if(i<24) finishColision[i]=-1;
+	}
 	//
 	winSize = _winSize;
 	scale = winSize/1024;
@@ -173,7 +178,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 			if((step+j) > 5) return ccp(-1,-1);
 			return finishLocationYellow[step+j];
 		}
-		if((i+step)>55) return finishLocationYellow[i+step-56];
+		if((i+step)>55) return ccp(-1,-1);
 		return wayLocation[i+step];
 		break;
 	case 1:
@@ -186,7 +191,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 			if((step+j)>5) return ccp(-1,-1);
 			return finishLocationGreen[step+j];
 		}
-		if((i+step)>13&&i>=0&&i<=13) return finishLocationGreen[i+step-14];
+		if((i+step)>13&&i>=0&&i<=13) return ccp(-1,-1);;
 		if((i+step)>13&&i>=0&&i<=13&&(step+i-13)>5) return ccp(-1,-1);
 		if((i+step)>55) return wayLocation[i+step-56];
 		return wayLocation[i+step];
@@ -201,7 +206,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 			if((step+j)>5) return ccp(-1,-1);
 			return finishLocationRed[step+j];
 		}
-		if((i+step)>27&&i>=0&&i<=27) return finishLocationRed[i+step-28];
+		if((i+step)>27&&i>=0&&i<=27) return ccp(-1,-1);;
 		if((i+step)>27&&i>=0&&i<=27&&(i+step-27)>5) return ccp(-1,-1);
 		if((i+step)>55) return wayLocation[i+step-56];
 		return wayLocation[i+step];
@@ -215,7 +220,7 @@ CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
 			if((step+j)>5) return ccp(-1,-1);
 			return finishLocationBlue[step+j];
 		}
-		if((i+step)>41&&i>=0&&i<=41) return finishLocationRed[i+step-42];
+		if((i+step)>41&&i>=0&&i<=41) return ccp(-1,-1);;
 		if((i+step)>41&&i>=0&&i<=41&&(i+step-41)>5) return ccp(-1,-1);
 		if((i+step)>55) return wayLocation[i+step-56];
 		return wayLocation[i+step];
@@ -262,29 +267,30 @@ CCPoint MapLocation::getFinishPoint(int teamNo,int step)
 //get Init Location
 CCPoint MapLocation::getInitPoint(int teamNo,int teamUnit)
 {	
+	int z = 35;
 	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
 	switch(teamNo)
 	{
 	case 0:
-		if(teamUnit==0) return ccp((175-25)*scale,(175-25)*scale);
-		if(teamUnit==1) return ccp((175+25)*scale,(175-25)*scale);
-		if(teamUnit==2) return ccp((175+25)*scale,(175+25)*scale);
-		if(teamUnit==3) return ccp((175-25)*scale,(175+25)*scale);
+		if(teamUnit==0) return ccp((175-z)*scale,(175-z)*scale);
+		if(teamUnit==1) return ccp((175+z)*scale,(175-z)*scale);
+		if(teamUnit==2) return ccp((175+z)*scale,(175+z)*scale);
+		if(teamUnit==3) return ccp((175-z)*scale,(175+z)*scale);
 	case 1:
-		if(teamUnit==0) return ccp((850-25)*scale,(175-25)*scale);
-		if(teamUnit==1) return ccp((850+25)*scale,(175-25)*scale);
-		if(teamUnit==2) return ccp((850+25)*scale,(175+25)*scale);
-		if(teamUnit==3) return ccp((850-25)*scale,(175+25)*scale);
+		if(teamUnit==0) return ccp((850-z)*scale,(175-z)*scale);
+		if(teamUnit==1) return ccp((850+z)*scale,(175-z)*scale);
+		if(teamUnit==2) return ccp((850+z)*scale,(175+z)*scale);
+		if(teamUnit==3) return ccp((850-z)*scale,(175+z)*scale);
 	case 2:
-		if(teamUnit==0) return ccp((850-25)*scale,(850-25)*scale);
-		if(teamUnit==1) return ccp((850+25)*scale,(850-25)*scale);
-		if(teamUnit==2) return ccp((850+25)*scale,(850+25)*scale);
-		if(teamUnit==3) return ccp((850-25)*scale,(850+25)*scale);
+		if(teamUnit==0) return ccp((850-z)*scale,(850-z)*scale);
+		if(teamUnit==1) return ccp((850+z)*scale,(850-z)*scale);
+		if(teamUnit==2) return ccp((850+z)*scale,(850+z)*scale);
+		if(teamUnit==3) return ccp((850-z)*scale,(850+z)*scale);
 	case 3:
-		if(teamUnit==0) return ccp((175-25)*scale,(850-25)*scale);
-		if(teamUnit==1) return ccp((175+25)*scale,(850-25)*scale);
-		if(teamUnit==2) return ccp((175+25)*scale,(850+25)*scale);
-		if(teamUnit==3) return ccp((175-25)*scale,(850+25)*scale);
+		if(teamUnit==0) return ccp((175-z)*scale,(850-z)*scale);
+		if(teamUnit==1) return ccp((175+z)*scale,(850-z)*scale);
+		if(teamUnit==2) return ccp((175+z)*scale,(850+z)*scale);
+		if(teamUnit==3) return ccp((175-z)*scale,(850+z)*scale);
 	default:
 		return ccp(-1,-1);	
 	}
