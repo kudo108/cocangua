@@ -34,6 +34,9 @@ public:
 	void deleteAllLightUp();
 	void select(CCPoint point);
 	void unSelect();
+	int wayColision[56];
+	int finishColision[24];
+	int startColision[16];
 private:
 	float winSize;
 	float scale;
