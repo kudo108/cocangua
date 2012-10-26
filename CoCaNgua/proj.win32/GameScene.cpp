@@ -240,7 +240,7 @@ void GameScene::quitGameCallback(CCObject *sender)
 	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		MenuScene *menuScene = MenuScene::create();
 		CCDirector::sharedDirector()->replaceScene(menuScene);
-	MusicHelper::stopAllEffect();
+		MusicHelper::stopAllEffect();
 	}
 }
 void GameScene::ruleCallback(CCObject *sender)

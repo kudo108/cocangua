@@ -40,9 +40,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -102,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="GameLogic.h">
       <Filter>include\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

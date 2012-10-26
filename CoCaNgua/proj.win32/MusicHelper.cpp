@@ -26,17 +26,17 @@ const char* MusicHelper::sfxFireworks			= "/sound/Fireworks.wav";
 const char* MusicHelper::animal0_die_sound		="/sound/animal_sound/lon_die.wav";
 const char* MusicHelper::animal1_die_sound		="/sound/animal_sound/vit_die.wav";
 const char* MusicHelper::animal2_die_sound		="/sound/animal_sound/ngua_die.wav";
-const char* MusicHelper::animal3_die_sound		="/sound/animal_sound/lon_die.wav";
+const char* MusicHelper::animal3_die_sound		="/sound/animal_sound/cho_die.wav";
 	
 const char* MusicHelper::animal0_move_sound		="/sound/animal_sound/lon_move.wav";
 const char* MusicHelper::animal1_move_sound		="/sound/animal_sound/vit_move.wav";
 const char* MusicHelper::animal2_move_sound		="/sound/animal_sound/ngua_move.wav";
-const char* MusicHelper::animal3_move_sound		="/sound/animal_sound/lon_move.wav";
+const char* MusicHelper::animal3_move_sound		="/sound/animal_sound/cho_move.wav";
 
-const char* MusicHelper::animal0_select_sound	="/sound/animal_sound/lon_select.wav";
-const char* MusicHelper::animal1_select_sound	="/sound/animal_sound/vit_select.wav";
-const char* MusicHelper::animal2_select_sound	="/sound/animal_sound/ngua_select.wav";
-const char* MusicHelper::animal3_select_sound	="/sound/animal_sound/lon_select.wav";
+const char* MusicHelper::animal0_select_sound	="/sound/animal_sound/lon_selected.wav";
+const char* MusicHelper::animal1_select_sound	="/sound/animal_sound/vit_selected.wav";
+const char* MusicHelper::animal2_select_sound	="/sound/animal_sound/ngua_selected.wav";
+const char* MusicHelper::animal3_select_sound	="/sound/animal_sound/cho_selected.wav";
 
 const char* MusicHelper::animal_born_sound		="/sound/animal_sound/born.wav";
 const char* MusicHelper::animal_finish_sound	="/sound/animal_sound/finish.wav";
