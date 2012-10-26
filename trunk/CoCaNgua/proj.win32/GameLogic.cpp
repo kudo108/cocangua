@@ -132,6 +132,8 @@ void GameLogic::selectCallback()
 		return;//khac team ko cho di
 	}
 	
+	MusicHelper::playEffect(unit->select_sound, false);
+
 	CCLog("selected unit");
 	//select amination unit
 	gameObject->select(unit->getLocation());

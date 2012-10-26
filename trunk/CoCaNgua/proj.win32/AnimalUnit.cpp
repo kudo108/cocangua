@@ -138,6 +138,7 @@ AnimalUnit::~AnimalUnit(void)
 }
 float AnimalUnit::born()
 {//tu chuong ra duong
+	MusicHelper::playEffect(this->born_sound, false);
 	CCPoint next = getBornLocation();
 	float time = Config::animalNormalMoveTime*2;//2x faster
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
@@ -151,6 +152,8 @@ float AnimalUnit::born()
 }
 float AnimalUnit::go(int step)
 {//di them dc step buoc
+	
+	MusicHelper::playEffect(this->move_sound, false);
 	float time = Config::animalNormalMoveTime;
 	CCArray *listGo = CCArray::create();
 	CCPointArray* next = map->getNextWay();
@@ -188,7 +191,7 @@ float AnimalUnit::finish()
 }
 void AnimalUnit::die(int step)
 {//chet, ve lai chuong
-
+	MusicHelper::playEffect(this->die_sound, false);
 	float time = Config::animalNormalMoveTime*step;
 	if(step <=0)//chet do con khac born
 	{
