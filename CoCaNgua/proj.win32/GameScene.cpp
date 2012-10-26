@@ -1,31 +1,31 @@
 
 #include "GameScene.h"
 #include "Config.h"
-#include "ClassicGameLayer.h"
 #include "MenuScene.h"
 #include "RuleScene.h"
+#include "MusicHelper.h"
+#include <windows.h>
 //test
 #include "GameOverScene.h"
 #include "GameWinScene.h"
 
-
-using namespace CocosDenshion;
 using namespace cocos2d;
 
 
 bool GameScene::init()
 {
 	if(! CCScene::init() ) return false;
-	
 
-	isCalledXucXac = FALSE;
+	isCalledDice = FALSE;
 	int gameType = -1;
+	
+	gameObject = new GameObject(this);
+	gameLogic = new GameLogic(gameObject);
 
-	if(!Config::getHasTurnOffMusic()){
-		Config::stopBackgroundMusic();
-		Config::playBackgroundMusic(Config::gameplayMusic, GP_MUSIC);
+	if(!MusicHelper::getHasTurnOffMusic()){
+		MusicHelper::stopBackgroundMusic();
+		MusicHelper::playBackgroundMusic(MusicHelper::gameplayMusic, GP_MUSIC);
 	}
-
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	
@@ -51,8 +51,8 @@ bool GameScene::init()
 	CCArray *menuArray = CCArray::create();
 	int fontSize=Config::objectFontSize;
 	int jump =60;
-	//save game
 	//demo game win
+	/*
 	CCMenuItemFont* pButtonGameWin = CCMenuItemFont::create(
 										"GameWin(demo)",
 										this,
@@ -60,12 +60,13 @@ bool GameScene::init()
 	pButtonGameWin->setFontSizeObj(fontSize/1.5);
 	menuArray->addObject(pButtonGameWin);
 	pButtonGameWin->setPosition(ccp(size.width-100, 4*jump));
-
+	*/
+	//save
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
-										"GameOver(demo)",
+										"Save",
 										this,
 										menu_selector(GameScene::gameOverCallback));
-	pSaveGameButton->setFontSizeObj(fontSize/1.5);
+	pSaveGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pSaveGameButton);
 	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
 	//Rule game
@@ -86,73 +87,133 @@ bool GameScene::init()
 	menuArray->addObject(pQuitGameButton);
 	pQuitGameButton->setPosition(ccp(size.width-100, jump));
 			
-	//set xucxac and xucxacAction
+	//set dice and diceAction
 	//xuc xac
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::xucxac_plist);
-	//CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::xucxac_texture);
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::dice_plist);
+	CCSpriteBatchNode *diceSpriteBatchNode =  CCSpriteBatchNode::create(Config::dice_texture);
 	char fn[128];
-	CCAnimation* xucxacAnim =CCAnimation::create();
+	CCAnimation* diceAnim =CCAnimation::create();
 	
 	for (int i = 1; i <= 6; i++) 
 	{
 		sprintf(fn, "%d.png", i);
 		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
-		xucxacAnim->addSpriteFrame(pFrame);
+		diceAnim->addSpriteFrame(pFrame);
 	}
 	
-    xucxacAnim->setDelayPerUnit(0.01f);
+    diceAnim->setDelayPerUnit(0.01f);
      //create sprite first frame from animation first frame
-	this->xucxacA = CCSprite::createWithSpriteFrameName("1.png");
-	this->xucxacA->retain();
-	
-	xucxacA->setPosition(ccp(size.width-100-40, size.height-100));
+	this->diceA = CCSprite::createWithSpriteFrameName("1.png");
+	this->diceA->retain();
 
-    xucxacAAminationAction = CCRepeatForever::create(CCAnimate::create(xucxacAnim));
-	xucxacAAminationAction->setOriginalTarget(xucxacA);
-	xucxacAAminationAction->retain();
-	this->addChild(xucxacA,101);
+    diceAminationAction = CCRepeatForever::create(CCAnimate::create(diceAnim));
+	diceAminationAction->setOriginalTarget(diceA);
+	diceAminationAction->retain();
 	 //create sprite first frame from animation first frame
-	this->xucxacB = CCSprite::createWithSpriteFrameName("1.png");
-	this->xucxacB->retain();
-	xucxacB->setPosition(ccp(size.width-100+40, size.height-100));
-
-    xucxacBAminationAction = CCRepeatForever::create(CCAnimate::create(xucxacAnim));
-	xucxacBAminationAction->setOriginalTarget(xucxacB);
-	xucxacBAminationAction->retain();
-	//xucxac->runAction(xucxacAminationAction);
-	this->addChild(xucxacB,101);
-	//xuc xac button 1
-	CCSprite *xucxac1 = CCSprite::create(Config::xucxac_texture1);
-	CCMenuItemSprite *xucxacButton1 = CCMenuItemSprite::create(xucxac1,xucxac1,xucxac1,this,menu_selector(GameScene::xucxacCallback));
-	xucxacButton1->setPosition(xucxacA->getPosition());
-	menuArray->addObject(xucxacButton1);
+	this->diceB = CCSprite::createWithSpriteFrameName("1.png");
+	this->diceB->retain();
+	
+    //xuc xac button 1
+	CCMenuItemSprite *diceButton1 = CCMenuItemSprite::create(diceA,diceA,diceA,this,menu_selector(GameScene::diceCallback));
+	diceButton1->setPosition(ccp(size.width-100-40, size.height-60));
+	menuArray->addObject(diceButton1);
 	//xuc xac button 2
-	CCSprite *xucxac2 = CCSprite::create(Config::xucxac_texture1);
-	CCMenuItemSprite *xucxacButton2 = CCMenuItemSprite::create(xucxac2,xucxac2,xucxac2,this,menu_selector(GameScene::xucxacCallback));
-	xucxacButton2->setPosition(xucxacB->getPosition());
-	menuArray->addObject(xucxacButton2);
+	CCMenuItemSprite *diceButton2 = CCMenuItemSprite::create(diceB,diceB,diceB,this,menu_selector(GameScene::diceCallback));
+	diceButton2->setPosition(ccp(size.width-100+40, size.height-60));
+	menuArray->addObject(diceButton2);
+
+	//create button go
+	CCMenuItemFont* pButtonGo = CCMenuItemFont::create(
+										"Go",
+										this,
+										menu_selector(GameScene::buttonGoCallback));
+	pButtonGo->setFontSizeObj(Config::objectFontSize);
+	pButtonGo->setPosition(ccp(size.width-100, size.height*2/3+20));
+	pButtonGo->setColor(ccORANGE);
+	menuArray->addObject(pButtonGo);
+
+	//create button bo luot
+	CCMenuItemFont* pButtonSkip = CCMenuItemFont::create(
+										"Skip",
+										this,
+										menu_selector(GameScene::buttonSkipCallback));
+	pButtonSkip->setFontSizeObj(Config::objectFontSize);
+	pButtonSkip->setPosition(ccp(size.width-100, size.height*2/3+70));
+	pButtonSkip->setColor(ccORANGE);
+	menuArray->addObject(pButtonSkip);
+	
+	//Team point Lable
+	CCMenuItemFont* pTeam0Point = CCMenuItemFont::create("Heo:");
+	pTeam0Point->setFontSizeObj(Config::objectFontSize/2);
+	pTeam0Point->setPosition(ccp(size.width-140,size.height/3+0*45+30));
+	menuArray->addObject(pTeam0Point);
+
+	CCMenuItemFont* pTeam1Point = CCMenuItemFont::create("Vit:");
+	pTeam1Point->setFontSizeObj(Config::objectFontSize/2);
+	pTeam1Point->setPosition(ccp(size.width-140,size.height/3+1*45+30));
+	menuArray->addObject(pTeam1Point);
+
+	CCMenuItemFont* pTeam2Point = CCMenuItemFont::create("Ngua:");
+	pTeam2Point->setFontSizeObj(Config::objectFontSize/2);
+	pTeam2Point->setPosition(ccp(size.width-140,size.height/3+2*45+30));
+	menuArray->addObject(pTeam2Point);
+
+	CCMenuItemFont* pTeam3Point = CCMenuItemFont::create("Cun:");
+	pTeam3Point->setFontSizeObj(Config::objectFontSize/2);
+	pTeam3Point->setPosition(ccp(size.width-140,size.height/3+3*45+30));
+	menuArray->addObject(pTeam3Point);
+	
+	//point
+	team0PointLable = CCMenuItemFont::create("0");
+	team0PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team0PointLable->setPosition(ccp(size.width-60, size.height/3+30));
+	team0PointLable->setColor(ccGREEN);
+	menuArray->addObject(team0PointLable);
+	team0PointLable->retain();
+
+	team1PointLable = CCMenuItemFont::create("0");
+	team1PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team1PointLable->setPosition(ccp(size.width-60, size.height/3+75));
+	team1PointLable->setColor(ccGREEN);
+	menuArray->addObject(team1PointLable);
+	team1PointLable->retain();
+
+	team2PointLable = CCMenuItemFont::create("0");
+	team2PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team2PointLable->setPosition(ccp(size.width-60, size.height/3+120));
+	team2PointLable->setColor(ccGREEN);
+	menuArray->addObject(team2PointLable);
+	team2PointLable->retain();
+
+	team3PointLable = CCMenuItemFont::create("0");
+	team3PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team3PointLable->setPosition(ccp(size.width-60, size.height/3+165));
+	team3PointLable->setColor(ccGREEN);
+	menuArray->addObject(team3PointLable);
+	team3PointLable->retain();
+	
+	//team turn image
+	gameObject->getAnimal0()->setupTeamSpriteToParent();
 
 	// Create menu, it's an autorelease object
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
 	pMenu->setPosition(CCPointZero);
 	this->addChild(pMenu,1);//ngoai cung,tuong tac
 	
-	ClassicGameLayer *classic = ClassicGameLayer::create();
-	this->addChild(classic, 100);
+	//update after called
+	this->schedule(schedule_selector(GameScene::update));
 
+	//random
+	srand ( time(NULL));
 	return true;
 }
 
-void GameScene::setGameType(int _t)
-{
-	this->gameType = _t;
-}
 
 //test
 void GameScene::gameOverCallback(CCObject *sender){
 	//save game
-	Config::playEffect(Config::sfxButton, false);
-	Config::stopAllEffect();
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	MusicHelper::stopAllEffect();
 	GameOverScene *menuScene = GameOverScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 	
@@ -160,8 +221,8 @@ void GameScene::gameOverCallback(CCObject *sender){
 
 void GameScene::gameWinCallback(CCObject* sender){
 	//save game
-	Config::playEffect(Config::sfxButton, false);
-	Config::stopAllEffect();
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	MusicHelper::stopAllEffect();
 	GameWinScene *menuScene = GameWinScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
@@ -169,57 +230,192 @@ void GameScene::gameWinCallback(CCObject* sender){
 void GameScene::saveGameCallback(CCObject *sender)
 {
 	//save game
-	Config::playEffect(Config::sfxButton, false);
-	Config::stopAllEffect();
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	MusicHelper::stopAllEffect();
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
 	//back to menu
-	Config::playEffect(Config::sfxButton, false);
-	MenuScene *menuScene = MenuScene::create();
-	CCDirector::sharedDirector()->replaceScene(menuScene);
-	Config::stopAllEffect();
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+		MenuScene *menuScene = MenuScene::create();
+		CCDirector::sharedDirector()->replaceScene(menuScene);
+	MusicHelper::stopAllEffect();
+	}
 }
 void GameScene::ruleCallback(CCObject *sender)
 {
 	//show rule
-	Config::playEffect(Config::sfxButton, false);
-	RuleScene *ruleScene = RuleScene::create();
-	CCDirector::sharedDirector()->replaceScene(ruleScene);
-	Config::stopAllEffect();
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+		RuleScene *ruleScene = RuleScene::create();
+		CCDirector::sharedDirector()->replaceScene(ruleScene);
+		MusicHelper::stopAllEffect();
+	}
 }
 
-void GameScene::xucxacCallback(CCObject *sender)
+void GameScene::diceCallback(CCObject *sender)
 {	
-	if(!isCalledXucXac)
+	if(gameObject->getLockUser())
 	{
-		Config::setIdDice(Config::playEffect(Config::sfxDice, true));
-		isCalledXucXac = TRUE;
-		xucxacA->stopAllActions();
-		xucxacA->runAction( xucxacAAminationAction);
-		xucxacB->stopAllActions();
-		xucxacB->runAction(xucxacBAminationAction);
-		Config::kqXucXac1=Config::kqXucXac2=0;
+		MusicHelper::playEffect(MusicHelper::btWrong,false);
+		return;
+	}
+	if(gameObject->getLockDice())
+	{
+		MusicHelper::playEffect(MusicHelper::btWrong,false);
+		return;
+	}
+	if(!isCalledDice)
+	{
+		MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
+		isCalledDice = TRUE;
+		diceA->stopAllActions();
+		diceA->runAction( diceAminationAction);
+		diceB->stopAllActions();
+		diceB->runAction((CCAction*)diceAminationAction->copy());
+		gameObject->resetDice();
 	}else
 	{
-		Config::stopEffect(Config::getIdDice());
+		MusicHelper::stopEffect(MusicHelper::getIdDice());
 		
 		char fn[128];
-		srand ( time(NULL));
 		int kq=rand()%6+1;
 
-		xucxacA->pauseSchedulerAndActions();
+		diceA->pauseSchedulerAndActions();
 		sprintf(fn, "%d.png", kq);
-		Config::kqXucXac1=kq;
-		xucxacA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+		gameObject->setDiceResult1(kq);
+		diceA->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
 		kq=rand()%6+1;
-		xucxacB->pauseSchedulerAndActions();
+		diceB->pauseSchedulerAndActions();
 		sprintf(fn, "%d.png", kq);
-		Config::kqXucXac2=kq;
-		xucxacB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+		gameObject->setDiceResult2(kq);
+		diceB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
 
-		isCalledXucXac =FALSE;
-		CCLog("kq xuc xac %d %d",Config::kqXucXac1,Config::kqXucXac2);
+		isCalledDice =FALSE;
+		gameObject->setLockDice(true);
+		CCLog("kq xuc xac %d %d",gameObject->getDiceResult1(),gameObject->getDiceResult2());
+
+		if(gameObject->canContinueRollFromRollResult())
+		{
+			MusicHelper::playEffect(MusicHelper::moreTurn,false);
+		}
 	}
+}
+
+void GameScene::updatePoint(int teamNo)
+{
+	char lable[128];
+	switch (teamNo)
+	{
+	case 0:		
+		sprintf(lable, "%d", gameObject->getAnimal0()->getPoint());
+		team0PointLable->setString(lable);
+		break;
+	case 1:
+		sprintf(lable, "%d", gameObject->getAnimal1()->getPoint());
+		team1PointLable->setString(lable);
+		break;
+	case 2:
+		sprintf(lable, "%d", gameObject->getAnimal2()->getPoint());
+		team2PointLable->setString(lable);
+		break;
+	case 3:
+		sprintf(lable, "%d", gameObject->getAnimal3()->getPoint());
+		team3PointLable->setString(lable);
+		break;
+	default:
+		break;
+	}
+}
+
+void GameScene::buttonSkipCallback(CCObject* sender)
+{
+	gameObject->unSelect();
+	gameObject->deleteAllLightUp();
+	gameObject->resetDice();
+	gameObject->resetCurrentUnit();
+	gameObject->setLockDice(false);
+	MusicHelper::playEffect(MusicHelper::btSkip, false);
+	if(gameObject->canContinueRollFromRollResult())
+	{//skip luot thoi
+	}else
+	{
+		gameObject->changeTurn();
+	}
+}
+
+void GameScene::update(CCTime dt)
+{
+	//update point
+	updatePoint(0);
+	updatePoint(1);
+	updatePoint(2);
+	updatePoint(3);
+
+	//check for the winer team
+	if(gameObject->getAnimal0()->isFinished()) 
+	{
+		MusicHelper::stopAllEffect();
+		GameWinScene *menuScene = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(menuScene);
+	}
+	if(gameObject->getAnimal1()->isFinished()) 
+	{
+		MusicHelper::stopAllEffect();
+		GameWinScene *menuScene = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(menuScene);
+	}
+	if(gameObject->getAnimal2()->isFinished()) 
+	{
+		MusicHelper::stopAllEffect();
+		GameWinScene *menuScene = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(menuScene);
+	}
+	if(gameObject->getAnimal3()->isFinished()) 
+	{
+		MusicHelper::stopAllEffect();
+		GameWinScene *menuScene = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(menuScene);
+	}
+}
+
+
+GameScene::~GameScene()
+{
+	CCLog("delete Object");
+	diceA->release();
+	diceB->release();
+	team0PointLable->release();
+	team1PointLable->release();
+	team2PointLable->release();
+	team3PointLable->release();
+	gameObject->release();
+}
+
+void GameScene::buttonGoCallback(CCObject *sender)
+{
+	float time = gameLogic->goCallback();
+	CCLog("wait time = %f",time);
+	if (time > 0.0f)
+	{
+		gameObject->setLockUser(true);
+		gameObject->setLockDice(false);
+		CCFiniteTimeAction * callfunc = CCCallFunc::create(this,callfunc_selector( GameScene::releaseLockUser));
+		CCAction * action = CCSequence::createWithTwoActions(CCDelayTime::create(time),callfunc);
+		this->runAction(action);
+	}
+}
+
+void GameScene::buttonSelectCallback(CCObject *sender)
+{
+	AnimalUnit* unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
+	unit->printOutDebugInfo();
+	gameObject->setCurrentSelectUnit(unit);
+	gameLogic->selectCallback();
+}
+void GameScene::releaseLockUser()
+{
+	gameObject->setLockUser(false);
 }

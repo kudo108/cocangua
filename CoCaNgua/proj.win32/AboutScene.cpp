@@ -1,5 +1,6 @@
 #include "AboutScene.h"
 #include "Config.h"
+#include "MusicHelper.h"
 
 using namespace cocos2d;
 
@@ -31,7 +32,7 @@ bool AboutScene::init()
 
 void AboutScene::menuCallback(CCObject *sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

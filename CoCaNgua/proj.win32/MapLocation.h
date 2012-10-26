@@ -2,58 +2,45 @@
 #define _MAP_LOCATION_H_
 
 #include "cocos2d.h"
+
 using namespace cocos2d;
-class AnimalUnit;
+
 class MapLocation
 {
 public:
-	MapLocation(int winSize, CCNode* parent);
+	MapLocation(int winSize);
 	~MapLocation(void);
-	int way;
-	int fnR;
-	int fnG;
-	int fnB;
-	int fnY;
-	CCPoint wayLocation[56];
-	CCPoint getPoint(int map,int index);
-	int getIndexLocation(int map,CCPoint point);
-	//some function to get point
-	CCPoint getInitLocation(int teamNo);
-	CCPoint* getNextPoints(CCPoint current,int step);
-	CCPoint getNextPoint(int type,CCPoint current,int step);
-	CCPoint getStartPoint(int teamNo);
-	CCPoint getFinishPoint(int teamNo,int step);
-	CCPoint getInitPoint(int teamNo,int teamUnit);
-	bool havingUnitOnInitLocation(int teamNo);
-	int havingUnitOnWay(CCPoint currentLocation, int step);
-	AnimalUnit *getUnitOnInitLocation(int teamNo);
-	//some help function for game rule
-	bool canInit(int k1, int k2);
-	//some animaltion fucntion
-	void lightUp(CCPoint point);
-	void deleteAllLightUp();
-	void select(CCPoint point);
-	void unSelect();
+	
+	void getNextLocationsInWay(CCPoint current,int step);//duong di
+	CCPoint getStartLocation(int teamNo);//diem ra quan
+	CCPoint getFinishLocation(int teamNo,int step);//diem finish
+	CCPoint getInitLocation(int teamNo,int teamUnit);//diem trong chuong
 	int wayColision[56];
 	int finishColision[24];
 	int startColision[16];
 private:
 	float winSize;
 	float scale;
-	CCPoint finishLocationYellow[6];
-	CCPoint finishLocationGreen[6];
-	CCPoint finishLocationRed[6];
-	CCPoint finishLocationBlue[6];
+	
 	float margin;
 	float stepLength;
 	float stepEnd;
 	float center;
+	
+	CCPoint finishLocation0[6];
+	CCPoint finishLocation1[6];
+	CCPoint finishLocation2[6];
+	CCPoint finishLocation3[6];
 
-	CC_SYNTHESIZE(CCAction*, lightupAction, LightupAction);
-	CC_SYNTHESIZE(CCArray*, lightupArray, LightupArray);
-	CC_SYNTHESIZE(CCNode*, parent, Parent);
-	CC_SYNTHESIZE(CCAction*, selectAction, SelectAction);
-	CC_SYNTHESIZE(CCSprite*, selectSprite, SelectSprite);
+	CCPoint wayLocation[56];
+	CCPoint initLocation[16];
+	
+	int getIndexLocation(CCPoint point);
+	CCPoint getNextLocationInWay(int current,int step);
+	
+	//nextWay array
+	CC_SYNTHESIZE(CCPointArray*, nextWay, NextWay);
+	void resetNextWay();
 };
 
 #endif

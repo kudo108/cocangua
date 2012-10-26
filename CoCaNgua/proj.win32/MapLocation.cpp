@@ -1,36 +1,21 @@
 #include "MapLocation.h"
-#include "Config.h"
 
-MapLocation::MapLocation(int _winSize, CCNode* _parent)
+MapLocation::MapLocation(int _winSize)
 {
-	this->parent = _parent;
-	selectSprite = NULL;
-	//waylocation[0] la vi tri xuat phat cua quan co mau vang 
-	//
-	way = 0;
-	fnY = 1;
-	fnG = 2;
-	fnR = 3;
-	fnB = 4;
-	for(int i=0;i<56;i++){
-		wayColision[i]=-1;
-		if(i<16) startColision[i]=i;
-		if(i<24) finishColision[i]=-1;
-	}
-	//
 	winSize = _winSize;
 	scale = winSize/1024;
 	margin = 45*scale;
 	center = 512*scale;
 	stepEnd = 117*scale;
-	stepLength = (350/6)*this->scale;
-	for(int i=0;i<=6;i++){
+	stepLength = (350/6)*scale;
+
+	for(int i=0; i<=6; i++){
 		wayLocation[i]= ccp(margin+i*stepLength,center-stepEnd);
 		wayLocation[6+i]=ccp(center-stepEnd,(center-stepEnd)-i*stepLength);
 		wayLocation[14+i]=ccp(center+stepEnd,margin+i*stepLength);
 		wayLocation[20+i]=ccp(center+stepEnd+i*stepLength,center-stepEnd);
 		wayLocation[28+i]=ccp(2*center-margin-i*stepLength,center+stepEnd);
-		wayLocation[34+i]=ccp(center+stepLength,center+stepEnd+i*stepLength);
+		wayLocation[34+i]=ccp(center+stepEnd,center+stepEnd+i*stepLength);
 		wayLocation[42+i]=ccp(center-stepEnd,2*center-margin-i*stepLength);
 		wayLocation[48+i]=ccp(center-stepEnd-i*stepLength,center+stepEnd);
 	}
@@ -47,48 +32,49 @@ MapLocation::MapLocation(int _winSize, CCNode* _parent)
 	//Finish location yellow,red,green,blue
 	for(int i=0;i<6;i++)
 	{
-		finishLocationYellow[i]=ccp(margin+(i+1)*stepLength,center);
-		finishLocationGreen[i]=ccp(center,margin+(i+1)*stepLength);
-		finishLocationRed[i]=ccp(2*center-margin-(i+1)*stepLength,center);
-		finishLocationBlue[i]=ccp(center,2*center-margin-(i+1)*stepLength);
+		finishLocation0[i]=ccp(margin+(i+1)*stepLength,center);
+		finishLocation1[i]=ccp(center,margin+(i+1)*stepLength);
+		finishLocation2[i]=ccp(2*center-margin-(i+1)*stepLength,center);
+		finishLocation3[i]=ccp(center,2*center-margin-(i+1)*stepLength);
 	}
 	
-	//setup LightupAction
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::lightup_plist);
-	CCSpriteBatchNode *lightupSpriteSheet =  CCSpriteBatchNode::create(Config::lightup_image);
-	char fn[128];
-	CCAnimation* lightupAnimation =CCAnimation::create();
-	for (int i = 1; i <= 3; i++) 
-	{
-		sprintf(fn, "lightup%d.png", i);
-		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
-		lightupAnimation->addSpriteFrame(pFrame);
-	}
-    lightupAnimation->setDelayPerUnit(0.2f);
-	lightupAction = CCRepeatForever::create( CCAnimate::create(lightupAnimation));
-	lightupAction->retain();
+	//init location
+	initLocation[0]=	ccp((175-25)*scale,(175-25)*scale);
+	initLocation[1]=	 ccp((175+25)*scale,(175-25)*scale);
+	initLocation[2]=	 ccp((175+25)*scale,(175+25)*scale);
+	initLocation[3]=	 ccp((175-25)*scale,(175+25)*scale);
+	
+	initLocation[4]=	 ccp((850-25)*scale,(175-25)*scale);
+	initLocation[5]=	 ccp((850+25)*scale,(175-25)*scale);
+	initLocation[6]=	 ccp((850+25)*scale,(175+25)*scale);
+	initLocation[7]=	 ccp((850-25)*scale,(175+25)*scale);
 
-	//setup lightup Array
-	lightupArray = CCArray::create();
-	lightupArray->retain();
+	initLocation[8]=	 ccp((850-25)*scale,(850-25)*scale);
+	initLocation[9]=	 ccp((850+25)*scale,(850-25)*scale);
+	initLocation[10]=	 ccp((850+25)*scale,(850+25)*scale);
+	initLocation[11]=	 ccp((850-25)*scale,(850+25)*scale);
+	
+	initLocation[12]=	 ccp((175-25)*scale,(850-25)*scale);
+	initLocation[13]=	 ccp((175+25)*scale,(850-25)*scale);
+	initLocation[14]=	 ccp((175+25)*scale,(850+25)*scale);
+	initLocation[15]=	 ccp((175-25)*scale,(850+25)*scale);
 
-	//setup select amination
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::select_plist);
-	CCSpriteBatchNode *selectSpriteSheet =  CCSpriteBatchNode::create(Config::select_image);
-	//char fn[128];
-	CCAnimation* selectAnimation =CCAnimation::create();
-	for (int i = 1; i <= 3; i++) 
+	//wayNext
+	nextWay = CCPointArray::create(12);
+	for(int i = 0; i <12; i++)
 	{
-		sprintf(fn, "select%d.png", i);
-		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
-		selectAnimation->addSpriteFrame(pFrame);
+		nextWay->addControlPoint(ccp(-1,-1));
 	}
-    selectAnimation->setDelayPerUnit(0.2f);
-	selectAction = CCRepeatForever::create( CCAnimate::create(selectAnimation));
-	selectAction->retain();
+	nextWay->retain();
 }
 
-
+void MapLocation::resetNextWay()
+{
+	for(int i = 0; i <12; i++)
+	{
+		nextWay->replaceControlPoint(ccp(-1,-1),i);
+	}
+}
 MapLocation::~MapLocation(void)
 {
 	for(int i = 0; i<56; i++)
@@ -97,277 +83,85 @@ MapLocation::~MapLocation(void)
 	}
 	for(int i = 0; i<6; i++)
 	{
-		finishLocationYellow[i].autorelease();
-		finishLocationBlue[i].autorelease();
-		finishLocationGreen[i].autorelease();
-		finishLocationRed[i].autorelease();
+		finishLocation0[i].autorelease();
+		finishLocation1[i].autorelease();
+		finishLocation2[i].autorelease();
+		finishLocation3[i].autorelease();
 	}
+	for(int i = 0; i < 16; i++)
+	{
+		initLocation[i].autorelease();
+	}
+	nextWay->autorelease();
 }
 
-CCPoint MapLocation::getPoint(int map,int index)
+CCPoint MapLocation::getFinishLocation(int teamNo,int index)
 {
-	switch(map)
+	//map = 0,1,2,3: finish
+	switch(teamNo)
 	{
 	case 0:
-			return this->wayLocation[index]; 
+		return finishLocation0[index];	
 		break;
 	case 1:
 		if(index>=0&&index<=5)
-			return this->finishLocationYellow[index]; else return ccp(-1,-1);
+			return finishLocation1[index];
 		break;
 	case 2:
 		if(index>=0&&index<=5)
-			return this->finishLocationGreen[index]; else return ccp(-1,-1);
+			return finishLocation2[index];
 		break;
 	case 3:
 		if(index>=0&&index<=5)
-			return this->finishLocationRed[index]; else return ccp(-1,-1);
-		break;
-	case 4:
-		if(index>=0&&index<=5)
-			return this->finishLocationBlue[index]; else return ccp(-1,-1);
+			return finishLocation3[index];
 		break;
 	default:
 		return ccp(-1,-1);
 		break;
 	}
-}
-int MapLocation::getIndexLocation(int map,CCPoint point)
-{
-	
-	switch(map)
-	{
-	case 0:
-		for(int i=0;i<56;i++) if(wayLocation[i].equals(point)) return i;
-		return -1;
-		break;
-	case 1:
-		for(int i=0;i<6;i++) if(finishLocationYellow[i].equals(point)) return i;
-		return -1;
-		break;
-	case 2:
-		for(int i=0;i<6;i++) if(finishLocationGreen[i].equals(point)) return i;
-		return -1;
-		break;
-	case 3:
-		for(int i=0;i<6;i++) if(finishLocationRed[i].equals(point)) return i;
-		return -1;
-		break;
-	case 4:
-		for(int i=0;i<6;i++) if(finishLocationBlue[i].equals(point)) return i;
-		return -1;
-		break;
-	default: 
-			
-			return -1;
-		break;
-	}	
+	return ccp(-1,-1);
 }
 
-CCPoint MapLocation::getNextPoint(int type,CCPoint current,int step)
+int MapLocation::getIndexLocation(CCPoint point)
 {
-	int i=0,j=0;
-	switch(type)
+	for(int i = 0; i < 56; i++)
 	{
-	case 0:
-		if(step<=0) return current;
-		i = getIndexLocation(way,current);
-		if(i==-1){
-			j = getIndexLocation(fnY,current);
-			if(j==-1) return ccp(-1,-1);
-			if((step+j) > 5) return ccp(-1,-1);
-			return finishLocationYellow[step+j];
-		}
-		if((i+step)>55) return ccp(-1,-1);
-		return wayLocation[i+step];
-		break;
-	case 1:
-		//13
-		if(step<=0) return current;
-		i = getIndexLocation(way,current);
-		if(i==-1){
-			j = getIndexLocation(fnG,current);
-			if(j==-1) return ccp(-1,-1);
-			if((step+j)>5) return ccp(-1,-1);
-			return finishLocationGreen[step+j];
-		}
-		if((i+step)>13&&i>=0&&i<=13) return ccp(-1,-1);;
-		if((i+step)>13&&i>=0&&i<=13&&(step+i-13)>5) return ccp(-1,-1);
-		if((i+step)>55) return wayLocation[i+step-56];
-		return wayLocation[i+step];
-		break;
-	case 2:
-		//27
-		if(step<=0) return current;
-		i = getIndexLocation(way,current);
-		if(i==-1){
-			j = getIndexLocation(fnR,current);
-			if(j==-1) return ccp(-1,-1);
-			if((step+j)>5) return ccp(-1,-1);
-			return finishLocationRed[step+j];
-		}
-		if((i+step)>27&&i>=0&&i<=27) return ccp(-1,-1);;
-		if((i+step)>27&&i>=0&&i<=27&&(i+step-27)>5) return ccp(-1,-1);
-		if((i+step)>55) return wayLocation[i+step-56];
-		return wayLocation[i+step];
-		break;
-	case 3:
-		if(step<=0) return current;
-		i = getIndexLocation(way,current);
-		if(i==-1){
-			j = getIndexLocation(fnB,current);
-			if(j==-1) return ccp(-1,-1);
-			if((step+j)>5) return ccp(-1,-1);
-			return finishLocationBlue[step+j];
-		}
-		if((i+step)>41&&i>=0&&i<=41) return ccp(-1,-1);;
-		if((i+step)>41&&i>=0&&i<=41&&(i+step-41)>5) return ccp(-1,-1);
-		if((i+step)>55) return wayLocation[i+step-56];
-		return wayLocation[i+step];
-		break;
-	default:
-		return ccp(-1,-1);break;
+		if (wayLocation[i].equals(point)) return i;
 	}
+	return -1;
+}
+
+CCPoint MapLocation::getNextLocationInWay(int current,int step)
+{
+	if(current >=56) return ccp(-1,-1);
+	if(step <=0 || step>12) return ccp(-1,-1);
+	if((current+step)>55) return wayLocation[current+step+-56];
+	else return wayLocation[current+step];
 }
 // getnextpoint return array
-CCPoint * MapLocation::getNextPoints(CCPoint current,int step){
+void MapLocation::getNextLocationsInWay(CCPoint current,int step)
+{
+	resetNextWay();
+	int currentIndex = getIndexLocation(current);
 	
-	CCPoint *ret = new CCPoint[13];
-	for(int i=1;i<=step;i++)
-		{
-			ret[i-1]= getNextPoint(0,current,i);
-		}
-	ret[step]=ccp(-1,-1);
-	return ret;
+	for(int i=0;i<step;i++)
+	{
+		CCPoint p = getNextLocationInWay(currentIndex,i+1);
+		nextWay->replaceControlPoint(p, i);
+	}
 }
 //get startPoint: Diem ra quan cau moi ben
-CCPoint MapLocation::getStartPoint(int teamNo)
-{
-if(teamNo <0 || teamNo >=4) return ccp(-1,-1);
-	return wayLocation[teamNo*14];
-}
-//get FinishPoint: 
-CCPoint MapLocation::getFinishPoint(int teamNo,int step)
-{
-	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
-	switch(teamNo-1)
-		{
-		case 0:
-			return finishLocationYellow[step];
-		case 1:
-			return finishLocationGreen[step];
-		case 2:
-			return finishLocationRed[step];
-		case 3:
-			return finishLocationBlue[step];
-		default:
-			return ccp(-1,-1);
-		}
-}
-//get Init Location
-CCPoint MapLocation::getInitPoint(int teamNo,int teamUnit)
-{	
-	int z = 35;
-	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
-	switch(teamNo)
-	{
-	case 0:
-		if(teamUnit==0) return ccp((175-z)*scale,(175-z)*scale);
-		if(teamUnit==1) return ccp((175+z)*scale,(175-z)*scale);
-		if(teamUnit==2) return ccp((175+z)*scale,(175+z)*scale);
-		if(teamUnit==3) return ccp((175-z)*scale,(175+z)*scale);
-	case 1:
-		if(teamUnit==0) return ccp((850-z)*scale,(175-z)*scale);
-		if(teamUnit==1) return ccp((850+z)*scale,(175-z)*scale);
-		if(teamUnit==2) return ccp((850+z)*scale,(175+z)*scale);
-		if(teamUnit==3) return ccp((850-z)*scale,(175+z)*scale);
-	case 2:
-		if(teamUnit==0) return ccp((850-z)*scale,(850-z)*scale);
-		if(teamUnit==1) return ccp((850+z)*scale,(850-z)*scale);
-		if(teamUnit==2) return ccp((850+z)*scale,(850+z)*scale);
-		if(teamUnit==3) return ccp((850-z)*scale,(850+z)*scale);
-	case 3:
-		if(teamUnit==0) return ccp((175-z)*scale,(850-z)*scale);
-		if(teamUnit==1) return ccp((175+z)*scale,(850-z)*scale);
-		if(teamUnit==2) return ccp((175+z)*scale,(850+z)*scale);
-		if(teamUnit==3) return ccp((175-z)*scale,(850+z)*scale);
-	default:
-		return ccp(-1,-1);	
-	}
-	
-}
-
-void MapLocation::lightUp(CCPoint point)
-{
-	//CCLog("light up %d %d",point.x, point.y);
-	CCSprite* sprite = CCSprite::create(Config::lightup_init_image);
-	sprite->setPosition(point);
-	sprite->runAction((CCAction*)lightupAction->copy());
-	parent->addChild(sprite);
-	sprite->retain();
-	lightupArray->addObject(sprite);
-}
-void MapLocation::deleteAllLightUp()
-{
-	for(unsigned int i = 0; i < lightupArray->count(); i++)
-	{
-		CCSprite* sprite = (CCSprite*)lightupArray->objectAtIndex(i);
-		sprite->removeFromParentAndCleanup(true);
-	};
-	lightupArray->removeAllObjects();
-}
-void  MapLocation::select(CCPoint point)
-{
-	//unload prev selectPoint
-	if(selectSprite!= NULL)
-	{
-		unSelect();
-	}
-	CCLog("Selected at %d, %d",point.x,point.y);
-	//amination select at point
-	selectSprite = CCSprite::create(Config::select_init_image);
-	selectSprite->setPosition(point);
-	selectSprite->runAction((CCAction*)selectAction->copy());
-	parent->addChild(selectSprite);
-	selectSprite->retain();
-}
-void  MapLocation::unSelect()
-{
-	if (!selectSprite) return;
-	CCLog("Unselected");
-	//unload amination select at point
-	selectSprite->removeFromParentAndCleanup(true);
-	selectSprite->autorelease();
-	selectSprite = NULL;
-}
-
-bool MapLocation::canInit(int k1, int k2)
-{
-	//kiem tra thu ket qua xuc xac la k1 va k2 thi co ra quan dc ko?
-	if(k1==k2) return true;
-	return false;
-}
-
-CCPoint MapLocation::getInitLocation(int teamNo)
+CCPoint MapLocation::getStartLocation(int teamNo)
 {
 	if(teamNo <0 || teamNo >=4) return ccp(-1,-1);
 	return wayLocation[teamNo*14];
 }
-
-bool MapLocation::havingUnitOnInitLocation(int teamNo)
-{
-	//TODO
-	return false;
+//get Init Location
+CCPoint MapLocation::getInitLocation(int teamNo,int teamUnit)
+{	
+	if(teamNo>=4||teamNo<0) return ccp(-1,-1);
+	return initLocation[teamNo*4+teamUnit];
+	
 }
 
-AnimalUnit * MapLocation::getUnitOnInitLocation(int teamNo)
-{
-	//TODO
-	return NULL;//neu ko co thi return null
-}
 
-int MapLocation::havingUnitOnWay(CCPoint currentLocation, int step)
-{
-	//TODO
-	return 0;// khong co
-}

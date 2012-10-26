@@ -3,14 +3,7 @@
 #include "GameScene.h"
 #include "MenuScene.h"
 #include "cocos2d.h"
-//RuleScene::RuleScene(void)
-//{
-//}
-//
-//
-//RuleScene::~RuleScene(void)
-//{
-//}
+#include "MusicHelper.h"
 
 bool RuleScene::init(){
 	if( !CCScene::init()) return false;
@@ -41,7 +34,7 @@ bool RuleScene::init(){
 
 
 void RuleScene::menuCallBack(CCObject* sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }

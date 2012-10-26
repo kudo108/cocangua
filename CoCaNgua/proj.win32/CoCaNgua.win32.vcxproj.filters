@@ -58,9 +58,6 @@
     <ClInclude Include="AnimalUnit.h">
       <Filter>include\Object</Filter>
     </ClInclude>
-    <ClInclude Include="ClassicGameLayer.h">
-      <Filter>include\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
@@ -97,6 +94,15 @@
     <ClInclude Include="UnderBuildingScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MusicHelper.h">
+      <Filter>include\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>include\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>include\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,9 +119,6 @@
     </ClCompile>
     <ClCompile Include="AnimalUnit.cpp">
       <Filter>source\object</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassicGameLayer.cpp">
-      <Filter>source\scene</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>source\scene</Filter>
@@ -152,6 +155,15 @@
     </ClCompile>
     <ClCompile Include="UnderBuildingScene.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicHelper.cpp">
+      <Filter>source\object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>source\object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>source\object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
