@@ -1,39 +1,11 @@
-﻿Build started 10/5/2012 11:03:34 PM.
-     1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (rebuild target(s)).
-     1>_PrepareForClean:
-         Deleting file "Release.win32\CoCaNgua.win32.lastbuildstate".
-       InitializeBuildStatus:
+﻿Build started 10/26/2012 11:23:18 PM.
+     1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
          Touching "Release.win32\CoCaNgua.win32.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp AboutScene.cpp Animals.cpp AnimalUnit.cpp ClassicGameScene.cpp Config.cpp HelpScene.cpp main.cpp Map.cpp MapLocation.cpp Map_classic.cpp MenuScene.cpp OptionScene.cpp TrailerScene.cpp XiNgau.cpp
-         AppDelegate.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         HelloWorldScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         AboutScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         Animals.cpp
-         AnimalUnit.cpp
-         ClassicGameScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         Config.cpp
-         HelpScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         main.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         Map.cpp
-         MapLocation.cpp
-         Map_classic.cpp
-         MenuScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         OptionScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         TrailerScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         XiNgau.cpp
-         Generating Code...
+         All outputs are up-to-date.
        ResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D NDEBUG /D _UNICODE /D UNICODE /l"0x0409" /IRelease.win32\ /nologo /fo"Release.win32\CoCaNgua.res" CoCaNgua.rc 
+         All outputs are up-to-date.
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release.win32\CoCaNgua.win32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.lib" /MACHINE:X86 Release.win32\CoCaNgua.res
          Release.win32\AppDelegate.obj
@@ -41,25 +13,29 @@
          Release.win32\AboutScene.obj
          Release.win32\Animals.obj
          Release.win32\AnimalUnit.obj
-         Release.win32\ClassicGameScene.obj
          Release.win32\Config.obj
+         Release.win32\GameLogic.obj
+         Release.win32\GameObject.obj
+         Release.win32\GameOverScene.obj
+         Release.win32\GameScene.obj
+         Release.win32\GameWinScene.obj
          Release.win32\HelpScene.obj
          Release.win32\main.obj
-         Release.win32\Map.obj
          Release.win32\MapLocation.obj
-         Release.win32\Map_classic.obj
          Release.win32\MenuScene.obj
+         Release.win32\MusicHelper.obj
          Release.win32\OptionScene.obj
+         Release.win32\RuleScene.obj
          Release.win32\TrailerScene.obj
-         Release.win32\XiNgau.obj
+         Release.win32\UnderBuildingScene.obj
          CoCaNgua.win32.vcxproj -> E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe;#1" /manifest Release.win32\CoCaNgua.win32.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Release.win32\CoCaNgua.win32.unsuccessfulbuild".
          Touching "Release.win32\CoCaNgua.win32.lastbuildstate".
-     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (rebuild target(s)).
+     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:17.62
+Time Elapsed 00:00:00.56

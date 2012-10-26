@@ -1,7 +1,7 @@
-//this 3 below line for detect mem leak
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
+//this 3 below lines for detect mem leak
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
 
 #include "main.h"
 #include "AppDelegate.h"
@@ -12,7 +12,7 @@ USING_NS_CC;
 static bool isBackgroundMusicPlaying = false;
 
 // uncomment below line, open debug console
- #define USE_WIN32_CONSOLE
+ //#define USE_WIN32_CONSOLE
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,

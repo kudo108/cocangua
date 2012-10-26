@@ -18,7 +18,7 @@ bool TrailerScene::init()
 {
 	//sau nay bo cai nay
 	this->runAction( CCSequence::create(
-                                CCDelayTime::create(1),
+                                CCDelayTime::create(0.1f),
                                 CCCallFunc::create(this, 
                                 callfunc_selector(TrailerScene::callMenu)),
                                 NULL));//callMenu();

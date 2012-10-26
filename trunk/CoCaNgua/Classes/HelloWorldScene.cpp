@@ -57,7 +57,7 @@ bool HelloWorld::init()
 	//	call_Trailer();
 		//loader animation
 		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::loader_plist);
-		CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::loader_texture);
+		//CCSpriteBatchNode *xucxacSpriteBatchNode =  CCSpriteBatchNode::create(Config::loader_texture);
 		char fn[128];
 		CCAnimation* loaderAnimation = CCAnimation::create();
 	

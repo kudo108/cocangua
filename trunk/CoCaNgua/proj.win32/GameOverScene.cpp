@@ -2,14 +2,13 @@
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "Config.h"
-
-using namespace CocosDenshion;
+#include "MusicHelper.h"
 
 bool GameOverScene::init(){
 	if( !CCScene::init()) return false;
 	//stop background music and play sound of game over
-	Config::pauseBackgroundMusic();
-	Config::setIdGameOver(Config::playEffect(Config::sfxGameOver, false));
+	MusicHelper::pauseBackgroundMusic();
+	MusicHelper::setIdGameOver(MusicHelper::playEffect(MusicHelper::sfxGameOver, false));
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//background
@@ -58,15 +57,15 @@ bool GameOverScene::init(){
 }
 
 void GameOverScene::restartCallBack(CCObject* sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
 	CCDirector::sharedDirector()->replaceScene(gameScene);
-	Config::stopEffect(Config::getIdGameOver());
+	MusicHelper::stopEffect(MusicHelper::getIdGameOver());
 }
 
 void GameOverScene::menuCallBack(CCObject *sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
-	Config::stopEffect(Config::getIdGameOver());
+	MusicHelper::stopEffect(MusicHelper::getIdGameOver());
 }

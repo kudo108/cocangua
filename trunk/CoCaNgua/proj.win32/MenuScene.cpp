@@ -10,19 +10,18 @@
 #include "Config.h"
 #include "UnderBuildingScene.h"
 #include "MapLocation.h"
+#include "MusicHelper.h"
 
 using namespace cocos2d;
-//using namespace CocosDenshion;
-
 
 bool MenuScene::init()
 {
 	// Init super first.
 	if ( !CCScene::init() ) return false;
 	//play background music(if haven't play yet)
-	if(!Config::getIsBgMusicPlaying() && !Config::getHasTurnOffMusic()){
+	if(!MusicHelper::getIsBgMusicPlaying() && !MusicHelper::getHasTurnOffMusic()){
 
-		Config::playBackgroundMusic(Config::backgroundMusic, BG_MUSIC);
+		MusicHelper::playBackgroundMusic(MusicHelper::backgroundMusic, BG_MUSIC);
 	}
 	//
 	
@@ -125,47 +124,46 @@ bool MenuScene::init()
 
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(AboutScene::create());		
 }
 void MenuScene::menuHelpCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(HelpScene::create());
 }
 void MenuScene::menuOptionCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCDirector::sharedDirector()->replaceScene(OptionScene::create());
 }
 void MenuScene::menuExitCallback(CCObject* sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	if(MessageBox( NULL, L"Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
 		this->cleanup();
 		this->autorelease();
 		CCDirector::sharedDirector()->end();
-		//exit(1);
 	}
 }
 

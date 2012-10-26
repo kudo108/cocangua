@@ -2,6 +2,7 @@
 #include "MenuScene.h"
 #include "Config.h"
 #include "resource.h"
+#include "MusicHelper.h"
 
 using namespace cocos2d;
 
@@ -25,7 +26,7 @@ bool OptionScene::init()
 										"Music",
 										this,
 										menu_selector(OptionScene::toggleMusic));
-	if(Config::getIsBgMusicPlaying()){
+	if(MusicHelper::getIsBgMusicPlaying()){
 		pMusicButton->setFontSizeObj(Config::objectFontSize);
 		pMusicButton->setColor(ccWHITE);
 	}else{
@@ -40,7 +41,7 @@ bool OptionScene::init()
 										this,
 										menu_selector(OptionScene::toggleSFX));
 	
-	if(Config::getIsSFXEffectPlaying()){
+	if(MusicHelper::getIsSFXEffectPlaying()){
 		pSFXButton->setFontSizeObj(Config::objectFontSize);
 		pSFXButton->setColor(ccWHITE);
 	}else{
@@ -68,28 +69,28 @@ bool OptionScene::init()
 }
 
 void OptionScene::toggleMusic(CCObject *sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCMenuItemFont* pMusicButton = (CCMenuItemFont*)sender;
 	
-	bool isMusicPlaying = Config::getIsBgMusicPlaying();
+	bool isMusicPlaying = MusicHelper::getIsBgMusicPlaying();
 	if(isMusicPlaying){
-		Config::pauseBackgroundMusic();
+		MusicHelper::pauseBackgroundMusic();
 		pMusicButton->setFontSizeObj(Config::objectFontSize - 10);
 		pMusicButton->setColor(ccGRAY);
 	}else{
-		Config::resumeBackgroundMusic();
+		MusicHelper::resumeBackgroundMusic();
 		pMusicButton->setFontSizeObj(Config::objectFontSize);
 		pMusicButton->setColor(ccWHITE);
 	}
-	Config::setIsBgMusicPlaying(!isMusicPlaying);
-	Config::setHasTurnOffMusic(!Config::getHasTurnOffMusic());
+	MusicHelper::setIsBgMusicPlaying(!isMusicPlaying);
+	MusicHelper::setHasTurnOffMusic(!MusicHelper::getHasTurnOffMusic());
 }
 
 void OptionScene::toggleSFX(CCObject* sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	CCMenuItemFont* pSFXButton = (CCMenuItemFont*)sender;
 	
-	bool isSFXPlaying = Config::getIsSFXEffectPlaying();
+	bool isSFXPlaying = MusicHelper::getIsSFXEffectPlaying();
 	if(isSFXPlaying){
 		pSFXButton->setFontSizeObj(Config::objectFontSize - 10);
 		pSFXButton->setColor(ccGRAY);
@@ -97,12 +98,12 @@ void OptionScene::toggleSFX(CCObject* sender){
 		pSFXButton->setFontSizeObj(Config::objectFontSize);
 		pSFXButton->setColor(ccWHITE);
 	}
-	Config::setIsSFXEffectPlaying(!isSFXPlaying);
+	MusicHelper::setIsSFXEffectPlaying(!isSFXPlaying);
 }
 
 void OptionScene::menuCallback(CCObject *sender)
 {
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);	
 }

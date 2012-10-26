@@ -9,23 +9,29 @@ Animals::Animals(int offset, CCNode* _p, MapLocation *_m)
 	this->parent = _p;
 	point = 0;
 	teamNo = offset;
-	unit0 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,0),map);
-	unit1 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,1),map);
-	unit2 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,2),map);
-	unit3 = new AnimalUnit(this,_p,map->getInitPoint(teamNo,3),map);
-	//TODO anything difference here
+	unitFinished = 0;
+	unit0 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,0),map);
+	unit1 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,1),map);
+	unit2 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,2),map);
+	unit3 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,3),map);
+	
+	//create menuSprite
+	this->teamSprite = CCSprite::createWithTexture(unit0->getSprite()->getTexture());
+	this->teamSprite->setPosition(ccp(300,300));
+	teamSprite->retain();
+	this->spriteAction = (CCAction*)unit0->getDanceAction()->copy();
+	spriteAction->retain();
 }
 
 
 Animals::~Animals(void)
 {
-	//TODO release all unit
+	delete unit0;
+	delete unit1;
+	delete unit2;
+	delete unit3;
 }
 
-unsigned int Animals::getPoint()
-{
-	return point;
-}
 
 void Animals::increasePointByGo(int step)
 {
@@ -46,4 +52,27 @@ void Animals::increasePointByFinish(int x)
 {
 	point += x*100;
 	CCLog("Increase point by finish at %d = %d", x, point);
+}
+
+void Animals::setupTeamSpriteToParent()
+{
+	teamSprite->runAction(spriteAction);
+	parent->addChild(teamSprite);
+	teamSprite->retain();
+}
+
+void Animals::removeTeamSpriteFromParent()
+{	
+	teamSprite->stopAllActions();
+	teamSprite->removeFromParentAndCleanup(true);
+	teamSprite->retain();
+}
+bool Animals::isFinished()
+{
+	if(unitFinished >=4) return true;
+	return false;
+}
+void Animals::increaseFinished()
+{
+	unitFinished++;
 }

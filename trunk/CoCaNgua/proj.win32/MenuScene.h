@@ -2,7 +2,7 @@
 #define _MENU_SCENE_H_
 
 #include "cocos2d.h"
-
+using namespace cocos2d;
 
 class MenuScene : public cocos2d::CCScene
 {

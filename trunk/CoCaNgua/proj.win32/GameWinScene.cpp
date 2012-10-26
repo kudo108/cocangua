@@ -1,6 +1,8 @@
 #include "GameWinScene.h"
 #include "Config.h"
 #include "MenuScene.h"
+#include "MusicHelper.h"
+
 using namespace cocos2d;
 
 bool GameWinScene::init(){
@@ -8,9 +10,9 @@ bool GameWinScene::init(){
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	//stop background music and play sound of game over
-	Config::pauseBackgroundMusic();
-	Config::playEffect(Config::sfxGameWin, false);
-	Config::playEffect(Config::sfxFireworks, true);
+	MusicHelper::pauseBackgroundMusic();
+	MusicHelper::playEffect(MusicHelper::sfxGameWin, false);
+	MusicHelper::playEffect(MusicHelper::sfxFireworks, true);
 	
 	CCArray *menuArray = CCArray::create();
 
@@ -36,7 +38,7 @@ bool GameWinScene::init(){
 	//load animation
 	//gangnam
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::fireWorks_plist);
-	CCSpriteBatchNode *gameWinSpriteSheet =  CCSpriteBatchNode::create(Config::fireWorks_texture);
+//	CCSpriteBatchNode *gameWinSpriteSheet =  CCSpriteBatchNode::create(Config::fireWorks_texture);
 	char fn[128];
 	CCAnimation* gameWinAnimation =CCAnimation::create();
 	
@@ -57,38 +59,12 @@ bool GameWinScene::init(){
 	gameWinAction->setOriginalTarget(gameWin);
 	gameWin->runAction(gameWinAction);
 	this->addChild(gameWin);
-
-	//firework
-	//CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::fireWorks_plist);
-	//CCSpriteBatchNode *fireWorksSpriteSheet =  CCSpriteBatchNode::create(Config::fireWorks_texture);
-	//char fn1[128];
-	//CCAnimation* fireWorksAnimation =CCAnimation::create();
-	//
-	//for (int i = 1; i <= 21; i++) 
-	//{
-	//	sprintf(fn1, "%d.png", i);
-	//	CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn1);
-	//	fireWorksAnimation->addSpriteFrame(pFrame);
-	//}
-	//
- //   fireWorksAnimation->setDelayPerUnit(0.1f);
- //    //create sprite first frame from animation first frame
-	//CCSprite* fireWorks = CCSprite::createWithSpriteFrameName(Config::fireWorks_image);
-	//
-	//fireWorks->setPosition(ccp(size.width/4, size.height/2));
-
-	//CCAction *fireWorksAction = CCRepeatForever::create(CCAnimate::create(fireWorksAnimation));
-	//fireWorksAction->setOriginalTarget(fireWorks);
-	//fireWorks->runAction(fireWorksAction);
-	//this->addChild(fireWorks);
-	
-	
 	return true;
 }
 
 void GameWinScene::menuCallback(CCObject* sender){
-	Config::playEffect(Config::sfxButton, false);
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MenuScene *menuScene = MenuScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
-	Config::stopAllEffect();
+	MusicHelper::stopAllEffect();
 }

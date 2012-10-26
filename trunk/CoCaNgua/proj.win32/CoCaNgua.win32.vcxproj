@@ -142,8 +142,9 @@
     <ClInclude Include="AboutScene.h" />
     <ClInclude Include="Animals.h" />
     <ClInclude Include="AnimalUnit.h" />
-    <ClInclude Include="ClassicGameLayer.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameWinScene.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MapLocation.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="MusicHelper.h" />
     <ClInclude Include="OptionScene.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RuleScene.h" />
@@ -163,8 +165,9 @@
     <ClCompile Include="AboutScene.cpp" />
     <ClCompile Include="Animals.cpp" />
     <ClCompile Include="AnimalUnit.cpp" />
-    <ClCompile Include="ClassicGameLayer.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameWinScene.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapLocation.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="MusicHelper.cpp" />
     <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="TrailerScene.cpp" />
