@@ -138,13 +138,18 @@ AnimalUnit::~AnimalUnit(void)
 }
 float AnimalUnit::born()
 {//tu chuong ra duong
-	MusicHelper::playEffect(this->born_sound, false);
+
 	CCPoint next = getBornLocation();
 	float time = Config::animalNormalMoveTime*2;//2x faster
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
 	location = next;
 	this->button->runAction(moveAction);
+	
 	this->team->increasePointByBorn();
+
+	//play music
+	MusicHelper::playEffect(this->born_sound, false);
+
 	onWay = true;
 	path_went = 1;
 	CCLog("Unit born at %f, %f", location.x, location.y);
@@ -152,7 +157,7 @@ float AnimalUnit::born()
 }
 float AnimalUnit::go(int step)
 {//di them dc step buoc
-	
+	//play music during time*step second
 	MusicHelper::playEffect(this->move_sound, false);
 	float time = Config::animalNormalMoveTime;
 	CCArray *listGo = CCArray::create();
@@ -192,6 +197,7 @@ float AnimalUnit::finish()
 void AnimalUnit::die(int step)
 {//chet, ve lai chuong
 	MusicHelper::playEffect(this->die_sound, false);
+
 	float time = Config::animalNormalMoveTime*step;
 	if(step <=0)//chet do con khac born
 	{
@@ -228,6 +234,8 @@ CCPoint AnimalUnit::getBornLocation()
 }
 void AnimalUnit::kick(int step)
 {
+	//play music after step*config::unitNormalMoveTime
+	MusicHelper::playEffect(this->kick_sound, false);
 	this->team->increasePointByKick();
 }
 void AnimalUnit::printOutDebugInfo()
