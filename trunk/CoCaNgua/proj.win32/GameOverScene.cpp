@@ -25,6 +25,7 @@ bool GameOverScene::init(){
 	loseLabel->setFontSizeObj(Config::objectFontSize*1.5);
 	loseLabel->setColor(ccBLACK);
 	loseLabel->setPosition(ccp(size.width/2, size.height/2 + 120));
+	loseLabel->setColor(ccRED);
 	menuArray->addObject(loseLabel);
 
 	CCMenuItemFont* restartButton = CCMenuItemFont::create(
@@ -35,6 +36,7 @@ bool GameOverScene::init(){
 	restartButton->setFontSizeObj(Config::objectFontSize);
 	restartButton->setColor(ccBLACK);
 	restartButton->setPosition(ccp(size.width/2, size.height/2 - 60));
+	restartButton->setColor(ccORANGE);
 	menuArray->addObject(restartButton);
 
 	CCMenuItemFont* menuButton = CCMenuItemFont::create(
@@ -45,6 +47,7 @@ bool GameOverScene::init(){
 	menuButton->setFontSizeObj(Config::objectFontSize);
 	menuButton->setColor(ccBLACK);
 	menuButton->setPosition(ccp(size.width/2, size.height/2 - 120));
+	restartButton->setColor(ccORANGE);
 	menuArray->addObject(menuButton);
 	
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);

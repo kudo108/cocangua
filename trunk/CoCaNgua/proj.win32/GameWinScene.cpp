@@ -15,9 +15,7 @@ bool GameWinScene::init(){
 	MusicHelper::playEffect(MusicHelper::sfxFireworks, true);
 	
 	CCArray *menuArray = CCArray::create();
-
-	CCMenuItemFont* winLabel = CCMenuItemFont::create("YOU WIN");
-
+	CCMenuItemFont* winLabel = CCMenuItemFont::create("PLAYER WIN");
 	
 	winLabel->setFontSizeObj(Config::objectFontSize*1.5);
 	winLabel->setPosition(ccp(size.width/2, size.height - 120));
