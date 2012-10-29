@@ -23,8 +23,8 @@ public:
 	void buttonSelectCallback(CCObject *sender);
 	
 	//test
-	void gameOverCallback(CCObject* sender);
-	void gameWinCallback(CCObject* sender);
+	//void gameOverCallback(CCObject* sender);
+	//void gameWinCallback(CCObject* sender);
 	//release lock
 	void releaseLockUser();
 private:	

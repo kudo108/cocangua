@@ -180,7 +180,7 @@ void GameObject::resetDice()
 
 bool GameObject::canContinueRollFromRollResult()
 {
-	if (diceResult1==diceResult2 && diceResult1 != 0) return true;
+	if (diceResult1==diceResult2 && diceResult1 > 0) return true;
 	return false;
 }
 bool GameObject::canInitFromRollResult()

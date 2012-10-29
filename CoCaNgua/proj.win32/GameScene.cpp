@@ -5,9 +5,8 @@
 #include "RuleScene.h"
 #include "MusicHelper.h"
 #include <windows.h>
-//test
-#include "GameOverScene.h"
 #include "GameWinScene.h"
+#include "GameOverScene.h"
 
 using namespace cocos2d;
 
@@ -65,7 +64,7 @@ bool GameScene::init()
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"Save",
 										this,
-										menu_selector(GameScene::gameOverCallback));
+										menu_selector(GameScene::saveGameCallback));
 	pSaveGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pSaveGameButton);
 	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
@@ -210,8 +209,10 @@ bool GameScene::init()
 
 
 //test
+/*
 void GameScene::gameOverCallback(CCObject *sender){
 	//save game
+	
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MusicHelper::stopAllEffect();
 	GameOverScene *menuScene = GameOverScene::create();
@@ -226,20 +227,23 @@ void GameScene::gameWinCallback(CCObject* sender){
 	GameWinScene *menuScene = GameWinScene::create();
 	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
-
+*/
 void GameScene::saveGameCallback(CCObject *sender)
 {
 	//save game
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MusicHelper::stopAllEffect();
+	//test
+	GameOverScene *menuScene = GameOverScene::create();
+	CCDirector::sharedDirector()->replaceScene(menuScene);
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
 	//back to menu
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
-		MenuScene *menuScene = MenuScene::create();
-		CCDirector::sharedDirector()->replaceScene(menuScene);
+		 
+		CCDirector::sharedDirector()->replaceScene(MenuScene::create());
 		MusicHelper::stopAllEffect();
 	}
 }
@@ -248,8 +252,8 @@ void GameScene::ruleCallback(CCObject *sender)
 	//show rule
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
-		RuleScene *ruleScene = RuleScene::create();
-		CCDirector::sharedDirector()->replaceScene(ruleScene);
+		GameWinScene *gW = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(gW);
 		MusicHelper::stopAllEffect();
 	}
 }
@@ -334,16 +338,19 @@ void GameScene::buttonSkipCallback(CCObject* sender)
 {
 	gameObject->unSelect();
 	gameObject->deleteAllLightUp();
-	gameObject->resetDice();
+	
 	gameObject->resetCurrentUnit();
 	gameObject->setLockDice(false);
 	MusicHelper::playEffect(MusicHelper::btSkip, false);
 	if(gameObject->canContinueRollFromRollResult())
 	{//skip luot thoi
+		CCLog("skip dice roll");
 	}else
 	{
+		CCLog("change Turn");
 		gameObject->changeTurn();
 	}
+	gameObject->resetDice();
 }
 
 void GameScene::update(CCTime dt)
@@ -358,26 +365,26 @@ void GameScene::update(CCTime dt)
 	if(gameObject->getAnimal0()->isFinished()) 
 	{
 		MusicHelper::stopAllEffect();
-		GameWinScene *menuScene = GameWinScene::create();
-		CCDirector::sharedDirector()->replaceScene(menuScene);
+		GameWinScene *gameWin = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(gameWin);
 	}
 	if(gameObject->getAnimal1()->isFinished()) 
 	{
 		MusicHelper::stopAllEffect();
-		GameWinScene *menuScene = GameWinScene::create();
-		CCDirector::sharedDirector()->replaceScene(menuScene);
+		GameWinScene *gameWin = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(gameWin);
 	}
 	if(gameObject->getAnimal2()->isFinished()) 
 	{
 		MusicHelper::stopAllEffect();
-		GameWinScene *menuScene = GameWinScene::create();
-		CCDirector::sharedDirector()->replaceScene(menuScene);
+		GameWinScene *gameWin = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(gameWin);
 	}
 	if(gameObject->getAnimal3()->isFinished()) 
 	{
 		MusicHelper::stopAllEffect();
-		GameWinScene *menuScene = GameWinScene::create();
-		CCDirector::sharedDirector()->replaceScene(menuScene);
+		GameWinScene *gameWin = GameWinScene::create();
+		CCDirector::sharedDirector()->replaceScene(gameWin);
 	}
 }
 
