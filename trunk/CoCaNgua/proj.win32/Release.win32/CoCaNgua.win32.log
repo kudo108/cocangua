@@ -1,27 +1,34 @@
-﻿Build started 10/27/2012 12:53:09 PM.
+﻿Build started 10/29/2012 11:22:18 PM.
      1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release.win32\CoCaNgua.win32.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt AnimalUnit.cpp Animals.cpp GameLogic.cpp GameObject.cpp GameOverScene.cpp GameScene.cpp MapLocation.cpp MenuScene.cpp MusicHelper.cpp RuleScene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\kazmath\include" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\cocos2dx\platform\third_party\win32\OGLES" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\external" /I"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\HelloWorldScene.cpp AboutScene.cpp AnimalUnit.cpp Config.cpp GameObject.cpp GameOverScene.cpp GameScene.cpp GameWinScene.cpp HelpScene.cpp MenuScene.cpp OptionScene.cpp RuleScene.cpp UnderBuildingScene.cpp
+         HelloWorldScene.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+         AboutScene.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          AnimalUnit.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         Animals.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         GameLogic.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+         Config.cpp
+     1>Config.cpp(55): warning C4305: 'initializing' : truncation from 'double' to 'float'
          GameObject.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          GameOverScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          GameScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         MapLocation.cpp
+         GameWinScene.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+         HelpScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          MenuScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-         MusicHelper.cpp
+         OptionScene.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          RuleScene.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+         UnderBuildingScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          Generating Code...
        ResourceCompile:
@@ -58,4 +65,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:21.62
+Time Elapsed 00:00:25.35
