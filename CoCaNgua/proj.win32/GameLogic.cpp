@@ -1,21 +1,20 @@
 #include "GameLogic.h"
 #include "MusicHelper.h"
 
-GameLogic::GameLogic(GameObject* gObj)
-{
-	gameObject = gObj;
-}
 
-float GameLogic::goCallback()
+float GameLogic::goCallback(GameObject* gameObject)
 {
 	//bool holdCurrentTurn = false;
 	if (gameObject->getCurrentSelectUnit()==NULL) return -1.0f;
 	
 	//delete lightup
-	gameObject->deleteAllLightUp();
+	gameObject->deleteAllLightUpWay();
 	
 	//delete select
 	gameObject->unSelect();
+
+	//delete lightup Go
+	gameObject->removeButtonGo();
 
 	//get current select unit
 	AnimalUnit* unit = gameObject->getCurrentSelectUnit();
@@ -33,7 +32,7 @@ float GameLogic::goCallback()
 					unluckyUnit->die(-1);
 					float time = unit->born();
 					unit->kick(-1);
-					checkForChangeTurn();
+					checkForChangeTurn(gameObject);
 					return time;
 				}else // cung team ko ra quan dc
 				{
@@ -43,7 +42,7 @@ float GameLogic::goCallback()
 			}else
 			{
 				float time =unit->born();
-				checkForChangeTurn();
+				checkForChangeTurn(gameObject);
 				return time;
 			}
 		}else
@@ -72,13 +71,13 @@ float GameLogic::goCallback()
 							gameObject->getUnitByTag(check)->die(step);
 							float time = unit->go(step);
 							unit->kick(step);
-							checkForChangeTurn();
+							checkForChangeTurn(gameObject);
 							return time;
 						}
 					}else {// check = -1 -> ko co
 						//free to go
 						float time = unit->go(step);
-						checkForChangeTurn();
+						checkForChangeTurn(gameObject);
 						return time;
 					}
 				}
@@ -99,7 +98,7 @@ float GameLogic::goCallback()
 			if(gameObject->canFinishFromRollResult() && !gameObject->havingUnitOnFinish(teamNo, nextStep))
 			{
 				float time = unit->finish();
-				checkForChangeTurn();
+				checkForChangeTurn(gameObject);
 				return time;
 			}else
 			{
@@ -112,7 +111,7 @@ float GameLogic::goCallback()
 	}
 	
 }
-void GameLogic::selectCallback()
+void GameLogic::selectCallback(GameObject* gameObject)
 {
 	
 	if(!gameObject->canSelectUnit())
@@ -122,7 +121,7 @@ void GameLogic::selectCallback()
 	}
 	AnimalUnit* unit = gameObject->getCurrentSelectUnit();
 	//clear another lightup
-	gameObject->deleteAllLightUp();
+	gameObject->deleteAllLightUpWay();
 
 	if(unit->getTeam() != gameObject->getCurrentTurn())
 	{
@@ -145,12 +144,14 @@ void GameLogic::selectCallback()
 			AnimalUnit* unluckyUnit = gameObject->getUnitOnInitLocation(unit->getTeam()->getTeamNo());
 			if(unluckyUnit == NULL)// khong bi con nao chan
 			{
-				gameObject->lightUp(unit->getBornLocation());
+				//gameObject->lightUpWay(unit->getBornLocation());
+				gameObject->createButtonGo(unit->getBornLocation());
 			}else// co con chan
 			{
 				if(unluckyUnit->getTeam()->getTeamNo() != unit->getTeam()->getTeamNo())//khong cung team
 				{
-					gameObject->lightUp(unit->getBornLocation());
+					//gameObject->lightUpWay(unit->getBornLocation());
+					gameObject->createButtonGo(unit->getBornLocation());
 				}else
 				{//khong di dc
 				}
@@ -177,19 +178,22 @@ void GameLogic::selectCallback()
 						}else//light up
 						{
 							CCPointArray *next = gameObject->getMap()->getNextWay();
-							for(int i = 0; i < step; i++)
+							for(int i = 0; i < step-1; i++)
 							{
-								gameObject->lightUp(next->getControlPointAtIndex(i));
+								gameObject->lightUpWay(next->getControlPointAtIndex(i));
 							}
+							//create Go button
+							gameObject->createButtonGo(next->getControlPointAtIndex(step-1));
 						}
 					}
 					else//khong co con nao
 					{
 						CCPointArray * next = gameObject->getMap()->getNextWay();
-						for(int i = 0; i < step; i++)
+						for(int i = 0; i < step-1; i++)
 						{
-							gameObject->lightUp(next->getControlPointAtIndex(i));
+							gameObject->lightUpWay(next->getControlPointAtIndex(i));
 						}
+						gameObject->createButtonGo(next->getControlPointAtIndex(step-1));
 					}
 				}
 				else 
@@ -208,14 +212,15 @@ void GameLogic::selectCallback()
 				if(gameObject->canFinishFromRollResult() && 
 							!gameObject->havingUnitOnFinish(teamNo, nextStep))
 				{
-					gameObject->lightUp(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
+					//gameObject->lightUpWay(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
+					gameObject->createButtonGo(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
 				}
 			}
 		}
 	}
 	
 }
-void GameLogic::checkForChangeTurn()
+void GameLogic::checkForChangeTurn(GameObject *gameObject)
 {
 	if(! (gameObject->canContinueRollFromRollResult()))
 	{

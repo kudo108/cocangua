@@ -8,7 +8,7 @@ const char* Config::menuBackground			= "image/background_menu.jpg";
 const char* Config::optionBackground		= "image/background_option.jpg";
 const char* Config::flashBackground			= "image/flash.png";
 const char* Config::aboutBackground			= "image/about.jpg";
-const char* Config::classicGameBackground	= "image/Background_classic.jpg";
+const char* Config::classicGameBackground	= "image/Background_classic.png";
 const char* Config::gameOverBackground		= "image/gameover.png";
 const char* Config::miniMenu				= "/image/background_mini_menu.jpg";
 const char* Config::menuBorder				= "/image/picture_border.png";
@@ -42,9 +42,13 @@ const char* Config::disappearEffect_plist	= "/image/effect/effect.plist";
 const char* Config::disappearEffect_texture	= "/image/effect/effect.png";
 const char* Config::disappearEffect_image	= "move-effect-0.png";
 
-const char* Config::lightup_image			= "/image/lighup/lightup.png";
-const char* Config::lightup_plist			= "/image/lighup/lightup.plist";
-const char* Config::lightup_init_image		= "/image/lighup/lightup1.png";
+const char* Config::lightup_go_image		= "/image/lighup/lightup.png";
+const char* Config::lightup_go_plist		= "/image/lighup/lightup.plist";
+const char* Config::lightup_go_init_image	= "/image/lighup/lightup1.png";
+
+const char* Config::lightup_way_image		= "/image/way/way.png";
+const char* Config::lightup_way_plist		= "/image/way/way.plist";
+const char* Config::lightup_way_init_image	= "/image/way/way1.png";
 
 const char* Config::select_image			= "/image/select/select.png";
 const char* Config::select_plist			= "/image/select/select.plist";
@@ -52,4 +56,4 @@ const char* Config::select_init_image		= "/image/select/select1.png";
 
 
 int Config::isExploring=0;
-float Config::animalNormalMoveTime = 0.3;//s
+float Config::animalNormalMoveTime = 0.3f;//s

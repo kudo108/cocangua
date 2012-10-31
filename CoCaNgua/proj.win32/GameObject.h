@@ -22,8 +22,8 @@ public:
 	bool canSelectUnit();
 
 	//amination function
-	void lightUp(CCPoint point);
-	void deleteAllLightUp();
+	void lightUpWay(CCPoint point);
+	void deleteAllLightUpWay();
 	void select(CCPoint point);
 	void unSelect();
 	
@@ -36,6 +36,14 @@ public:
 
 	//reset
 	void resetCurrentUnit();
+	
+	//buttonGo
+	void createButtonGo(CCPoint location);
+	void removeButtonGo();
+	void buttonGoCallback(CCObject* sender);
+
+	//release lock
+	void releaseLockUser();
 private:
 	//animals
 	CC_SYNTHESIZE_READONLY(Animals *, animal0, Animal0);
@@ -63,6 +71,12 @@ private:
 	
 	//lock user
 	CC_SYNTHESIZE(bool, lockUser, LockUser);
+
+	//button Go
+	CC_SYNTHESIZE(CCMenu*, buttonGo, ButtonGo);
+	CC_SYNTHESIZE(CCMenuItemSprite*, buttonGoItem, ButtonGoItem);
+	CC_SYNTHESIZE(CCAction*, buttonGoAction, ButtonGoAction);
+
 };
 
 #endif

@@ -4,6 +4,7 @@ MapLocation::MapLocation(int _winSize)
 {
 	winSize = _winSize;
 	scale = winSize/1024;
+	//scale = 1;
 	margin = 45*scale;
 	center = 512*scale;
 	stepEnd = 117*scale;
@@ -12,10 +13,10 @@ MapLocation::MapLocation(int _winSize)
 	for(int i=0; i<=6; i++){
 		wayLocation[i]= ccp(margin+i*stepLength,center-stepEnd);
 		wayLocation[6+i]=ccp(center-stepEnd,(center-stepEnd)-i*stepLength);
-		wayLocation[14+i]=ccp(center+stepEnd,margin+i*stepLength);
-		wayLocation[20+i]=ccp(center+stepEnd+i*stepLength,center-stepEnd);
-		wayLocation[28+i]=ccp(2*center-margin-i*stepLength,center+stepEnd);
-		wayLocation[34+i]=ccp(center+stepEnd,center+stepEnd+i*stepLength);
+		wayLocation[14+i]=ccp(center+stepEnd-3,margin+i*stepLength);
+		wayLocation[20+i]=ccp(center+stepEnd+i*stepLength-2,center-stepEnd);
+		wayLocation[28+i]=ccp(2*center-margin-i*stepLength-3,center+stepEnd);
+		wayLocation[34+i]=ccp(center+stepEnd-3,center+stepEnd+i*stepLength);
 		wayLocation[42+i]=ccp(center-stepEnd,2*center-margin-i*stepLength);
 		wayLocation[48+i]=ccp(center-stepEnd-i*stepLength,center+stepEnd);
 	}

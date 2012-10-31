@@ -10,7 +10,6 @@
 
 using namespace cocos2d;
 
-
 bool GameScene::init()
 {
 	if(! CCScene::init() ) return false;
@@ -19,7 +18,7 @@ bool GameScene::init()
 	int gameType = -1;
 	
 	gameObject = new GameObject(this);
-	gameLogic = new GameLogic(gameObject);
+	//gameLogic = new GameLogic(gameObject);
 
 	if(!MusicHelper::getHasTurnOffMusic()){
 		MusicHelper::stopBackgroundMusic();
@@ -32,8 +31,8 @@ bool GameScene::init()
 	CCSprite* background = CCSprite::create(Config::classicGameBackground);
     if(background)
 	{
-		background->setScaleX(0.5859375);
-		background->setScaleY(0.5859375);
+		//background->setScaleX(0.5859375);
+		//background->setScaleY(0.5859375);
 		background->setPosition(ccp(size.width/2-100, size.height/2));
 		this->addChild(background,-1);//uu tien (nam duoi cung)
 	}
@@ -122,6 +121,7 @@ bool GameScene::init()
 	menuArray->addObject(diceButton2);
 
 	//create button go
+	/*
 	CCMenuItemFont* pButtonGo = CCMenuItemFont::create(
 										"Go",
 										this,
@@ -130,7 +130,7 @@ bool GameScene::init()
 	pButtonGo->setPosition(ccp(size.width-100, size.height*2/3+20));
 	pButtonGo->setColor(ccORANGE);
 	menuArray->addObject(pButtonGo);
-
+	*/
 	//create button bo luot
 	CCMenuItemFont* pButtonSkip = CCMenuItemFont::create(
 										"Skip",
@@ -336,21 +336,27 @@ void GameScene::updatePoint(int teamNo)
 
 void GameScene::buttonSkipCallback(CCObject* sender)
 {
-	gameObject->unSelect();
-	gameObject->deleteAllLightUp();
-	
-	gameObject->resetCurrentUnit();
-	gameObject->setLockDice(false);
-	MusicHelper::playEffect(MusicHelper::btSkip, false);
-	if(gameObject->canContinueRollFromRollResult())
-	{//skip luot thoi
-		CCLog("skip dice roll");
+	if(gameObject->getLockUser())
+	{
+		MusicHelper::playEffect(MusicHelper::btWrong, false);
 	}else
 	{
-		CCLog("change Turn");
-		gameObject->changeTurn();
+		gameObject->unSelect();
+		gameObject->deleteAllLightUpWay();
+	
+		gameObject->resetCurrentUnit();
+		gameObject->setLockDice(false);
+		MusicHelper::playEffect(MusicHelper::btSkip, false);
+		if(gameObject->canContinueRollFromRollResult())
+		{//skip luot thoi
+			CCLog("skip dice roll");
+		}else
+		{
+			CCLog("change Turn");
+			gameObject->changeTurn();
+		}
+		gameObject->resetDice();
 	}
-	gameObject->resetDice();
 }
 
 void GameScene::update(CCTime dt)
@@ -401,28 +407,12 @@ GameScene::~GameScene()
 	gameObject->release();
 }
 
-void GameScene::buttonGoCallback(CCObject *sender)
-{
-	float time = gameLogic->goCallback();
-	CCLog("wait time = %f",time);
-	if (time > 0.0f)
-	{
-		gameObject->setLockUser(true);
-		gameObject->setLockDice(false);
-		CCFiniteTimeAction * callfunc = CCCallFunc::create(this,callfunc_selector( GameScene::releaseLockUser));
-		CCAction * action = CCSequence::createWithTwoActions(CCDelayTime::create(time),callfunc);
-		this->runAction(action);
-	}
-}
 
 void GameScene::buttonSelectCallback(CCObject *sender)
 {
 	AnimalUnit* unit = (AnimalUnit*) ((CCMenuItemSprite*)sender)->getUserData();
 	unit->printOutDebugInfo();
 	gameObject->setCurrentSelectUnit(unit);
-	gameLogic->selectCallback();
-}
-void GameScene::releaseLockUser()
-{
-	gameObject->setLockUser(false);
+	//if gameType == 1 select 1, if gameType ==2 select 2
+	GameLogic::selectCallback(gameObject);
 }

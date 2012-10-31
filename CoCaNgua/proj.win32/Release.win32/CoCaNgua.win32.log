@@ -1,4 +1,4 @@
-﻿Build started 10/29/2012 11:22:18 PM.
+﻿Build started 10/31/2012 4:51:09 PM.
      1>Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release.win32\CoCaNgua.win32.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -11,9 +11,12 @@
          AnimalUnit.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          Config.cpp
-     1>Config.cpp(55): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Config.cpp(59): warning C4305: 'initializing' : truncation from 'double' to 'float'
          GameObject.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+     1>GameObject.cpp(92): error C2039: 'lightup_init_image' : is not a member of 'Config'
+                 e:\univeristy_doc\laptrinhgame\assignment\cocangua\proj.win32\Config.h(4) : see declaration of 'Config'
+     1>GameObject.cpp(92): error C2065: 'lightup_init_image' : undeclared identifier
          GameOverScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          GameScene.cpp
@@ -31,38 +34,8 @@
          UnderBuildingScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
          Generating Code...
-       ResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release.win32\CoCaNgua.win32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.lib" /MACHINE:X86 Release.win32\CoCaNgua.res
-         Release.win32\AppDelegate.obj
-         Release.win32\HelloWorldScene.obj
-         Release.win32\AboutScene.obj
-         Release.win32\Animals.obj
-         Release.win32\AnimalUnit.obj
-         Release.win32\Config.obj
-         Release.win32\GameLogic.obj
-         Release.win32\GameObject.obj
-         Release.win32\GameOverScene.obj
-         Release.win32\GameScene.obj
-         Release.win32\GameWinScene.obj
-         Release.win32\HelpScene.obj
-         Release.win32\main.obj
-         Release.win32\MapLocation.obj
-         Release.win32\MenuScene.obj
-         Release.win32\MusicHelper.obj
-         Release.win32\OptionScene.obj
-         Release.win32\RuleScene.obj
-         Release.win32\TrailerScene.obj
-         Release.win32\UnderBuildingScene.obj
-         CoCaNgua.win32.vcxproj -> E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Univeristy_doc\Laptrinhgame\cocos2d-2.0-x-2.0.3\Release.win32\CoCaNgua.win32.exe;#1" /manifest Release.win32\CoCaNgua.win32.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "Release.win32\CoCaNgua.win32.unsuccessfulbuild".
-         Touching "Release.win32\CoCaNgua.win32.lastbuildstate".
-     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (build target(s)).
+     1>Done Building Project "E:\Univeristy_doc\Laptrinhgame\assignment\CoCaNgua\proj.win32\CoCaNgua.win32.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:25.35
+Time Elapsed 00:00:23.38
