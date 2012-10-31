@@ -19,14 +19,14 @@ public:
 	void ruleCallback(CCObject *sender);
 	void diceCallback(CCObject *sender);
 	void buttonSkipCallback(CCObject *sender);
-	void buttonGoCallback(CCObject *sender);
+	//void buttonGoCallback(CCObject *sender);
 	void buttonSelectCallback(CCObject *sender);
 	
 	//test
 	//void gameOverCallback(CCObject* sender);
 	//void gameWinCallback(CCObject* sender);
 	//release lock
-	void releaseLockUser();
+	//void releaseLockUser();
 private:	
 	int gameType;
 	bool isCalledDice;	
@@ -43,7 +43,7 @@ private:
 	CC_SYNTHESIZE(CCMenuItemFont*, team3PointLable, Team3PointLable);
 	
 	//game object
-	CC_SYNTHESIZE(GameObject*, gameObject, GameObject);
+	GameObject* gameObject;
 	
 	void update(CCTime dt);
 	void updatePoint(int teamNo);

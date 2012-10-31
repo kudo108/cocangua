@@ -2,15 +2,14 @@
 #define _GAME_LOGIC_H_
 
 #include "GameObject.h"
+
 class GameLogic
 {
 public:
-	GameLogic(GameObject* _gObj);
-	float goCallback();
-	void selectCallback();
+	static float goCallback(GameObject *gameObject);
+	static void selectCallback(GameObject *gameObject);
 private:
-	GameObject* gameObject;
-	void checkForChangeTurn();
+	static void checkForChangeTurn(GameObject *gameObject);
 };
 
 #endif

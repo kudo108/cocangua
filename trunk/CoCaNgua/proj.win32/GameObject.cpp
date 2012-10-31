@@ -1,5 +1,7 @@
 #include "GameObject.h"
 #include "Config.h"
+#include "GameScene.h"
+#include "GameLogic.h"
 
 using namespace cocos2d;
 
@@ -16,20 +18,20 @@ GameObject::GameObject(CCNode* _parent)
 	
 	currentTurn=animal0;
 	currentSelectUnit = NULL;
-
+	buttonGo = NULL;
 	//dice
 	resetDice();
 	lockDice = false;
 	lockUser = false;
 
 	//setup LightupAction
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::lightup_plist);
-	//CCSpriteBatchNode *lightupSpriteSheet =  CCSpriteBatchNode::create(Config::lightup_image);
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::lightup_way_plist);
+	//CCSpriteBatchNode *lightupSpriteSheet =  CCSpriteBatchNode::create(Config::lightup_way_image);
 	char fn[128];
 	CCAnimation* lightupAnimation =CCAnimation::create();
-	for (int i = 1; i <= 3; i++) 
+	for (int i = 1; i <= 2; i++) 
 	{
-		sprintf(fn, "lightup%d.png", i);
+		sprintf(fn, "way%d.png", i);
 		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
 		lightupAnimation->addSpriteFrame(pFrame);
 	}
@@ -58,9 +60,68 @@ GameObject::GameObject(CCNode* _parent)
 	//selectedSprite
 	selectedSprite = NULL;
 
+	//button go
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::lightup_go_plist);
+//	CCSpriteBatchNode *selectSpriteSheet =  CCSpriteBatchNode::create(Config::lightup_go_image);
+	CCAnimation* buttonGoAnimation =CCAnimation::create();
+	for (int i = 1; i <= 3; i++) 
+	{
+		sprintf(fn, "lightup%d.png", i);
+		CCSpriteFrame* pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn);
+		buttonGoAnimation->addSpriteFrame(pFrame);
+	}
+    buttonGoAnimation->setDelayPerUnit(0.2f);
+	buttonGoAction = CCRepeatForever::create( CCAnimate::create(buttonGoAnimation));
+	buttonGoAction->retain();
+	
 }
 
+void GameObject::buttonGoCallback(CCObject* sender)
+{
+	float time = GameLogic::goCallback(this);
+	CCLog("wait time = %f",time);
+	if (time > 0.0f)
+	{
+		setLockUser(true);
+		setLockDice(false);
+		CCFiniteTimeAction * callfunc = CCCallFunc::create(this,callfunc_selector( GameObject::releaseLockUser));
+		CCAction * action = CCSequence::createWithTwoActions(CCDelayTime::create(time),callfunc);
+		parent->runAction(action);
+	}
+}
+void GameObject::releaseLockUser()
+{
+	setLockUser(false);
+}
+void GameObject::createButtonGo(CCPoint location)
+{
+	if(buttonGo != NULL)
+	{
+		CCLog("Error, already have a go button");
+		return;
+	}
+	CCLog("create button Go");
+	CCSprite* buttonGoSprite = CCSprite::create(Config::lightup_go_init_image);
+	buttonGoSprite->runAction(buttonGoAction);
+	buttonGoItem = CCMenuItemSprite::create(buttonGoSprite,buttonGoSprite,buttonGoSprite,
+		this,menu_selector(GameObject::buttonGoCallback));
+	buttonGoItem->setPosition(location);
 
+	buttonGo = CCMenu::createWithItem(buttonGoItem);
+	buttonGo->setPosition(CCPointZero);
+	buttonGo->retain();
+	parent->addChild(buttonGo);
+}
+void GameObject::removeButtonGo()
+{
+	if(buttonGo != NULL)
+	{
+		CCLog("remove button Go");
+		buttonGo->removeFromParentAndCleanup(true);
+		buttonGo->release();
+		buttonGo=NULL;
+	}
+}
 void GameObject::changeTurn()
 {
 	parent->unscheduleUpdate();
@@ -87,9 +148,9 @@ void GameObject::changeTurn()
 	CCLog("ChangeTurn to player %d",currentTurn->getTeamNo());
 	currentTurn->setupTeamSpriteToParent();
 }
-void GameObject::lightUp(CCPoint point)
+void GameObject::lightUpWay(CCPoint point)
 {
-	CCSprite* sprite = CCSprite::create(Config::lightup_init_image);
+	CCSprite* sprite = CCSprite::create(Config::lightup_way_init_image);
 	sprite->setPosition(point);
 	sprite->runAction((CCAction*)lightupAction->copy());
 	parent->addChild(sprite);
@@ -97,7 +158,7 @@ void GameObject::lightUp(CCPoint point)
 	lightupArray->addObject(sprite);
 	lightupArray->retain();
 }
-void GameObject::deleteAllLightUp()
+void GameObject::deleteAllLightUpWay()
 {
 	for(unsigned int i = 0; i < lightupArray->count(); i++)
 	{
