@@ -1,5 +1,11 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+
+#define CLASSIC 1
+#define MODERN 2
+#define AI 3
+#define RACING 4
+
 class Config
 {
 public:
@@ -55,10 +61,12 @@ public:
 	const static char* select_plist;
 	const static char* select_init_image;
 
-	static int isExploring;
+	//static int isExploring;
 
-	static float animalNormalMoveTime;
+	const static float animalNormalMoveTime;
 	
+	//variable
+	static int gameType;
 };
 
 #endif

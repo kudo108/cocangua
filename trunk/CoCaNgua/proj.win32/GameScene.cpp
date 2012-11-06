@@ -7,6 +7,8 @@
 #include <windows.h>
 #include "GameWinScene.h"
 #include "GameOverScene.h"
+#include "RacingGameLogic.h"
+
 
 using namespace cocos2d;
 
@@ -15,7 +17,8 @@ bool GameScene::init()
 	if(! CCScene::init() ) return false;
 
 	isCalledDice = FALSE;
-	int gameType = this->getTag();
+	//int gameType = this->getTag();
+	//CCLOG("setup game Type = %d", gameType);
 	/************GameType*****
 	* 1 - classic
 	* 2 - Modern
@@ -420,5 +423,19 @@ void GameScene::buttonSelectCallback(CCObject *sender)
 	unit->printOutDebugInfo();
 	gameObject->setCurrentSelectUnit(unit);
 	//if gameType == 1 select 1, if gameType ==2 select 2
-	GameLogic::selectCallback(gameObject);
+	switch(Config::gameType)
+	{
+	case CLASSIC:
+		GameLogic::selectCallback(gameObject);
+		break;
+	case MODERN:
+		break;
+	case AI:
+		break;
+	case RACING:
+		RacingGameLogic::selectCallback(gameObject);
+		break;
+	default:
+		break;
+	}
 }

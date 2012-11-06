@@ -161,9 +161,11 @@ float AnimalUnit::go(int step)
 	MusicHelper::playEffect(this->move_sound, false);
 	float time = Config::animalNormalMoveTime;
 	CCArray *listGo = CCArray::create();
+	map->getNextLocationsInWay(location,step);
 	CCPointArray* next = map->getNextWay();
 	for(int i = 0; i < step; i++)
 	{
+		CCLOG("list go index = %d, point = %f, %f",i,next->getControlPointAtIndex(i).x,next->getControlPointAtIndex(i).y);
 		listGo->addObject(CCMoveTo::create(time, next->getControlPointAtIndex(i)));
 	}
 	CCFiniteTimeAction *moveAction = CCSequence::create(listGo);

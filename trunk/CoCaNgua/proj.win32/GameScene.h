@@ -28,7 +28,7 @@ public:
 	//release lock
 	//void releaseLockUser();
 private:	
-	int gameType;
+	//CC_SYNTHESIZE(int, gameType, GameType);
 	bool isCalledDice;	
 	
 	//dice

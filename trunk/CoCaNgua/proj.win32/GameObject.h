@@ -45,6 +45,7 @@ public:
 	//release lock
 	void releaseLockUser();
 private:
+	int gameType;
 	//animals
 	CC_SYNTHESIZE_READONLY(Animals *, animal0, Animal0);
 	CC_SYNTHESIZE_READONLY(Animals *, animal1, Animal1);

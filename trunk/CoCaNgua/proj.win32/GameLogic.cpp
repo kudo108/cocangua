@@ -117,7 +117,7 @@ float GameLogic::goCallback(GameObject* gameObject, int tag)
 }
 void GameLogic::selectCallback(GameObject* gameObject)
 {
-	
+	CCLOG("select by ClassicGame");
 	if(!gameObject->canSelectUnit())
 	{
 		MusicHelper::playEffect(MusicHelper::btWrong,false);
