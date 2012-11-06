@@ -2,7 +2,7 @@
 #include "MusicHelper.h"
 
 
-float GameLogic::goCallback(GameObject* gameObject)
+float GameLogic::goCallback(GameObject* gameObject, int tag)
 {
 	//bool holdCurrentTurn = false;
 	if (gameObject->getCurrentSelectUnit()==NULL) return -1.0f;
@@ -18,6 +18,7 @@ float GameLogic::goCallback(GameObject* gameObject)
 
 	//get current select unit
 	AnimalUnit* unit = gameObject->getCurrentSelectUnit();
+	
 	//neu o trong chuong + ra quan dc=> ra quan
 	if(unit->isOnInitLocation())
 	{
@@ -54,10 +55,12 @@ float GameLogic::goCallback(GameObject* gameObject)
 	{
 		if(unit->getPathWent() != 56)
 		{
-			int step = gameObject->getStepFromRollResult();
+			
+			int step = gameObject->getStepFromRollResult(tag);
+			CCLOG("Go with tag = %d, step = %d",tag,step);
 			if(unit->getPathWent() + step <= 56) //neu di thi ko qua chuong
 			{
-				int check = gameObject->havingUnitOnWay(step);
+			int check = gameObject->havingUnitOnWay(step);
 				if(check < 16)//khong co hoac co con o cuoi
 				{
 					if(check >= 0)// co con o cuoi
@@ -91,6 +94,7 @@ float GameLogic::goCallback(GameObject* gameObject)
 			{
 				return -1.0f;
 			}
+			
 		}else // dung truoc cua chuong
 		{
 			int nextStep = unit->getFinishStep();
@@ -122,6 +126,7 @@ void GameLogic::selectCallback(GameObject* gameObject)
 	AnimalUnit* unit = gameObject->getCurrentSelectUnit();
 	//clear another lightup
 	gameObject->deleteAllLightUpWay();
+	gameObject->removeButtonGo();
 
 	if(unit->getTeam() != gameObject->getCurrentTurn())
 	{
@@ -145,13 +150,13 @@ void GameLogic::selectCallback(GameObject* gameObject)
 			if(unluckyUnit == NULL)// khong bi con nao chan
 			{
 				//gameObject->lightUpWay(unit->getBornLocation());
-				gameObject->createButtonGo(unit->getBornLocation());
+				gameObject->createButtonGo(unit->getBornLocation(),0);
 			}else// co con chan
 			{
 				if(unluckyUnit->getTeam()->getTeamNo() != unit->getTeam()->getTeamNo())//khong cung team
 				{
 					//gameObject->lightUpWay(unit->getBornLocation());
-					gameObject->createButtonGo(unit->getBornLocation());
+					gameObject->createButtonGo(unit->getBornLocation(),0);
 				}else
 				{//khong di dc
 				}
@@ -163,45 +168,48 @@ void GameLogic::selectCallback(GameObject* gameObject)
 		CCLog("Check: Unit is on way");
 		if(unit->getPathWent() != 56)
 		{
-			int step = gameObject->getStepFromRollResult();
-			if(unit->getPathWent() + step <= 56) //neu di thi ko qua chuong
+			for(int tag = 1; tag <=3; tag ++)
 			{
-				gameObject->getMap()->getNextLocationsInWay(unit->getLocation(), step);
-				int check = gameObject->havingUnitOnWay(step);
-				CCLog("Check: havingUnitOnWay = %d",check);
-				if(check < 16) // ko co hoac co 1 con o cuoi cung
+				int step = gameObject->getStepFromRollResult(tag);
+				if(unit->getPathWent() + step <= 56) //neu di thi ko qua chuong
 				{
-					if(check >=0) // co con cuoi cung
+					gameObject->getMap()->getNextLocationsInWay(unit->getLocation(), step);
+					int check = gameObject->havingUnitOnWay(step);
+					CCLog("Check: havingUnitOnWay = %d",check);
+					if(check < 16) // ko co hoac co 1 con o cuoi cung
 					{
-						if(gameObject->getUnitByTag(check)->getTeam()->getTeamNo() == unit->getTeam()->getTeamNo())//cung team
-						{// => ko di dc => khong light up
-						}else//light up
+						if(check >=0) // co con cuoi cung
 						{
-							CCPointArray *next = gameObject->getMap()->getNextWay();
+							if(gameObject->getUnitByTag(check)->getTeam()->getTeamNo() == unit->getTeam()->getTeamNo())//cung team
+							{// => ko di dc => khong light up
+							}else//light up
+							{
+								CCPointArray *next = gameObject->getMap()->getNextWay();
+								for(int i = 0; i < step-1; i++)
+								{
+									gameObject->lightUpWay(next->getControlPointAtIndex(i));
+								}
+								//create Go button
+								gameObject->createButtonGo(next->getControlPointAtIndex(step-1),tag);
+							}
+						}
+						else//khong co con nao
+						{
+							CCPointArray * next = gameObject->getMap()->getNextWay();
 							for(int i = 0; i < step-1; i++)
 							{
 								gameObject->lightUpWay(next->getControlPointAtIndex(i));
 							}
-							//create Go button
-							gameObject->createButtonGo(next->getControlPointAtIndex(step-1));
+							gameObject->createButtonGo(next->getControlPointAtIndex(step-1),tag);
 						}
 					}
-					else//khong co con nao
-					{
-						CCPointArray * next = gameObject->getMap()->getNextWay();
-						for(int i = 0; i < step-1; i++)
-						{
-							gameObject->lightUpWay(next->getControlPointAtIndex(i));
-						}
-						gameObject->createButtonGo(next->getControlPointAtIndex(step-1));
+					else 
+					{// co qua nhieu
+						//khong light up
 					}
+				}else// neu di se bi qua chuong dich-> khong cho di
+				{
 				}
-				else 
-				{// co qua nhieu
-					//khong light up
-				}
-			}else// neu di se bi qua chuong dich-> khong cho di
-			{
 			}
 		} else
 		{// dung truoc cong finish
@@ -213,7 +221,7 @@ void GameLogic::selectCallback(GameObject* gameObject)
 							!gameObject->havingUnitOnFinish(teamNo, nextStep))
 				{
 					//gameObject->lightUpWay(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
-					gameObject->createButtonGo(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
+					gameObject->createButtonGo(gameObject->getMap()->getFinishLocation(teamNo,nextStep),0);
 				}
 			}
 		}

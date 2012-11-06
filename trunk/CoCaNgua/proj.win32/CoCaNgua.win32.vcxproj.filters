@@ -25,6 +25,12 @@
     <Filter Include="source\scene">
       <UniqueIdentifier>{34ce8469-8b76-41dc-9f8c-2556f101e5b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\object\GameLogic">
+      <UniqueIdentifier>{e2920856-70fd-42df-8596-c60aff1a9df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Object\GameLogic">
+      <UniqueIdentifier>{ad653936-96a8-487b-ba4c-f9b217e7f73e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico">
@@ -97,11 +103,14 @@
     <ClInclude Include="GameObject.h">
       <Filter>include\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic.h">
-      <Filter>include\Object</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>include\Object\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="RacingGameLogic.h">
+      <Filter>include\Object\GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +172,10 @@
       <Filter>source\object</Filter>
     </ClCompile>
     <ClCompile Include="GameLogic.cpp">
-      <Filter>source\object</Filter>
+      <Filter>source\object\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="RacingGameLogic.cpp">
+      <Filter>source\object\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

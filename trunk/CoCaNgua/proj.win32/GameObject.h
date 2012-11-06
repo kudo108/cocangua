@@ -18,7 +18,7 @@ public:
 	bool canInitFromRollResult();
 	bool canContinueRollFromRollResult();
 	bool canFinishFromRollResult();
-	int getStepFromRollResult();
+	int getStepFromRollResult(int TAG);
 	bool canSelectUnit();
 
 	//amination function
@@ -38,7 +38,7 @@ public:
 	void resetCurrentUnit();
 	
 	//buttonGo
-	void createButtonGo(CCPoint location);
+	void createButtonGo(CCPoint location, int tag);
 	void removeButtonGo();
 	void buttonGoCallback(CCObject* sender);
 
@@ -73,7 +73,8 @@ private:
 	CC_SYNTHESIZE(bool, lockUser, LockUser);
 
 	//button Go
-	CC_SYNTHESIZE(CCMenu*, buttonGo, ButtonGo);
+	CC_SYNTHESIZE_RETAIN(CCArray*, buttonGoArray, ButtonGoArray);
+	//CC_SYNTHESIZE(CCMenu*, buttonGo, ButtonGo);
 	CC_SYNTHESIZE(CCMenuItemSprite*, buttonGoItem, ButtonGoItem);
 	CC_SYNTHESIZE(CCAction*, buttonGoAction, ButtonGoAction);
 
