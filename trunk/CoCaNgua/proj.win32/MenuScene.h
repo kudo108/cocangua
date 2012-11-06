@@ -18,6 +18,7 @@ private:
 	void menuOptionCallback(CCObject* sender);
 	void menuExitCallback(CCObject* sender);
 	void menuAIGameCallback(CCObject* sender);
+	void menuRacingGameCallback(CCObject* sender);
 };
 
 #endif

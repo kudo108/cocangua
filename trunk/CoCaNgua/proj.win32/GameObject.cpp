@@ -162,6 +162,15 @@ void GameObject::changeTurn()
 }
 void GameObject::lightUpWay(CCPoint point)
 {
+	//check for already light up
+	for(unsigned i = 0; i < lightupArray->count(); i++)
+	{
+		CCSprite * sprite = (CCSprite*) lightupArray->objectAtIndex(i);
+		if(sprite->getPosition().equals(point)) //already light up
+		{
+			return;
+		}
+	}
 	CCSprite* sprite = CCSprite::create(Config::lightup_way_init_image);
 	sprite->setPosition(point);
 	sprite->runAction((CCAction*)lightupAction->copy());
