@@ -139,21 +139,21 @@ void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
-	gameScene->setTag(1);//classic
+	Config::gameType = CLASSIC;//classic
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
-	gameScene->setTag(2);//modern
+	Config::gameType = CLASSIC;//modern
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
-	gameScene->setTag(3);//AI
+	Config::gameType = CLASSIC;//AI
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
@@ -189,7 +189,7 @@ void MenuScene::menuRacingGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
-	gameScene->setTag(4);//racing
+	Config::gameType = RACING;//racing
 	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 

@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "GameScene.h"
 #include "GameLogic.h"
+#include "RacingGameLogic.h"
 
 using namespace cocos2d;
 
@@ -82,7 +83,22 @@ void GameObject::buttonGoCallback(CCObject* sender)
 {
 	int tag = ((CCMenuItemSprite*)sender)->getTag();
 	CCLOG("buttonGoCallback with tag = %d",tag);
-	float time = GameLogic::goCallback(this,tag);
+	float time ;//= GameLogic::goCallback(this,tag);
+	switch (Config::gameType)
+	{
+	case CLASSIC:
+		time = GameLogic::goCallback(this,tag);
+		break;
+	case MODERN:
+		break;
+	case AI:
+		break;
+	case RACING:
+		time = RacingGameLogic::goCallback(this,tag);
+		break;
+	default:
+		break;
+	}
 	CCLog("wait time = %f",time);
 	if (time > 0.0f)
 	{
