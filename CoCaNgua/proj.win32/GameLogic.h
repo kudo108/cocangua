@@ -8,7 +8,7 @@ class GameLogic
 public:
 	static float goCallback(GameObject *gameObject, int tag);
 	static void selectCallback(GameObject *gameObject);
-private:
+
 	static void checkForChangeTurn(GameObject *gameObject);
 };
 

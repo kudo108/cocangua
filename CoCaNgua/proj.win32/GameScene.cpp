@@ -15,7 +15,13 @@ bool GameScene::init()
 	if(! CCScene::init() ) return false;
 
 	isCalledDice = FALSE;
-	int gameType = -1;
+	int gameType = this->getTag();
+	/************GameType*****
+	* 1 - classic
+	* 2 - Modern
+	* 3 - AI
+	* 4 - Racing
+	*************************/
 	
 	gameObject = new GameObject(this);
 	//gameLogic = new GameLogic(gameObject);

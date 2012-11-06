@@ -1,10 +1,10 @@
 #pragma once
-#include "gamelogic.h"
-class RacingGameLogic :
-	public GameLogic
+#include "GameLogic.h"
+
+class RacingGameLogic : public GameLogic
 {
 public:
-	RacingGameLogic(void);
-	~RacingGameLogic(void);
+	static float goCallback(GameObject *gameObject, int tag);
+	static void selectCallback(GameObject *gameObject);
 };
 

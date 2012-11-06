@@ -27,7 +27,7 @@ bool MenuScene::init()
 	
 	//
 
-	int jump=40;
+	//int jump=40;
 	//get window size
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -48,7 +48,7 @@ bool MenuScene::init()
 										menu_selector(MenuScene::menuClassicGameCallback));
 
 	pClassicGameButton->setFontSizeObj(objectFontSize);
-	pClassicGameButton->setPosition(ccp(size.width / 2, size.height/2 + 3.5*jump));
+//	pClassicGameButton->setPosition(ccp(size.width / 2, size.height/2 + 3.5*jump));
 	menuArray->addObject(pClassicGameButton);
 	// Modern Game
 	CCMenuItemFont* pModernGameButton = CCMenuItemFont::create(
@@ -58,7 +58,7 @@ bool MenuScene::init()
 
 	pModernGameButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pModernGameButton);
-	pModernGameButton->setPosition(ccp(size.width / 2, size.height/2 + 2.5*jump));
+//	pModernGameButton->setPosition(ccp(size.width / 2, size.height/2 + 2.5*jump));
 	// AI game
 	CCMenuItemFont* pAIGameButton = CCMenuItemFont::create(
 										"AI Game",
@@ -67,7 +67,18 @@ bool MenuScene::init()
 
 	pAIGameButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pAIGameButton);
-	pAIGameButton->setPosition(ccp(size.width / 2, size.height/2 + 1.5*jump));
+//	pAIGameButton->setPosition(ccp(size.width / 2, size.height/2 + 1.5*jump));
+
+	//Racing Game
+	CCMenuItemFont* pRacingGameButton = CCMenuItemFont::create(
+										"Racing Game",
+										this,
+										menu_selector(MenuScene::menuRacingGameCallback));
+
+	pRacingGameButton->setFontSizeObj(objectFontSize);
+	menuArray->addObject(pRacingGameButton);
+	//pRacingGameButton->setPosition(ccp(size.width / 2, size.height/2 + 0.5*jump));
+
 	//Load saved game
 	CCMenuItemFont* pLoadGameButton = CCMenuItemFont::create(
 										"Load Game",
@@ -76,7 +87,7 @@ bool MenuScene::init()
 
 	pLoadGameButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pLoadGameButton);
-	pLoadGameButton->setPosition(ccp(size.width / 2, size.height/2 + 0.5*jump));
+	//pLoadGameButton->setPosition(ccp(size.width / 2, size.height/2 - 0.5*jump));
 	//Option
 	CCMenuItemFont* pOptionButton = CCMenuItemFont::create(	
 										"Option",
@@ -84,7 +95,7 @@ bool MenuScene::init()
 										menu_selector(MenuScene::menuOptionCallback));
 	pOptionButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pOptionButton);
-	pOptionButton->setPosition(ccp(size.width / 2, size.height/2 - 0.5*jump));
+	//pOptionButton->setPosition(ccp(size.width / 2, size.height/2 - 1.5*jump));
 	//About
 	CCMenuItemFont* pAboutButton = CCMenuItemFont::create(
 										"About",
@@ -93,7 +104,7 @@ bool MenuScene::init()
 
 	pAboutButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pAboutButton);
-	pAboutButton->setPosition(ccp(size.width / 2, size.height/2 - 1.5*jump));
+	//pAboutButton->setPosition(ccp(size.width / 2, size.height/2 - 2.5*jump));
 	//help
 	CCMenuItemFont* pHelpButton = CCMenuItemFont::create(
 										"Help",
@@ -102,7 +113,7 @@ bool MenuScene::init()
 
 	pHelpButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pHelpButton);
-	pHelpButton->setPosition(ccp(size.width / 2, size.height/2 - 2.5*jump));
+	//pHelpButton->setPosition(ccp(size.width / 2, size.height/2 - 3.5*jump));
 	//Exit
 	CCMenuItemFont* pExitButton = CCMenuItemFont::create(
 										"Exit",
@@ -111,12 +122,14 @@ bool MenuScene::init()
 
 	pExitButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pExitButton);
-	pExitButton->setPosition(ccp(size.width / 2, size.height/2 - 3.5*jump));
+	//pExitButton->setPosition(ccp(size.width / 2, size.height/2 - 4.5*jump));
 	
 
 	// Create menu, it's an autorelease object
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
-	pMenu->setPosition(CCPointZero);
+	//pMenu->setPosition(CCPointZero);
+	pMenu->alignItemsVerticallyWithPadding(1.0);
+	pMenu->setPosition(ccp(size.width/2,size.height/2));
 	this->addChild(pMenu);
 
 	return true;
@@ -125,16 +138,22 @@ bool MenuScene::init()
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	CCDirector::sharedDirector()->replaceScene(GameScene::create());
+	GameScene *gameScene = GameScene::create();
+	gameScene->setTag(1);//classic
+	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	GameScene *gameScene = GameScene::create();
+	gameScene->setTag(2);//modern
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	GameScene *gameScene = GameScene::create();
+	gameScene->setTag(3);//AI
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
@@ -166,6 +185,12 @@ void MenuScene::menuExitCallback(CCObject* sender)
 		CCDirector::sharedDirector()->end();
 	}
 }
-
+void MenuScene::menuRacingGameCallback(CCObject* sender)
+{
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	GameScene *gameScene = GameScene::create();
+	gameScene->setTag(4);//racing
+	CCDirector::sharedDirector()->replaceScene(GameScene::create());
+}
 
 #endif
