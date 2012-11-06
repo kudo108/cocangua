@@ -18,7 +18,9 @@ GameObject::GameObject(CCNode* _parent)
 	
 	currentTurn=animal0;
 	currentSelectUnit = NULL;
-	buttonGo = NULL;
+	//buttonGo = NULL;
+	buttonGoArray = CCArray::create();
+	buttonGoArray->retain();
 	//dice
 	resetDice();
 	lockDice = false;
@@ -78,7 +80,9 @@ GameObject::GameObject(CCNode* _parent)
 
 void GameObject::buttonGoCallback(CCObject* sender)
 {
-	float time = GameLogic::goCallback(this);
+	int tag = ((CCMenuItemSprite*)sender)->getTag();
+	CCLOG("buttonGoCallback with tag = %d",tag);
+	float time = GameLogic::goCallback(this,tag);
 	CCLog("wait time = %f",time);
 	if (time > 0.0f)
 	{
@@ -93,34 +97,42 @@ void GameObject::releaseLockUser()
 {
 	setLockUser(false);
 }
-void GameObject::createButtonGo(CCPoint location)
+void GameObject::createButtonGo(CCPoint location,  int tag)
 {
+	/*
 	if(buttonGo != NULL)
 	{
-		CCLog("Error, already have a go button");
+		CCLog("ERROR: already have a go button");
 		return;
 	}
-	CCLog("create button Go");
+	*/
+	
 	CCSprite* buttonGoSprite = CCSprite::create(Config::lightup_go_init_image);
 	buttonGoSprite->runAction(buttonGoAction);
 	buttonGoItem = CCMenuItemSprite::create(buttonGoSprite,buttonGoSprite,buttonGoSprite,
 		this,menu_selector(GameObject::buttonGoCallback));
 	buttonGoItem->setPosition(location);
-
-	buttonGo = CCMenu::createWithItem(buttonGoItem);
+	buttonGoItem->setTag(tag);
+	CCMenu* buttonGo = CCMenu::createWithItem(buttonGoItem);
 	buttonGo->setPosition(CCPointZero);
+	buttonGo->setTag(tag);
+	buttonGoArray->addObject(buttonGo);
 	buttonGo->retain();
 	parent->addChild(buttonGo);
+	CCLog("create button Go with tag = %d", buttonGo->getTag());
 }
 void GameObject::removeButtonGo()
 {
-	if(buttonGo != NULL)
+	//if(buttonGo != NULL)
+	for(unsigned int i = 0; i < buttonGoArray->count(); i++)
 	{
-		CCLog("remove button Go");
+		CCMenu* buttonGo = (CCMenu*) buttonGoArray->objectAtIndex(i);
+		//CCLog("remove button Go");
 		buttonGo->removeFromParentAndCleanup(true);
-		buttonGo->release();
-		buttonGo=NULL;
+		//buttonGo->release();
+		//buttonGo=NULL;
 	}
+	buttonGoArray->removeAllObjects();
 }
 void GameObject::changeTurn()
 {
@@ -247,23 +259,35 @@ bool GameObject::canContinueRollFromRollResult()
 bool GameObject::canInitFromRollResult()
 {
 	//kiem tra thu ket qua xuc xac la k1 va k2 thi co ra quan dc ko?
+	//if(diceResult1 == 1 || diceResult1 == 6) return true;
+	//if(diceResult2 == 1 || diceResult2 == 6) return true;
+	
 	if(diceResult1==diceResult2 && diceResult1 != 0) return true;
 	if(diceResult1==1 && diceResult2 == 6) return true;
 	if(diceResult1==6 && diceResult2 == 1) return true;
+	
 	return false;
 }
 bool GameObject::canFinishFromRollResult()
 {
+	return canInitFromRollResult();
+	/*
 	if(diceResult1 == diceResult2 && diceResult1>0) return true;
 	if(diceResult1==1 && diceResult2 == 6) return true;
 	if(diceResult1==6 && diceResult2 == 1) return true;
 	return false;
+	*/
 }
-int GameObject::getStepFromRollResult()
+int GameObject::getStepFromRollResult(int TAG)
 {
+	if(TAG==1) return diceResult1;
+	if(TAG==2) return diceResult2;
+	else return diceResult1+diceResult2;
+	/*
 	//neu ra 1 con giong nhau thi dc di = gia tri 1 con + dc them luot
 	if(diceResult1 == diceResult2) return diceResult1;
 	return diceResult1+diceResult2;
+	*/
 }
 bool GameObject::canSelectUnit()
 {

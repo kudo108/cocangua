@@ -343,7 +343,7 @@ void GameScene::buttonSkipCallback(CCObject* sender)
 	{
 		gameObject->unSelect();
 		gameObject->deleteAllLightUpWay();
-	
+		gameObject->removeButtonGo();
 		gameObject->resetCurrentUnit();
 		gameObject->setLockDice(false);
 		MusicHelper::playEffect(MusicHelper::btSkip, false);

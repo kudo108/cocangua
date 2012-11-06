@@ -56,4 +56,4 @@ const char* Config::select_init_image		= "/image/select/select1.png";
 
 
 int Config::isExploring=0;
-float Config::animalNormalMoveTime = 0.3f;//s
+float Config::animalNormalMoveTime = 0.2f;//s
