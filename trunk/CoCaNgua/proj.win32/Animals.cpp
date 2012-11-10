@@ -1,4 +1,5 @@
 #include "Animals.h"
+#include "MusicHelper.h"
 /*
 Chua thong tin ve 1 phe
 */
@@ -24,6 +25,10 @@ Animals::Animals(int offset, CCNode* _p, MapLocation *_m)
 }
 
 
+Animals::Animals(){
+	
+}
+
 Animals::~Animals(void)
 {
 	delete unit0;
@@ -32,6 +37,9 @@ Animals::~Animals(void)
 	delete unit3;
 }
 
+void Animals::afterDie(){
+	//MusicHelper::playEffect(unit0->die_sound, false);
+}
 
 void Animals::increasePointByGo(int step)
 {
@@ -75,4 +83,24 @@ bool Animals::isFinished()
 void Animals::increaseFinished()
 {
 	unitFinished++;
+}
+
+AnimalUnit *Animals::getUnit(int index){
+	switch(index){
+	case 0:
+		return unit0;
+		break;
+	case 1:
+		return unit1;
+		break;
+	case 2:
+		return unit2;
+		break;
+	case 3:
+		return unit3;
+		break;
+	default:
+		return unit0;
+		break;
+	}
 }

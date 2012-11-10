@@ -157,6 +157,8 @@
     <ClInclude Include="RacingGameLogic.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RuleScene.h" />
+    <ClInclude Include="SaveLoad.h" />
+    <ClInclude Include="SaveLoadScene.h" />
     <ClInclude Include="TrailerScene.h" />
     <ClInclude Include="UnderBuildingScene.h" />
   </ItemGroup>
@@ -180,6 +182,8 @@
     <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="RacingGameLogic.cpp" />
     <ClCompile Include="RuleScene.cpp" />
+    <ClCompile Include="SaveLoad.cpp" />
+    <ClCompile Include="SaveLoadScene.cpp" />
     <ClCompile Include="TrailerScene.cpp" />
     <ClCompile Include="UnderBuildingScene.cpp" />
   </ItemGroup>

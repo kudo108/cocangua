@@ -13,6 +13,7 @@ class AnimalUnit
 {
 public:
 	AnimalUnit(Animals* team, CCNode *parent,CCPoint _initLocation, MapLocation *_m);
+	AnimalUnit(void);
 	~AnimalUnit(void);
 	float born();//tu chuong ra duong
 	float go(int step);//di them dc step buoc
@@ -24,17 +25,18 @@ public:
 	bool isOnInitLocation();//o trong chuong
 	bool isOnWay();//dang o tren duong di
 	CCPoint getBornLocation();
+	CCPoint getMileStone(CCPoint point1, CCPoint point2, float deltaX, float deltaY);
 	void printOutDebugInfo();
 	void playSelectSound();
 private:
 	CC_SYNTHESIZE_READONLY(Animals* ,team, Team);
-	bool onWay;
-	CC_SYNTHESIZE_READONLY(int, finishedStep, FinishStep);
-	CC_SYNTHESIZE_READONLY(CCPoint, location, Location);//vi tri hien tai
-	CC_SYNTHESIZE_READONLY(CCPoint, initLocation, InitLocation);//vi tri trong chuong
-	CC_SYNTHESIZE_READONLY(int, path_went, PathWent);//doan duong da di
+	CC_SYNTHESIZE(bool, onWay, OnWay);
+	CC_SYNTHESIZE(int, finishedStep, FinishStep);
+	CC_SYNTHESIZE(CCPoint, location, Location);//vi tri hien tai
+	CC_SYNTHESIZE(CCPoint, initLocation, InitLocation);//vi tri trong chuong
+	CC_SYNTHESIZE(int, path_went, PathWent);//doan duong da di
 
-	CCNode *parent;
+	CC_SYNTHESIZE(CCNode*, parent, Parent);
 	CC_SYNTHESIZE_READONLY(CCSprite*, sprite, Sprite);
 	CC_SYNTHESIZE_READONLY(CCMenuItemSprite*, button,Button);
 	CC_SYNTHESIZE_READONLY(CCAction*, danceAction, DanceAction);

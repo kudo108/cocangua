@@ -10,6 +10,7 @@ class GameObject : public CCObject
 {
 public:
 	GameObject(CCNode* _parent);
+	GameObject(void);
 	~GameObject(void);
 
 	//game function
@@ -44,8 +45,10 @@ public:
 
 	//release lock
 	void releaseLockUser();
+
+	Animals *getAnimal(int index);
 private:
-	int gameType;
+	CC_SYNTHESIZE(int, gameType, GameType);
 	//animals
 	CC_SYNTHESIZE_READONLY(Animals *, animal0, Animal0);
 	CC_SYNTHESIZE_READONLY(Animals *, animal1, Animal1);
@@ -54,10 +57,10 @@ private:
 	
 	CC_SYNTHESIZE_READONLY(MapLocation*, map, Map);
 
-	CC_SYNTHESIZE_READONLY(Animals *, currentTurn,CurrentTurn);
+	CC_SYNTHESIZE(Animals *, currentTurn,CurrentTurn);
 	CC_SYNTHESIZE(AnimalUnit*, currentSelectUnit, CurrentSelectUnit);
 	
-	CCNode* parent;
+	CC_SYNTHESIZE(CCNode*, parent, Parent);
 
 	//amination
 	CC_SYNTHESIZE(CCAction*, selectAction, SelectAction);

@@ -36,7 +36,6 @@ bool GameWinScene::init(){
 	//load animation
 	//gangnam
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::fireWorks_plist);
-//	CCSpriteBatchNode *gameWinSpriteSheet =  CCSpriteBatchNode::create(Config::fireWorks_texture);
 	char fn[128];
 	CCAnimation* gameWinAnimation =CCAnimation::create();
 	

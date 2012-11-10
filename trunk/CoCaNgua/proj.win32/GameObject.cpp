@@ -79,6 +79,9 @@ GameObject::GameObject(CCNode* _parent)
 	
 }
 
+GameObject::GameObject(){
+}
+
 void GameObject::buttonGoCallback(CCObject* sender)
 {
 	int tag = ((CCMenuItemSprite*)sender)->getTag();
@@ -403,4 +406,24 @@ bool GameObject::havingUnitOnFinish(int teamNo, int step)
 		if(unit->getLocation().equals(p)) return true;
 	}
 	return false;
+}
+
+Animals *GameObject::getAnimal(int index){
+	switch(index){
+	case 0:
+		return animal0;
+		break;
+	case 1:
+		return animal1;
+		break;
+	case 2:
+		return animal2;
+		break;
+	case 3:
+		return animal3;
+		break;
+	default:
+		return animal0;
+		break;
+	}
 }

@@ -11,6 +11,7 @@
 #include "UnderBuildingScene.h"
 #include "MapLocation.h"
 #include "MusicHelper.h"
+#include "SaveLoadScene.h"
 
 using namespace cocos2d;
 
@@ -23,10 +24,6 @@ bool MenuScene::init()
 
 		MusicHelper::playBackgroundMusic(MusicHelper::backgroundMusic, BG_MUSIC);
 	}
-	//
-	
-	//
-
 	//int jump=40;
 	//get window size
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -146,7 +143,7 @@ void MenuScene::menuModernGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	GameScene *gameScene = GameScene::create();
-	Config::gameType = CLASSIC;//modern
+	Config::gameType = MODERN;//modern
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
@@ -159,7 +156,7 @@ void MenuScene::menuAIGameCallback(CCObject* sender)
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
+	CCDirector::sharedDirector()->replaceScene(SaveLoadScene::create());
 }
 void MenuScene::menuAboutCallback(CCObject* sender)
 {
@@ -179,9 +176,10 @@ void MenuScene::menuOptionCallback(CCObject* sender)
 void MenuScene::menuExitCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	if(MessageBox( NULL, L"Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+	if(MessageBox( NULL, L"Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2 ) == IDYES){
 		this->cleanup();
 		this->autorelease();
+		MusicHelper::end();
 		CCDirector::sharedDirector()->end();
 	}
 }

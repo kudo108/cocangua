@@ -25,8 +25,13 @@ bool GameScene::init()
 	* 3 - AI
 	* 4 - Racing
 	*************************/
+	//gameObject = &game;
 	
 	gameObject = new GameObject(this);
+	int currentTurn = 0;
+	if(Config::loadGame){
+		currentTurn = loadGame();
+	}
 	//gameLogic = new GameLogic(gameObject);
 
 	if(!MusicHelper::getHasTurnOffMusic()){
@@ -59,15 +64,7 @@ bool GameScene::init()
 	int fontSize=Config::objectFontSize;
 	int jump =60;
 	//demo game win
-	/*
-	CCMenuItemFont* pButtonGameWin = CCMenuItemFont::create(
-										"GameWin(demo)",
-										this,
-										menu_selector(GameScene::gameWinCallback));
-	pButtonGameWin->setFontSizeObj(fontSize/1.5);
-	menuArray->addObject(pButtonGameWin);
-	pButtonGameWin->setPosition(ccp(size.width-100, 4*jump));
-	*/
+
 	//save
 	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
 										"Save",
@@ -110,14 +107,26 @@ bool GameScene::init()
 	
     diceAnim->setDelayPerUnit(0.01f);
      //create sprite first frame from animation first frame
-	this->diceA = CCSprite::createWithSpriteFrameName("1.png");
+	char frame[64];
+	if(gameObject->getDiceResult1() == 0){//new game
+		sprintf(frame, "1.png");
+	}else{//load game
+		sprintf(frame, "%d.png",gameObject->getDiceResult1());
+	}
+	
+	this->diceA = CCSprite::createWithSpriteFrameName(frame);
 	this->diceA->retain();
 
     diceAminationAction = CCRepeatForever::create(CCAnimate::create(diceAnim));
 	diceAminationAction->setOriginalTarget(diceA);
 	diceAminationAction->retain();
 	 //create sprite first frame from animation first frame
-	this->diceB = CCSprite::createWithSpriteFrameName("1.png");
+	if(gameObject->getDiceResult2() == 0){//new game
+		sprintf(frame, "1.png");
+	}else{//load game
+		sprintf(frame, "%d.png",gameObject->getDiceResult2());
+	}
+	this->diceB = CCSprite::createWithSpriteFrameName(frame);
 	this->diceB->retain();
 	
     //xuc xac button 1
@@ -129,17 +138,6 @@ bool GameScene::init()
 	diceButton2->setPosition(ccp(size.width-100+40, size.height-60));
 	menuArray->addObject(diceButton2);
 
-	//create button go
-	/*
-	CCMenuItemFont* pButtonGo = CCMenuItemFont::create(
-										"Go",
-										this,
-										menu_selector(GameScene::buttonGoCallback));
-	pButtonGo->setFontSizeObj(Config::objectFontSize);
-	pButtonGo->setPosition(ccp(size.width-100, size.height*2/3+20));
-	pButtonGo->setColor(ccORANGE);
-	menuArray->addObject(pButtonGo);
-	*/
 	//create button bo luot
 	CCMenuItemFont* pButtonSkip = CCMenuItemFont::create(
 										"Skip",
@@ -199,20 +197,32 @@ bool GameScene::init()
 	team3PointLable->setColor(ccGREEN);
 	menuArray->addObject(team3PointLable);
 	team3PointLable->retain();
-	
-	//team turn image
-	gameObject->getAnimal0()->setupTeamSpriteToParent();
 
+	//team turn image
+	gameObject->getAnimal(currentTurn)->setupTeamSpriteToParent();
+	
 	// Create menu, it's an autorelease object
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
 	pMenu->setPosition(CCPointZero);
 	this->addChild(pMenu,1);//ngoai cung,tuong tac
+
+	/*CCLabelTTF *label = CCLabelTTF::labelWithString("TURN", "Helvetica", 40);
+	label->setPosition(ccp(100,100));
+	label->setColor(ccRED);
+	CCFadeTo *fadeIn = CCFadeTo::create(0.5f, 0.3f);
+	CCFadeTo *fadeOut = CCFadeTo::create(0.5f, 1.0f);
+	CCFiniteTimeAction *action = CCSequence::create(fadeIn, fadeOut,NULL);
+	CCRepeat *repeat = CCRepeat::create(action, 100);
+	label->runAction(repeat);*/
+
+	//this->addChild(label, 1000);
 	
 	//update after called
 	this->schedule(schedule_selector(GameScene::update));
 
 	//random
 	srand ( time(NULL));
+
 	return true;
 }
 
@@ -242,18 +252,45 @@ void GameScene::saveGameCallback(CCObject *sender)
 	//save game
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	MusicHelper::stopAllEffect();
+
+	Data data ;
+	data.gameType = Config::gameType;
+	data.diceResult1 = gameObject->getDiceResult1();
+	data.diceResult2 = gameObject->getDiceResult2();
+	data.lockDice = gameObject->getLockDice();
+	data.lockUser = gameObject->getLockUser();
+	data.isCalledDice = isCalledDice;
+	for(int i = 0; i < 4; i++){
+		if(gameObject->getCurrentTurn() == gameObject->getAnimal(i)){
+			data.currentTurn = i;
+		}
+		data.point[i] = gameObject->getAnimal(i)->getPoint();
+		data.teamNo[i] = gameObject->getAnimal(i)->getTeamNo();
+		data.unitFinished[i] = gameObject->getAnimal(i)->getUnitFinished();
+		for(int j = 0; j < 4; j++){
+			data.onWay[i][j] = gameObject->getAnimal(i)->getUnit(j)->getOnWay();
+			data.finishedStep[i][j] = gameObject->getAnimal(i)->getUnit(j)->getFinishStep();
+			data.pathWent[i][j] = gameObject->getAnimal(i)->getUnit(j)->getPathWent();
+			data.location[i][j] = gameObject->getAnimal(i)->getUnit(j)->getLocation();
+		}
+	}
+	SaveLoad::saveToFile(data, Config::gameType);
+
+	MessageBox( NULL, L"Game was saved successfully",L"Save game",  MB_OK | MB_ICONINFORMATION);
 	//test
-	GameOverScene *menuScene = GameOverScene::create();
-	CCDirector::sharedDirector()->replaceScene(menuScene);
+	/*GameOverScene *menuScene = GameOverScene::create();
+	CCDirector::sharedDirector()->replaceScene(menuScene);*/
 }
 void GameScene::quitGameCallback(CCObject *sender)
 {
+	//reset load game flag
+	Config::loadGame = false;
 	//back to menu
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
-		 
 		CCDirector::sharedDirector()->replaceScene(MenuScene::create());
 		MusicHelper::stopAllEffect();
+		Config::loadGame = false;
 	}
 }
 void GameScene::ruleCallback(CCObject *sender)
@@ -281,7 +318,11 @@ void GameScene::diceCallback(CCObject *sender)
 	}
 	if(!isCalledDice)
 	{
-		MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
+		if(MusicHelper::getIdDice() == -1){
+			MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
+		}else{
+			MusicHelper::resumeEffect(MusicHelper::getIdDice());
+		}
 		isCalledDice = TRUE;
 		diceA->stopAllActions();
 		diceA->runAction( diceAminationAction);
@@ -290,7 +331,7 @@ void GameScene::diceCallback(CCObject *sender)
 		gameObject->resetDice();
 	}else
 	{
-		MusicHelper::stopEffect(MusicHelper::getIdDice());
+		MusicHelper::pauseEffect(MusicHelper::getIdDice());
 		
 		char fn[128];
 		int kq=rand()%6+1;
@@ -438,4 +479,39 @@ void GameScene::buttonSelectCallback(CCObject *sender)
 	default:
 		break;
 	}
+}
+
+int GameScene::loadGame(){
+	Data data = SaveLoad::loadFromFile(Config::gameType);
+	CCLOG("GameType : %d", data.gameType);
+	CCLOG("DiceResult1 : %d", data.diceResult1);
+	CCLOG("DiceResult2 : %d", data.diceResult2);
+	CCLOG("Location : %f %f", data.location[0][0].x, data.location[0][0].y);
+
+	Config::gameType = data.gameType;
+	gameObject->setDiceResult1(data.diceResult1);
+	gameObject->setDiceResult2(data.diceResult2);
+	gameObject->setLockDice(data.lockDice);
+	gameObject->setLockUser(data.lockUser);
+	gameObject->setCurrentTurn(gameObject->getAnimal(data.currentTurn));
+	this->setIsCalledDice(data.isCalledDice);
+		
+	for(int i = 0; i < 4; i++){
+		gameObject->getAnimal(i)->setPoint(data.point[i]);
+		gameObject->getAnimal(i)->setTeamNo(data.teamNo[i]);
+		gameObject->getAnimal(i)->setUnitFinished(data.unitFinished[i]);
+		for(int j = 0; j < 4; j++){
+			gameObject->getAnimal(i)->getUnit(j)->setOnWay(data.onWay[i][j]);
+			gameObject->getAnimal(i)->getUnit(j)->setFinishStep(data.finishedStep[i][j]);
+			gameObject->getAnimal(i)->getUnit(j)->setPathWent(data.pathWent[i][j]);
+			CCPoint loc = data.location[i][j];
+			gameObject->getAnimal(i)->getUnit(j)->setLocation(loc);
+			if(!loc.equals(gameObject->getAnimal(i)->getUnit(j)->getInitLocation())){
+				CCFiniteTimeAction *moveAction = CCMoveTo::create(0,loc);
+				gameObject->getAnimal(i)->getUnit(j)->getButton()->runAction(moveAction);
+			}
+				
+		}
+	}
+	return data.currentTurn;
 }

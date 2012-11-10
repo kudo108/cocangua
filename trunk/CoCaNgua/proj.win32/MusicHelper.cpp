@@ -159,3 +159,15 @@ void MusicHelper::stopAllEffect(){
 void MusicHelper::stopEffect(int id){
 	SimpleAudioEngine::sharedEngine()->stopEffect(id);
 }
+
+void MusicHelper::pauseEffect(int id){
+	SimpleAudioEngine::sharedEngine()->pauseEffect(id);
+}
+
+void MusicHelper::resumeEffect(int id){
+	SimpleAudioEngine::sharedEngine()->resumeEffect(id);
+}
+
+void MusicHelper::end(){
+	SimpleAudioEngine::sharedEngine()->end();
+}
