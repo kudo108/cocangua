@@ -34,6 +34,9 @@ public:
 	static int playEffect(const char* _sfx, bool loop);
 	static void stopEffect(int id);
 	static void stopAllEffect();
+	static void pauseEffect(int id);
+	static void resumeEffect(int id);
+	static void end();
 
 	const static char* backgroundMusic;
 	const static char* gameplayMusic;

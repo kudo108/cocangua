@@ -130,6 +130,10 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 	dance();
 }
 
+AnimalUnit::AnimalUnit(){
+
+}
+
 AnimalUnit::~AnimalUnit(void)
 {
 	this->sprite->release();
@@ -198,21 +202,60 @@ float AnimalUnit::finish()
 }
 void AnimalUnit::die(int step)
 {//chet, ve lai chuong
-	MusicHelper::playEffect(this->die_sound, false);
+	
 
 	float time = Config::animalNormalMoveTime*step;
 	if(step <=0)//chet do con khac born
 	{
 		time = Config::animalNormalMoveTime*2;
 	}
-	CCAction *action = CCSequence::createWithTwoActions(CCDelayTime::create(time),
-														CCMoveTo::create(0.01f,initLocation));
+
+	CCArray *arrayAction = CCArray::create();
+	arrayAction->addObject(CCDelayTime::create(time - 0.1f));
+	//CCPoint tempLocation;
+	//float deltaX = location.x - initLocation.x;
+	//float deltaY = location.y - initLocation.y;
+	//float rate = 1;
+	//button->stopAllActions();
+	//while(ccpDistance(location, initLocation) != 0){
+	//	CCLOG("Location = (%f, %f)", tempLocation.x, tempLocation.y);
+	//	tempLocation = getMileStone(location, initLocation, deltaX, deltaY);
+	//	CCActionInterval *actionMove = CCMoveTo::create(0.1f,tempLocation);
+	//	CCActionInterval *actionScale = CCScaleTo::create(0.03f, rate);
+	//	//CCAction *easeIn = CCEaseElastic::create(actionMove, 5);
+	//	arrayAction->addObject(actionScale);
+	//	arrayAction->addObject(actionMove);
+	//	location = tempLocation;
+	//	if(rate < 5){
+	//		rate*=1.5;
+	//	}else{
+	//		rate/=1.5;
+	//	}
+	//}
+	//CCActionInterval *actionTo = CCScaleTo::create(0.8f, 2.5f);
+	//CCAction *easeIn = CCEaseExponentialIn::create(actionTo);
+	
+	//CCActionInterval *actionMove = CCMoveTo::create(1.0f,initLocation);
+	//CCAction *easeIn = CCEaseExponentialIn::create(actionMove);
+	CCActionInterval *actionScaleUp = CCScaleTo::create(0.7f, 3.0f);
+	CCAction *actionMove = CCEaseElasticOut::create(CCMoveTo::create(0.5f,initLocation));
+	CCActionInterval *actionScaleDown = CCEaseExponentialIn::create(CCScaleTo::create(0.3f, 1.0f));
+	CCFiniteTimeAction *callfunc = CCCallFunc::create(button, callfunc_selector(Animals::afterDie));
+	//arrayAction->addObject(easeToMiddle);
+	//arrayAction->addObject(actionScaleUp);
+	arrayAction->addObject(actionMove);
+	arrayAction->addObject(actionScaleDown);
+	arrayAction->addObject(callfunc);
+
+	CCAction *action = CCSequence::create(arrayAction);
 	button->runAction(action);
+
 	location = initLocation;
 	path_went = 0;
 	onWay=false;
 	CCLog("Unit died");
 }
+
 void AnimalUnit::dance()
 {
 	this->sprite->runAction(danceAction);
@@ -252,4 +295,38 @@ void AnimalUnit::printOutDebugInfo()
 void AnimalUnit::playSelectSound()
 {
 	MusicHelper::playEffect(select_sound, false);
+}
+
+//go from point1 to point2, 1/10 of distance every step
+CCPoint AnimalUnit::getMileStone(CCPoint point1, CCPoint point2, float deltaX, float deltaY){
+	float deltaXX = point1.x - point2.x;
+	float deltaYY = point1.y - point2.y;
+	int factor = 2;
+	CCLOG("deltaX : %f\tdeltaY : %f", deltaX, deltaY);
+	//if(abs(deltaXX) < 5 || abs(deltaYY) < 5) return ccp(point2.x,point2.y);
+	if(deltaX > 0){
+		if(deltaY > 0){
+			return ccp(point1.x - abs(deltaX/factor), point1.y - abs(deltaY/factor));
+		}else if(deltaY < 0){
+			return ccp(point1.x - abs(deltaX/factor), point1.y + abs(deltaY/factor));
+		}else{
+			return ccp(point1.x - abs(deltaX/factor),point1.y);
+		}
+	}else if(deltaX < 0){
+		if(deltaY > 0){
+			return ccp(point1.x + abs(deltaX/factor), point1.y - abs(deltaY/factor));
+		}else if(deltaY < 0){
+			return ccp(point1.x + abs(deltaX/factor), point1.y + abs(deltaY/factor));
+		}else{
+			return ccp(point1.x + abs(deltaX/factor),point1.y);
+		}
+	}else{
+		if(deltaY > 0){
+			return ccp(point1.x, point1.y - abs(deltaY/factor));
+		}else if(deltaY < 0){
+			return ccp(point1.x, point1.y + abs(deltaY/factor));
+		}else{
+			return ccp(point2.x, point2.y);
+		}
+	}
 }

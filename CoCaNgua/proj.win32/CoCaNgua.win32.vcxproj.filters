@@ -31,6 +31,12 @@
     <Filter Include="include\Object\GameLogic">
       <UniqueIdentifier>{ad653936-96a8-487b-ba4c-f9b217e7f73e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Model">
+      <UniqueIdentifier>{8140fd65-711b-4b13-959b-e0951176a65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Model">
+      <UniqueIdentifier>{4193d016-603e-497c-bb2f-ea9e2a2b9bae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Quan\Downloads\CoCaNgua.ico">
@@ -112,6 +118,12 @@
     <ClInclude Include="RacingGameLogic.h">
       <Filter>include\Object\GameLogic</Filter>
     </ClInclude>
+    <ClInclude Include="SaveLoad.h">
+      <Filter>include\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoadScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,6 +188,12 @@
     </ClCompile>
     <ClCompile Include="RacingGameLogic.cpp">
       <Filter>source\object\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoad.cpp">
+      <Filter>source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadScene.cpp">
+      <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -67,6 +67,7 @@ public:
 	
 	//variable
 	static int gameType;
+	static bool loadGame;
 };
 
 #endif

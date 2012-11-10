@@ -3,7 +3,7 @@
 
 #include "GameObject.h"
 #include "GameLogic.h"
-
+#include "SaveLoad.h"
 using namespace cocos2d;
 
 class GameScene : public cocos2d::CCScene
@@ -21,15 +21,16 @@ public:
 	void buttonSkipCallback(CCObject *sender);
 	//void buttonGoCallback(CCObject *sender);
 	void buttonSelectCallback(CCObject *sender);
-	
+	int loadGame();
 	//test
 	//void gameOverCallback(CCObject* sender);
 	//void gameWinCallback(CCObject* sender);
 	//release lock
 	//void releaseLockUser();
 private:	
+
 	//CC_SYNTHESIZE(int, gameType, GameType);
-	bool isCalledDice;	
+	CC_SYNTHESIZE(bool, isCalledDice, IsCalledDice);	
 	
 	//dice
 	CC_SYNTHESIZE(CCSprite *, diceA, diceA);

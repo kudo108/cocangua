@@ -59,3 +59,4 @@ const char* Config::select_init_image		= "/image/select/select1.png";
 const float Config::animalNormalMoveTime = 0.2f;//s
 
 int Config::gameType = 0;
+bool Config::loadGame = false;
