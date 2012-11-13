@@ -127,7 +127,7 @@ void GameObject::createButtonGo(CCPoint location,  int tag)
 	*/
 	
 	CCSprite* buttonGoSprite = CCSprite::create(Config::lightup_go_init_image);
-	buttonGoSprite->runAction(buttonGoAction);
+	buttonGoSprite->runAction((CCAction*) buttonGoAction->copy());
 	buttonGoItem = CCMenuItemSprite::create(buttonGoSprite,buttonGoSprite,buttonGoSprite,
 		this,menu_selector(GameObject::buttonGoCallback));
 	buttonGoItem->setPosition(location);
