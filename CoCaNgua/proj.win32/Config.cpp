@@ -4,14 +4,16 @@
 const int Config::objectFontSize			= 40;
 
 //background
-const char* Config::menuBackground			= "image/background_menu.jpg";
-const char* Config::optionBackground		= "image/background_option.jpg";
-const char* Config::flashBackground			= "image/flash.png";
-const char* Config::aboutBackground			= "image/about.jpg";
-const char* Config::classicGameBackground	= "image/Background_classic.png";
-const char* Config::gameOverBackground		= "image/gameover.png";
+const char* Config::menuBackground			= "/image/background_menu.jpg";
+const char* Config::optionBackground		= "/image/background_option.jpg";
+const char* Config::flashBackground			= "/image/flash.png";
+const char* Config::aboutBackground			= "/image/about.jpg";
+const char* Config::classicGameBackground	= "/image/Background_classic.png";
+const char* Config::newGameBackground		= "/image/new-background-game.png";
+const char* Config::gameOverBackground		= "/image/gameover.png";
 const char* Config::miniMenu				= "/image/background_mini_menu.jpg";
 const char* Config::menuBorder				= "/image/picture_border.png";
+const char* Config::draw_way_image			= "/image/draw_way.png";
 
 //animals
 const char* Config::animal0_init_image		= "/image/animal/heo/heo2.png";

@@ -42,7 +42,7 @@ bool GameScene::init()
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	
 	//background
-	CCSprite* background = CCSprite::create(Config::classicGameBackground);
+	CCSprite* background = CCSprite::create(Config::newGameBackground);
     if(background)
 	{
 		//background->setScaleX(0.5859375);
@@ -50,7 +50,9 @@ bool GameScene::init()
 		background->setPosition(ccp(size.width/2-100, size.height/2));
 		this->addChild(background,-1);//uu tien (nam duoi cung)
 	}
-	
+	//draw way helper
+	gameObject->getMap()->drawWay();
+
 	//menu border
 	CCSprite* menuBorder = CCSprite::create(Config::menuBorder);
     if(menuBorder)
