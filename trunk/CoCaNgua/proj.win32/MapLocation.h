@@ -8,7 +8,7 @@ using namespace cocos2d;
 class MapLocation
 {
 public:
-	MapLocation(int winSize);
+	MapLocation(int winSize, CCNode* parent);
 	~MapLocation(void);
 	
 	void getNextLocationsInWay(CCPoint current,int step);//duong di
@@ -18,6 +18,7 @@ public:
 	int wayColision[56];
 	int finishColision[24];
 	int startColision[16];
+	void drawWay();
 private:
 	float winSize;
 	float scale;
@@ -31,7 +32,6 @@ private:
 	CCPoint finishLocation1[6];
 	CCPoint finishLocation2[6];
 	CCPoint finishLocation3[6];
-
 	CCPoint wayLocation[56];
 	CCPoint initLocation[16];
 	
@@ -41,6 +41,8 @@ private:
 	//nextWay array
 	CC_SYNTHESIZE(CCPointArray*, nextWay, NextWay);
 	void resetNextWay();
+
+	CCNode* parent;
 };
 
 #endif

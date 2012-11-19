@@ -20,6 +20,8 @@ public:
 	const static char* miniMenu;
 	const static char* menuBorder;
 	const static char* classicGameBackground;
+	const static char* newGameBackground;
+	const static char* draw_way_image;
 
 	const static char* animal1_init_image;
 	const static char* animal2_init_image;

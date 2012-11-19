@@ -9,7 +9,7 @@ using namespace cocos2d;
 GameObject::GameObject(CCNode* _parent)
 {
 	this->parent = _parent;
-	map = new MapLocation(600);
+	map = new MapLocation(600, parent);
 
 	//init animals
 	animal0 = new Animals(0,parent,map);
