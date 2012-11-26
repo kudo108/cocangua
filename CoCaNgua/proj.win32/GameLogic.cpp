@@ -42,7 +42,7 @@ float GameLogic::goCallback(GameObject* gameObject, int tag)
 				}
 			}else
 			{
-				float time =unit->born();
+				float time = unit->born();
 				checkForChangeTurn(gameObject);
 				return time;
 			}
@@ -55,7 +55,6 @@ float GameLogic::goCallback(GameObject* gameObject, int tag)
 	{
 		if(unit->getPathWent() != 56)
 		{
-			
 			int step = gameObject->getStepFromRollResult(tag);
 			CCLOG("Go with tag = %d, step = %d",tag,step);
 			if(unit->getPathWent() + step <= 56) //neu di thi ko qua chuong
@@ -117,7 +116,6 @@ float GameLogic::goCallback(GameObject* gameObject, int tag)
 }
 void GameLogic::selectCallback(GameObject* gameObject)
 {
-	CCLOG("select by ClassicGame");
 	if(!gameObject->canSelectUnit())
 	{
 		MusicHelper::playEffect(MusicHelper::btWrong,false);
@@ -217,16 +215,13 @@ void GameLogic::selectCallback(GameObject* gameObject)
 			int teamNo = unit->getTeam()->getTeamNo();
 			if(gameObject->canFinishFromRollResult())
 			{
-				if(gameObject->canFinishFromRollResult() && 
-							!gameObject->havingUnitOnFinish(teamNo, nextStep))
-				{
+				if(gameObject->canFinishFromRollResult() && !gameObject->havingUnitOnFinish(teamNo, nextStep)){
 					//gameObject->lightUpWay(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
 					gameObject->createButtonGo(gameObject->getMap()->getFinishLocation(teamNo,nextStep),0);
 				}
 			}
 		}
 	}
-	
 }
 void GameLogic::checkForChangeTurn(GameObject *gameObject)
 {
