@@ -24,6 +24,7 @@ public:
 	void explore();
 	bool isOnInitLocation();//o trong chuong
 	bool isOnWay();//dang o tren duong di
+	bool isOnStartPosition(AnimalUnit* unit, int team);//o ngay vi tri xuat phat
 	CCPoint getBornLocation();
 	CCPoint getMileStone(CCPoint point1, CCPoint point2, float deltaX, float deltaY);
 	void printOutDebugInfo();
