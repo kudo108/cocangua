@@ -26,12 +26,14 @@ bool GameScene::init()
 	* 4 - Racing
 	*************************/
 	//gameObject = &game;
-	
+	CCLog("Game type = %d", Config::gameType);
 	gameObject = new GameObject(this);
 	int currentTurn = 0;
 	if(Config::loadGame){
+		CCLog("load game");
 		currentTurn = loadGame();
 	}
+	
 	//gameLogic = new GameLogic(gameObject);
 
 	if(!MusicHelper::getHasTurnOffMusic()){
@@ -109,6 +111,7 @@ bool GameScene::init()
 	
     diceAnim->setDelayPerUnit(0.01f);
      //create sprite first frame from animation first frame
+	
 	char frame[64];
 	if(gameObject->getDiceResult1() == 0){//new game
 		sprintf(frame, "1.png");
@@ -130,8 +133,8 @@ bool GameScene::init()
 	}
 	this->diceB = CCSprite::createWithSpriteFrameName(frame);
 	this->diceB->retain();
-	
-    //xuc xac button 1
+
+	//xuc xac button 1
 	CCMenuItemSprite *diceButton1 = CCMenuItemSprite::create(diceA,diceA,diceA,this,menu_selector(GameScene::diceCallback));
 	diceButton1->setPosition(ccp(size.width-100-40, size.height-60));
 	menuArray->addObject(diceButton1);
@@ -221,12 +224,14 @@ bool GameScene::init()
 	
 	//update after called
 	this->schedule(schedule_selector(GameScene::update));
-
+	
+	
 	//random
 	srand ( time(NULL));
 
 	return true;
 }
+
 
 
 //test
@@ -331,10 +336,10 @@ void GameScene::diceCallback(CCObject *sender)
 		diceB->stopAllActions();
 		diceB->runAction((CCAction*)diceAminationAction->copy());
 		gameObject->resetDice();
-	}else
-	{
+	}
+	else{
 		MusicHelper::pauseEffect(MusicHelper::getIdDice());
-		
+
 		char fn[128];
 		int kq=rand()%6+1;
 
@@ -348,7 +353,7 @@ void GameScene::diceCallback(CCObject *sender)
 		sprintf(fn, "%d.png", kq);
 		gameObject->setDiceResult2(kq);
 		diceB->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
-
+		
 		isCalledDice =FALSE;
 		gameObject->setLockDice(true);
 		CCLog("kq xuc xac %d %d",gameObject->getDiceResult1(),gameObject->getDiceResult2());
@@ -466,6 +471,7 @@ void GameScene::buttonSelectCallback(CCObject *sender)
 	unit->printOutDebugInfo();
 	gameObject->setCurrentSelectUnit(unit);
 	//if gameType == 1 select 1, if gameType ==2 select 2
+	
 	switch(Config::gameType)
 	{
 	case CLASSIC:
@@ -474,6 +480,8 @@ void GameScene::buttonSelectCallback(CCObject *sender)
 	case MODERN:
 		break;
 	case AI:
+		if(gameObject->getCurrentSelectUnit()->getTeam()->getTeamNo() == 0)// PLAYER
+			GameLogic::selectCallback(gameObject);
 		break;
 	case RACING:
 		RacingGameLogic::selectCallback(gameObject);
@@ -484,6 +492,7 @@ void GameScene::buttonSelectCallback(CCObject *sender)
 }
 
 int GameScene::loadGame(){
+	CCLog("load game function");
 	Data data = SaveLoad::loadFromFile(Config::gameType);
 	CCLOG("GameType : %d", data.gameType);
 	CCLOG("DiceResult1 : %d", data.diceResult1);
