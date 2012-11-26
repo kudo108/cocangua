@@ -90,7 +90,7 @@ void HelpScene::loadSpriteAtCurrent()
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	if(sprite)
 	{
-		sprite->setPosition(ccp(size.width/2,size.height/2));
+		sprite->setPosition(ccp(size.width/2.0f,size.height/2.0f));
 		sprite->setScale(0.8);
 		this->addChild(sprite,cur);
 		sprite->retain();
