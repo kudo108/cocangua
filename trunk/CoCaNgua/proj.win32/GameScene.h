@@ -18,6 +18,7 @@ public:
 	void quitGameCallback(CCObject *sender);
 	void ruleCallback(CCObject *sender);
 	void diceCallback(CCObject *sender);
+	//void diceCallbackForAI();
 	void buttonSkipCallback(CCObject *sender);
 	//void buttonGoCallback(CCObject *sender);
 	void buttonSelectCallback(CCObject *sender);
