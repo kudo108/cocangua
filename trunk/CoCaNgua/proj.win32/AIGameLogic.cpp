@@ -6,7 +6,7 @@
 
 // ham tra ve quan cua team khac nam o vi tri cuoi duong khong de kick
 AnimalUnit* AIGameLogic::otherUnitAtEndWay(GameObject* gameObject, AnimalUnit* unitCurr, int step){
-	MapLocation* map = new MapLocation(600);
+	MapLocation* map = new MapLocation(600, unitCurr->getSprite()->getParent());
 	int indexCurrPosition = map->getIndexLocation(unitCurr->getLocation());
 	for(int i = 0; i < 4; i++){
 		Animals* animalTeam = gameObject->getAnimal(i);
@@ -23,7 +23,7 @@ AnimalUnit* AIGameLogic::otherUnitAtEndWay(GameObject* gameObject, AnimalUnit* u
 }
 // ham kiem tra co quan nao chan duong di khong trong step buoc
 bool AIGameLogic::haveUnitOnWay(GameObject* gameObject, AnimalUnit* unitCurr, int step){
-	MapLocation* map = new MapLocation(600);
+	MapLocation* map = new MapLocation(600, unitCurr->getSprite()->getParent());
 	int indexCurrPosition = map->getIndexLocation(unitCurr->getLocation());
 	for(int i = 0; i < 4; i++){
 		Animals* animalTeam = gameObject->getAnimal(i);
