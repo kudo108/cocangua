@@ -95,6 +95,7 @@ void GameObject::buttonGoCallback(CCObject* sender)
 	case MODERN:
 		break;
 	case AI:
+		time = GameLogic::goCallback(this, tag);
 		break;
 	case RACING:
 		time = RacingGameLogic::goCallback(this,tag);
@@ -176,6 +177,7 @@ void GameObject::changeTurn()
 	default:
 		break;
 	}
+	
 	CCLog("ChangeTurn to player %d",currentTurn->getTeamNo());
 	currentTurn->setupTeamSpriteToParent();
 }
@@ -256,8 +258,7 @@ int GameObject::havingUnitOnWay(int step)
 		for(int j = 0; j < 16; j++)
 		{	
 			CCPoint unitLocation = getUnitByTag(j)->getLocation();
-			if(unitLocation.equals(way->getControlPointAtIndex(i)))
-			{
+			if(unitLocation.equals(way->getControlPointAtIndex(i))){
 				return 100; // neu co unit thi return la nhieu qua
 			}
 		}
