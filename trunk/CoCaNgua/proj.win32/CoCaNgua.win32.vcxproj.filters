@@ -124,6 +124,12 @@
     <ClInclude Include="SaveLoadScene.h">
       <Filter>include\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="AIGameScene.h">
+      <Filter>include\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="AIGameLogic.h">
+      <Filter>include\Object\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -194,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="SaveLoadScene.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="AIGameScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="AIGameLogic.cpp">
+      <Filter>source\object\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
