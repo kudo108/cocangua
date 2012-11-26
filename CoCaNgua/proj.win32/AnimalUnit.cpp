@@ -109,7 +109,7 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 
 	CCMenu* pMenu = CCMenu::createWithItem(button);
 	pMenu->setPosition(CCPointZero);
-	parent->addChild(pMenu,1);
+	parent->addChild(pMenu,10);
 
 	//explore Action 
 	//load effect
@@ -329,8 +329,10 @@ CCPoint AnimalUnit::getMileStone(CCPoint point1, CCPoint point2, float deltaX, f
 			return ccp(point2.x, point2.y);
 		}
 	}
+}
 
-bool AnimalUnit::isOnStartPosition(AnimalUnit* unit, int teamNo){
+bool AnimalUnit::isOnStartPosition(AnimalUnit* unit, int teamNo) 
+{
 	if(unit->getLocation().x == map->getStartLocation(teamNo).x && unit->getLocation().y == map->getStartLocation(teamNo).y)
 		return TRUE;
 	return FALSE;
