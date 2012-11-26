@@ -8,7 +8,7 @@
 #include "GameWinScene.h"
 #include "GameOverScene.h"
 #include "RacingGameLogic.h"
-
+#include "HelpScene.h"
 
 using namespace cocos2d;
 
@@ -66,7 +66,7 @@ bool GameScene::init()
 	//menu
 	CCArray *menuArray = CCArray::create();
 	int fontSize=Config::objectFontSize;
-	int jump =60;
+	int jump =40;
 	//demo game win
 
 	//save
@@ -76,7 +76,7 @@ bool GameScene::init()
 										menu_selector(GameScene::saveGameCallback));
 	pSaveGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pSaveGameButton);
-	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
+	pSaveGameButton->setPosition(ccp(size.width-100, 4*jump));
 	//Rule game
 	CCMenuItemFont* pRuleGameButton = CCMenuItemFont::create(
 										"Rule",
@@ -85,7 +85,15 @@ bool GameScene::init()
 	pRuleGameButton->setColor(ccColor3B());
 	pRuleGameButton->setFontSizeObj(fontSize);
 	menuArray->addObject(pRuleGameButton);
-	pRuleGameButton->setPosition(ccp(size.width-100, 2*jump));
+	pRuleGameButton->setPosition(ccp(size.width-100, 3*jump));
+	//help
+	CCMenuItemFont* pHelpGameButton = CCMenuItemFont::create(
+										"Help",
+										this,
+										menu_selector(GameScene::helpGameCallback));
+	pHelpGameButton->setFontSizeObj(fontSize);
+	menuArray->addObject(pHelpGameButton);
+	pHelpGameButton->setPosition(ccp(size.width-100, 2*jump));
 	//Quit game
 	CCMenuItemFont* pQuitGameButton = CCMenuItemFont::create(
 										"Quit",
@@ -300,12 +308,24 @@ void GameScene::quitGameCallback(CCObject *sender)
 		Config::loadGame = false;
 	}
 }
+void GameScene::helpGameCallback(CCObject *sender)
+{
+	//reset load game flag
+	Config::loadGame = false;
+	//back to menu
+	MusicHelper::playEffect(MusicHelper::sfxButton, false);
+	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
+		CCDirector::sharedDirector()->replaceScene(HelpScene::create());
+		MusicHelper::stopAllEffect();
+		Config::loadGame = false;
+	}
+}
 void GameScene::ruleCallback(CCObject *sender)
 {
 	//show rule
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
 	if(MessageBox( NULL, L"Unsaved game will be lost. Are you sure ? ",L"Quit", MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON2) == IDYES){
-		GameWinScene *gW = GameWinScene::create();
+		RuleScene *gW = RuleScene::create();
 		CCDirector::sharedDirector()->replaceScene(gW);
 		MusicHelper::stopAllEffect();
 	}

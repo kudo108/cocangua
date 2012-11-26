@@ -49,6 +49,7 @@ bool MenuScene::init()
 //	pClassicGameButton->setPosition(ccp(size.width / 2, size.height/2 + 3.5*jump));
 	menuArray->addObject(pClassicGameButton);
 	// Modern Game
+	/*
 	CCMenuItemFont* pModernGameButton = CCMenuItemFont::create(
 										"Modern Game",
 										this,
@@ -56,6 +57,7 @@ bool MenuScene::init()
 
 	pModernGameButton->setFontSizeObj(objectFontSize);
 	menuArray->addObject(pModernGameButton);
+	*/
 //	pModernGameButton->setPosition(ccp(size.width / 2, size.height/2 + 2.5*jump));
 	// AI game
 	CCMenuItemFont* pAIGameButton = CCMenuItemFont::create(
