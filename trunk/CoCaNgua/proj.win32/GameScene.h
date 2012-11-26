@@ -15,6 +15,7 @@ public:
 	
 	//button callback
 	void saveGameCallback(CCObject *sender);
+	void helpGameCallback(CCObject *sender);
 	void quitGameCallback(CCObject *sender);
 	void ruleCallback(CCObject *sender);
 	void diceCallback(CCObject *sender);
