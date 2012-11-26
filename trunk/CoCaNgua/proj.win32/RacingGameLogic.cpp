@@ -82,38 +82,7 @@ float RacingGameLogic::goCallback(GameObject* gameObject, int tag)
 							return time;
 						}
 					}
-				/*
-				int check = gameObject->havingUnitOnWay(step);
-				if(check < 16)//khong co hoac co con o cuoi
-				{
-					if(check >= 0)// co con o cuoi
-					{
-						if(gameObject->getUnitByTag(check)->getTeam()->getTeamNo() == unit->getTeam()->getTeamNo())//cung team
-						{
-							return -1.0f;
-							//holdCurrentTurn = true;//khong mat luot
-						}else
-						{
-							gameObject->getUnitByTag(check)->die(step);
-							float time = unit->go(step);
-							unit->kick(step);
-							checkForChangeTurn(gameObject);
-							return time;
-						}
-					}else {// check = -1 -> ko co
-						//free to go
-						float time = unit->go(step);
-						checkForChangeTurn(gameObject);
-						return time;
-					}
-				}
-				else// if (check == 100)// co qua nhieu
-				{
-					return -1.0f;
-					//khong di dc
-					//holdCurrentTurn = true;//khong mat luot
-				}
-				*/
+				
 			}else// neu di se qua chuong
 			{
 				return -1.0f;
@@ -122,6 +91,10 @@ float RacingGameLogic::goCallback(GameObject* gameObject, int tag)
 		}else // dung truoc cua chuong
 		{
 			int nextStep = unit->getFinishStep();
+			if (nextStep >= 6)
+			{
+				return -1.0f;
+			}
 			int teamNo = unit->getTeam()->getTeamNo();
 			if(canFinishFromRollResult(gameObject) && !gameObject->havingUnitOnFinish(teamNo, nextStep))
 			{
@@ -226,41 +199,7 @@ void RacingGameLogic::selectCallback(GameObject* gameObject)
 							gameObject->createButtonGo(next->getControlPointAtIndex(step-1),tag);
 						}
 					}
-					/*
-					int check = gameObject->havingUnitOnWay(step);
-					CCLog("Check: havingUnitOnWay = %d",check);
-					if(check < 16) // ko co hoac co 1 con o cuoi cung
-					{
-						if(check >=0) // co con cuoi cung
-						{
-							if(gameObject->getUnitByTag(check)->getTeam()->getTeamNo() == unit->getTeam()->getTeamNo())//cung team
-							{// => ko di dc => khong light up
-							}else//light up
-							{
-								CCPointArray *next = gameObject->getMap()->getNextWay();
-								for(int i = 0; i < step-1; i++)
-								{
-									gameObject->lightUpWay(next->getControlPointAtIndex(i));
-								}
-								//create Go button
-								gameObject->createButtonGo(next->getControlPointAtIndex(step-1),tag);
-							}
-						}
-						else//khong co con nao
-						{
-							CCPointArray * next = gameObject->getMap()->getNextWay();
-							for(int i = 0; i < step-1; i++)
-							{
-								gameObject->lightUpWay(next->getControlPointAtIndex(i));
-							}
-							gameObject->createButtonGo(next->getControlPointAtIndex(step-1),tag);
-						}
-					}
-					else 
-					{// co qua nhieu
-						//khong light up
-					}
-					*/
+					
 				}else// neu di se bi qua chuong dich-> khong cho di
 				{
 				}
@@ -268,6 +207,7 @@ void RacingGameLogic::selectCallback(GameObject* gameObject)
 		} else
 		{// dung truoc cong finish
 			int nextStep = unit->getFinishStep();
+			if(nextStep >= 6) return;
 			int teamNo = unit->getTeam()->getTeamNo();
 			if(canFinishFromRollResult(gameObject) && 
 						!gameObject->havingUnitOnFinish(teamNo, nextStep))

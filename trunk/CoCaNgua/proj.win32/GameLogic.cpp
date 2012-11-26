@@ -97,6 +97,10 @@ float GameLogic::goCallback(GameObject* gameObject, int tag)
 		}else // dung truoc cua chuong
 		{
 			int nextStep = unit->getFinishStep();
+			if ( nextStep >= 6) 
+			{
+				return -1.0f;
+			}
 			int teamNo = unit->getTeam()->getTeamNo();
 			if(gameObject->canFinishFromRollResult() && !gameObject->havingUnitOnFinish(teamNo, nextStep))
 			{
@@ -212,6 +216,7 @@ void GameLogic::selectCallback(GameObject* gameObject)
 		} else
 		{// dung truoc cong finish
 			int nextStep = unit->getFinishStep();
+			if (nextStep < 6){ 
 			int teamNo = unit->getTeam()->getTeamNo();
 			if(gameObject->canFinishFromRollResult())
 			{
@@ -219,6 +224,9 @@ void GameLogic::selectCallback(GameObject* gameObject)
 					//gameObject->lightUpWay(gameObject->getMap()->getFinishLocation(teamNo,nextStep));
 					gameObject->createButtonGo(gameObject->getMap()->getFinishLocation(teamNo,nextStep),0);
 				}
+			}
+			} else  
+			{
 			}
 		}
 	}

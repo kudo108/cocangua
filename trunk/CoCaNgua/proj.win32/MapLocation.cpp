@@ -229,6 +229,7 @@ MapLocation::~MapLocation(void)
 CCPoint MapLocation::getFinishLocation(int teamNo,int index)
 {
 	//map = 0,1,2,3: finish
+	if(index < 0 || index > 5) return ccp(-1,-1);
 	switch(teamNo)
 	{
 	case 0:
