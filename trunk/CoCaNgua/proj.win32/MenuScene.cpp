@@ -12,6 +12,7 @@
 #include "MapLocation.h"
 #include "MusicHelper.h"
 #include "SaveLoadScene.h"
+#include "AIGameScene.h"
 
 using namespace cocos2d;
 
@@ -135,23 +136,20 @@ bool MenuScene::init()
 void MenuScene::menuClassicGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
 	Config::gameType = CLASSIC;//classic
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }
 void MenuScene::menuModernGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
 	Config::gameType = MODERN;//modern
 	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
 }
 void MenuScene::menuAIGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
-	Config::gameType = CLASSIC;//AI
-	CCDirector::sharedDirector()->replaceScene(UnderBuildingScene::create());
+	Config::gameType = AI;//AI
+	CCDirector::sharedDirector()->replaceScene(AIGameScene::create());
 }
 void MenuScene::menuLoadGameCallback(CCObject* sender)
 {
@@ -186,7 +184,6 @@ void MenuScene::menuExitCallback(CCObject* sender)
 void MenuScene::menuRacingGameCallback(CCObject* sender)
 {
 	MusicHelper::playEffect(MusicHelper::sfxButton, false);
-	GameScene *gameScene = GameScene::create();
 	Config::gameType = RACING;//racing
 	CCDirector::sharedDirector()->replaceScene(GameScene::create());
 }

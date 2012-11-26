@@ -15,6 +15,9 @@ public:
 	CCPoint getStartLocation(int teamNo);//diem ra quan
 	CCPoint getFinishLocation(int teamNo,int step);//diem finish
 	CCPoint getInitLocation(int teamNo,int teamUnit);//diem trong chuong
+	int getIndexLocation(CCPoint point);
+	CCPoint getNextLocationInWay(int current,int step);
+
 	int wayColision[56];
 	int finishColision[24];
 	int startColision[16];
@@ -34,9 +37,6 @@ private:
 	CCPoint finishLocation3[6];
 	CCPoint wayLocation[56];
 	CCPoint initLocation[16];
-	
-	int getIndexLocation(CCPoint point);
-	CCPoint getNextLocationInWay(int current,int step);
 	
 	//nextWay array
 	CC_SYNTHESIZE(CCPointArray*, nextWay, NextWay);
