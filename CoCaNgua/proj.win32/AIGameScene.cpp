@@ -177,7 +177,7 @@ void AIGameScene::diceCallback(){
 		int random = rand()%4 + 1;
 		int kq2;
 		CCLog("random = %d", random);
-		if( (AIGameLogic::isHaveUnitOnInitLocation(gameObject->getCurrentTurn()) && random == 1) || random == 3)
+		if( (AIGameLogic::isHaveUnitOnInitLocation(gameObject->getCurrentTurn()) && random == 1 && gameObject->getCurrentTurn()->getTeamNo()!= PLAYER) || random == 3)
 			kq2 = kq1; 
 		else
 			kq2 = rand()%6+1;
