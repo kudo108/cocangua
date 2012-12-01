@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "GameLogic.h"
 #include "RacingGameLogic.h"
+#include "AIGameLogic.h"
 
 using namespace cocos2d;
 
@@ -95,7 +96,7 @@ void GameObject::buttonGoCallback(CCObject* sender)
 	case MODERN:
 		break;
 	case AI:
-		time = GameLogic::goCallback(this, tag);
+		time = AIGameLogic::goCallback(this, this->getCurrentSelectUnit(), tag, parent);
 		break;
 	case RACING:
 		time = RacingGameLogic::goCallback(this,tag);

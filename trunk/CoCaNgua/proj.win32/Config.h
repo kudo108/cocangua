@@ -63,6 +63,10 @@ public:
 	const static char* select_plist;
 	const static char* select_init_image;
 
+	const static char* team0;
+	const static char* team1;
+	const static char* team2;
+	const static char* team3;
 	//static int isExploring;
 
 	const static float animalNormalMoveTime;
@@ -70,6 +74,7 @@ public:
 	//variable
 	static int gameType;
 	static bool loadGame;
+
 };
 
 #endif

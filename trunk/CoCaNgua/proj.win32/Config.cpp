@@ -25,6 +25,12 @@ const char* Config::animal1_init_plist		= "/image/animal/vit/vit.plist";
 const char* Config::animal2_init_plist		= "/image/animal/ngua/horse.plist";
 const char* Config::animal3_init_plist		= "/image/animal/cho/dog.plist";
 
+//animal team
+const char* Config::team0					= "/image/animal/heo/pig1.png";
+const char* Config::team1					= "/image/animal/vit/Duck-1.png";
+const char* Config::team2					= "/image/animal/ngua/horse1.png";
+const char* Config::team3					= "/image/animal/cho/dog1.png";
+
 const char* Config::dice_plist			="/image/xucxac/xucxac.plist";
 const char* Config::dice_texture			="/image/xucxac/xucxac.png";
 

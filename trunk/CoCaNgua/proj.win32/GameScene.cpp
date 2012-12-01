@@ -162,7 +162,30 @@ bool GameScene::init()
 	menuArray->addObject(pButtonSkip);
 	
 	//Team point Lable
-	CCMenuItemFont* pTeam0Point = CCMenuItemFont::create("Heo:");
+	CCSprite* teamHeo =  CCSprite::create(Config::team0);
+	if(teamHeo){
+		teamHeo->setPosition(ccp(size.width-140,size.height/3+0*45+30));
+		this->addChild(teamHeo,-10);
+	}
+
+	CCSprite* teamVit =  CCSprite::create(Config::team1);
+	if(teamVit){
+		teamVit->setPosition(ccp(size.width-140,size.height/3+1*45+30));
+		this->addChild(teamVit,-10);
+	}
+
+	CCSprite* teamNgua =  CCSprite::create(Config::team2);
+	if(teamNgua){
+		teamNgua->setPosition(ccp(size.width-140,size.height/3+2*45+30));
+		this->addChild(teamNgua,-10);
+	}
+
+	CCSprite* teamCho =  CCSprite::create(Config::team3);
+	if(teamCho){
+		teamCho->setPosition(ccp(size.width-140,size.height/3+3*45+30));
+		this->addChild(teamCho,-10);
+	}
+	/*CCMenuItemFont* pTeam0Point = CCMenuItemFont::create("Heo:");
 	pTeam0Point->setFontSizeObj(Config::objectFontSize/2);
 	pTeam0Point->setPosition(ccp(size.width-140,size.height/3+0*45+30));
 	menuArray->addObject(pTeam0Point);
@@ -180,7 +203,7 @@ bool GameScene::init()
 	CCMenuItemFont* pTeam3Point = CCMenuItemFont::create("Cun:");
 	pTeam3Point->setFontSizeObj(Config::objectFontSize/2);
 	pTeam3Point->setPosition(ccp(size.width-140,size.height/3+3*45+30));
-	menuArray->addObject(pTeam3Point);
+	menuArray->addObject(pTeam3Point);*/
 	
 	//point
 	team0PointLable = CCMenuItemFont::create("0");
