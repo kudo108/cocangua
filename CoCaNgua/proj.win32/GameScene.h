@@ -24,6 +24,7 @@ public:
 	//void buttonGoCallback(CCObject *sender);
 	void buttonSelectCallback(CCObject *sender);
 	int loadGame();
+	
 	//test
 	//void gameOverCallback(CCObject* sender);
 	//void gameWinCallback(CCObject* sender);
@@ -34,6 +35,8 @@ private:
 	//CC_SYNTHESIZE(int, gameType, GameType);
 	CC_SYNTHESIZE(bool, isCalledDice, IsCalledDice);	
 	
+	
+
 	//dice
 	CC_SYNTHESIZE(CCSprite *, diceA, diceA);
 	CC_SYNTHESIZE(CCSprite *, diceB, diceB);

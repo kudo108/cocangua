@@ -15,7 +15,41 @@ Animals::Animals(int offset, CCNode* _p, MapLocation *_m)
 	unit1 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,1),map);
 	unit2 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,2),map);
 	unit3 = new AnimalUnit(this,_p,map->getInitLocation(teamNo,3),map);
-	
+	switch(teamNo){
+	case 0:
+		move_sound= (char*)MusicHelper::animal0_move_sound;
+		die_sound=(char*)MusicHelper::animal0_die_sound;
+		finish_sound=(char*)MusicHelper::animal_finish_sound;
+		select_sound=(char*)MusicHelper::animal0_select_sound;
+		break;
+	case 1:
+		move_sound=(char*)MusicHelper::animal1_move_sound;
+		die_sound=(char*)MusicHelper::animal1_die_sound;
+		finish_sound=(char*)MusicHelper::animal_finish_sound;
+		select_sound=(char*)MusicHelper::animal1_select_sound;
+		break;
+	case 2:
+		move_sound=(char*)MusicHelper::animal2_move_sound;
+		die_sound=(char*)MusicHelper::animal2_die_sound;
+		finish_sound=(char*)MusicHelper::animal_finish_sound;
+		select_sound=(char*)MusicHelper::animal2_select_sound;
+		break;
+	case 3:
+		move_sound=(char*)MusicHelper::animal3_move_sound;
+		die_sound=(char*)MusicHelper::animal3_die_sound;
+		finish_sound=(char*)MusicHelper::animal_finish_sound;
+		select_sound=(char*)MusicHelper::animal3_select_sound;
+		break;
+	default:
+		move_sound=(char*)MusicHelper::animal0_move_sound;
+		die_sound=(char*)MusicHelper::animal0_die_sound;
+
+		finish_sound=(char*)MusicHelper::animal_finish_sound;
+		select_sound=(char*)MusicHelper::animal0_select_sound;
+		break;
+	}
+	kick_sound=(char*)MusicHelper::animal_kick_sound;
+	born_sound=(char*)MusicHelper::animal_born_sound;
 	//create menuSprite
 	this->teamSprite = CCSprite::createWithTexture(unit0->getSprite()->getTexture());
 	this->teamSprite->setPosition(ccp(300,300));
@@ -25,10 +59,6 @@ Animals::Animals(int offset, CCNode* _p, MapLocation *_m)
 }
 
 
-Animals::Animals(){
-	
-}
-
 Animals::~Animals(void)
 {
 	delete unit0;
@@ -36,11 +66,18 @@ Animals::~Animals(void)
 	delete unit2;
 	delete unit3;
 }
-
-void Animals::afterDie(){
-	//MusicHelper::playEffect(unit0->die_sound, false);
+//play effects
+void Animals::beforeDie(CCNode* sender, char* dieSound){
+	MusicHelper::playEffect(dieSound, false);
 }
 
+void Animals::whileBorn(CCNode* sender, char* bornSound){
+	MusicHelper::playEffect(bornSound, false);
+}
+
+void Animals::afterFinish(CCNode* sender, char* finishSound){
+	MusicHelper::playEffect(finishSound, false);
+}
 void Animals::increasePointByGo(int step)
 {
 	point += step*10;

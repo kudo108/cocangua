@@ -12,7 +12,6 @@ class Animals
 {
 public:
 	Animals(int offset, CCNode *_parent, MapLocation* _m);
-	Animals(void);
 	~Animals(void);
 	void increasePointByGo(int step);
 	void increasePointByKick();
@@ -22,7 +21,9 @@ public:
 	void removeTeamSpriteFromParent();
 	bool isFinished();
 	void increaseFinished();
-	void afterDie();
+	void whileBorn(CCNode* sender, char* born_sound);
+	void afterFinish(CCNode* sender, char* finish_sound);
+	void beforeDie(CCNode* sender, char* die_sound);
 	AnimalUnit *getUnit(int index);
 private:
 
@@ -39,6 +40,14 @@ private:
 	CC_SYNTHESIZE_READONLY(CCSprite*, teamSprite, TeamSprite);
 	CC_SYNTHESIZE_READONLY(CCAction*, spriteAction, SpriteAction);
 	CC_SYNTHESIZE(int, unitFinished, UnitFinished);
+
+	//sound
+	char* move_sound;
+	char* die_sound;
+	char* kick_sound;
+	char* born_sound;
+	char* finish_sound;
+	char* select_sound;
 };
 
 #endif

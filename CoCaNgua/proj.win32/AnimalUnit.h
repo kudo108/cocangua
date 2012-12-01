@@ -29,6 +29,7 @@ public:
 	CCPoint getMileStone(CCPoint point1, CCPoint point2, float deltaX, float deltaY);
 	void printOutDebugInfo();
 	void playSelectSound();
+	
 private:
 	CC_SYNTHESIZE_READONLY(Animals* ,team, Team);
 	CC_SYNTHESIZE(bool, onWay, OnWay);
@@ -44,13 +45,8 @@ private:
 	CC_SYNTHESIZE_READONLY(CCFiniteTimeAction*, exploreAction, ExploreAction);
 
 	MapLocation *map;
-	//sound
-	const char* move_sound;
-	const char* die_sound;
-	const char* kick_sound;
-	const char* born_sound;
-	const char* finish_sound;
-	const char* select_sound;
+	
+	
 };
 
 #endif

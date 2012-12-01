@@ -368,11 +368,9 @@ void GameScene::diceCallback(CCObject *sender)
 	}
 	if(!isCalledDice)
 	{
-		if(MusicHelper::getIdDice() == -1){
-			MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
-		}else{
-			MusicHelper::resumeEffect(MusicHelper::getIdDice());
-		}
+		
+		MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
+		
 		isCalledDice = TRUE;
 		diceA->stopAllActions();
 		diceA->runAction( diceAminationAction);
@@ -381,7 +379,7 @@ void GameScene::diceCallback(CCObject *sender)
 		gameObject->resetDice();
 	}
 	else{
-		MusicHelper::pauseEffect(MusicHelper::getIdDice());
+		MusicHelper::stopEffect(MusicHelper::getIdDice());
 
 		char fn[128];
 		int kq=rand()%6+1;
