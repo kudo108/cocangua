@@ -138,7 +138,7 @@ void GameLogic::selectCallback(GameObject* gameObject)
 		return;//khac team ko cho di
 	}
 	
-	MusicHelper::playEffect(unit->select_sound, false);
+	MusicHelper::playEffect(unit->getTeam()->select_sound, false);
 
 	CCLog("selected unit");
 	//select amination unit

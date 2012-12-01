@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "AnimalUnit.h"
 #include "AIGameLogic.h"
+#include "GameWinScene.h"
+#include "GameOverScene.h"
 
 #define  PLAYER 0
 #define  NOT_HAVE_UNIT_ON_WAY 100
@@ -214,10 +216,11 @@ void AIGameScene::autoPlay(){
 
 void AIGameScene::buttonSkipCallback(CCObject* sender){
 	// chi PLAYER moi dc nhan SKIP, AI tu dong SKIP
-	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER )
+	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER) {
 		this->skipCallBack();
-	else 
-		MessageBox(NULL,L"ONLY PLAYER can click SKIP button", L"", MB_OK | MB_ICONINFORMATION);
+	} else {
+		//MessageBox(NULL,L"ONLY PLAYER can click SKIP button", L"", MB_OK | MB_ICONINFORMATION);
+	}	
 }
 
 void AIGameScene::skipCallBack(){
@@ -235,20 +238,30 @@ void AIGameScene::skipCallBack(){
 			CCLog("skip dice roll");
 		else{
 			gameObject->changeTurn();
-			int teanNo = gameObject->getCurrentTurn()->getTeamNo();
-			if( teanNo != PLAYER) {
+			int teamNo = gameObject->getCurrentTurn()->getTeamNo();
+			if( teamNo != PLAYER) {
+				/*pButtonSkip->setEnabled(false);
+				pButtonSkip->setColor(ccGRAY);*/
+				diceButton1->setEnabled(false);
+				diceButton2->setEnabled(false);
 				CCLog("AUTO PLAY ");
 				this->autoPlay();
+			}else{
+				/*pButtonSkip->setEnabled(true);
+				pButtonSkip->setColor(ccORANGE);*/
+				diceButton1->setEnabled(true);
+				diceButton2->setEnabled(true);
 			}
 		}
 		gameObject->resetDice();
 	}
 }
 void AIGameScene::buttonDiceCallback(CCObject* sender){
-	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER)
+	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER){
 		this->diceCallback();
-	else 
-		MessageBox(NULL,L"only PLAYER can click DICE button", L"", MB_OK | MB_ICONINFORMATION);
+	} else {
+		//MessageBox(NULL,L"only PLAYER can click DICE button", L"", MB_OK | MB_ICONINFORMATION);
+	}
 }
 void AIGameScene::diceCallback(){
 	CCLog("tu dong do xi ngau");
@@ -422,3 +435,4 @@ void AIGameScene::autoSkip(){
 	CCDelayTime* timeDelay = CCDelayTime::create(2.0);
 	this->runAction(CCSequence::create(timeDelay, autoSkip, NULL));
 }
+

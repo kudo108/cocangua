@@ -31,12 +31,10 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 			imageLink=Config::animal0_init_image;
 			plistLink=Config::animal0_init_plist;
 			temp="pig%d copy.png";
-			move_sound=MusicHelper::animal0_move_sound;
-			die_sound=MusicHelper::animal0_die_sound;
-			kick_sound=MusicHelper::animal_kick_sound;
-			born_sound=MusicHelper::animal_born_sound;
-			finish_sound=MusicHelper::animal_finish_sound;
-			select_sound=MusicHelper::animal0_select_sound;
+			/*move_sound= (char*)MusicHelper::animal0_move_sound;
+			die_sound=(char*)MusicHelper::animal0_die_sound;
+			finish_sound=(char*)MusicHelper::animal_finish_sound;
+			select_sound=(char*)MusicHelper::animal0_select_sound;*/
 			break;
 		}
 	case 1:
@@ -44,12 +42,10 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 			imageLink=Config::animal1_init_image;
 			plistLink=Config::animal1_init_plist;
 			temp="Duck-%d.png";
-			move_sound=MusicHelper::animal1_move_sound;
-			die_sound=MusicHelper::animal1_die_sound;
-			kick_sound=MusicHelper::animal_kick_sound;
-			born_sound=MusicHelper::animal_born_sound;
-			finish_sound=MusicHelper::animal_finish_sound;
-			select_sound=MusicHelper::animal1_select_sound;
+			/*move_sound=(char*)MusicHelper::animal1_move_sound;
+			die_sound=(char*)MusicHelper::animal1_die_sound;
+			finish_sound=(char*)MusicHelper::animal_finish_sound;
+			select_sound=(char*)MusicHelper::animal1_select_sound;*/
 			break;
 		}
 	case 2:
@@ -57,12 +53,10 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 			imageLink=Config::animal2_init_image;
 			plistLink=Config::animal2_init_plist;
 			temp="horse%d.png";
-			move_sound=MusicHelper::animal2_move_sound;
-			die_sound=MusicHelper::animal2_die_sound;
-			kick_sound=MusicHelper::animal_kick_sound;
-			born_sound=MusicHelper::animal_born_sound;
-			finish_sound=MusicHelper::animal_finish_sound;
-			select_sound=MusicHelper::animal2_select_sound;
+			/*move_sound=(char*)MusicHelper::animal2_move_sound;
+			die_sound=(char*)MusicHelper::animal2_die_sound;
+			finish_sound=(char*)MusicHelper::animal_finish_sound;
+			select_sound=(char*)MusicHelper::animal2_select_sound;*/
 			break;
 		}
 	case 3:
@@ -70,17 +64,18 @@ AnimalUnit::AnimalUnit(Animals* _team, CCNode* _p,CCPoint _initLocation, MapLoca
 			imageLink=Config::animal3_init_image;
 			plistLink=Config::animal3_init_plist;
 			temp="dog%d.png";
-			move_sound=MusicHelper::animal3_move_sound;
-			die_sound=MusicHelper::animal3_die_sound;
-			kick_sound=MusicHelper::animal_kick_sound;
-			born_sound=MusicHelper::animal_born_sound;
-			finish_sound=MusicHelper::animal_finish_sound;
-			select_sound=MusicHelper::animal3_select_sound;
+			/*move_sound=(char*)MusicHelper::animal3_move_sound;
+			die_sound=(char*)MusicHelper::animal3_die_sound;
+			finish_sound=(char*)MusicHelper::animal_finish_sound;
+			select_sound=(char*)MusicHelper::animal3_select_sound;*/
 			break;
 		}
 	default: 
 		break;
 	}
+
+	/*kick_sound=(char*)MusicHelper::animal_kick_sound;
+	born_sound=(char*)MusicHelper::animal_born_sound;*/
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(plistLink);
 	//CCSpriteBatchNode *danceSpriteBatchNode =  CCSpriteBatchNode::create(imageLink);
 	char fn[128];
@@ -146,23 +141,22 @@ float AnimalUnit::born()
 	CCPoint next = getBornLocation();
 	float time = Config::animalNormalMoveTime*2;//2x faster
 	CCFiniteTimeAction *moveAction = CCMoveTo::create(time,next);
+	CCCallFunc* callFunc = CCCallFuncND::create(button, callfuncND_selector(Animals::whileBorn), this->getTeam()->born_sound);
 	location = next;
-	this->button->runAction(moveAction);
+	this->button->runAction(CCSequence::create(moveAction, callFunc, NULL));
 	
 	this->team->increasePointByBorn();
-
-	//play music
-	MusicHelper::playEffect(this->born_sound, false);
 
 	onWay = true;
 	path_went = 1;
 	CCLog("Unit born at %f, %f", location.x, location.y);
 	return time;
 }
+
 float AnimalUnit::go(int step)
 {//di them dc step buoc
 	//play music during time*step second
-	MusicHelper::playEffect(this->move_sound, false);
+	MusicHelper::playEffect(this->getTeam()->move_sound, false);
 	float time = Config::animalNormalMoveTime;
 	CCArray *listGo = CCArray::create();
 	map->getNextLocationsInWay(location,step);
@@ -184,12 +178,13 @@ float AnimalUnit::go(int step)
 }
 float AnimalUnit::finish()
 {//den dich buoc thu x
-	MusicHelper::playEffect(finish_sound, false);
+	
 	float time = Config::animalNormalMoveTime;
 	CCPoint next = map->getFinishLocation(team->getTeamNo(),finishedStep);
-	CCAction* move = CCMoveTo::create(time,next);
+	CCFiniteTimeAction* move = CCMoveTo::create(time,next);
+	CCCallFunc* callFunc = CCCallFuncND::create(button, callfuncND_selector(Animals::afterFinish), this->getTeam()->finish_sound);
 	this->location = next;
-	button->runAction(move);
+	button->runAction(CCSequence::create(move, callFunc, NULL));
 	this->team->increasePointByFinish(1);
 	finishedStep++;
 	//update to team
@@ -200,6 +195,8 @@ float AnimalUnit::finish()
 	CCLog("Unit finished to %d", finishedStep);
 	return time;
 }
+
+
 void AnimalUnit::die(int step)
 {//chet, ve lai chuong
 	
@@ -237,16 +234,15 @@ void AnimalUnit::die(int step)
 	
 	//CCActionInterval *actionMove = CCMoveTo::create(1.0f,initLocation);
 	//CCAction *easeIn = CCEaseExponentialIn::create(actionMove);
-	CCActionInterval *actionScaleUp = CCScaleTo::create(0.7f, 3.0f);
+	//CCActionInterval *actionScaleUp = CCScaleTo::create(0.7f, 3.0f);
 	CCAction *actionMove = CCEaseElasticOut::create(CCMoveTo::create(0.5f,initLocation));
-	CCActionInterval *actionScaleDown = CCEaseExponentialIn::create(CCScaleTo::create(0.3f, 1.0f));
-	CCFiniteTimeAction *callfunc = CCCallFunc::create(button, callfunc_selector(Animals::afterDie));
-	//arrayAction->addObject(easeToMiddle);
-	//arrayAction->addObject(actionScaleUp);
-	arrayAction->addObject(actionMove);
-	arrayAction->addObject(actionScaleDown);
-	arrayAction->addObject(callfunc);
+	//CCActionInterval *actionScaleDown = CCEaseExponentialIn::create(CCScaleTo::create(0.3f, 1.0f));
+	CCFiniteTimeAction *callfunc = CCCallFuncND::create(button, callfuncND_selector(Animals::beforeDie), this->getTeam()->die_sound);
 
+	arrayAction->addObject(callfunc);
+	arrayAction->addObject(actionMove);
+	//arrayAction->addObject(actionScaleDown);
+	
 	CCAction *action = CCSequence::create(arrayAction);
 	button->runAction(action);
 
@@ -255,6 +251,8 @@ void AnimalUnit::die(int step)
 	onWay=false;
 	CCLog("Unit died");
 }
+
+
 
 void AnimalUnit::dance()
 {
@@ -280,7 +278,6 @@ CCPoint AnimalUnit::getBornLocation()
 void AnimalUnit::kick(int step)
 {
 	//play music after step*config::unitNormalMoveTime
-	MusicHelper::playEffect(this->kick_sound, false);
 	this->team->increasePointByKick();
 }
 void AnimalUnit::printOutDebugInfo()
@@ -291,10 +288,6 @@ void AnimalUnit::printOutDebugInfo()
 	CCLog("--isOnWay = %s",onWay?"true":"false");
 	CCLog("--finishedStep = %d",finishedStep);
 	CCLog("----end----------------");
-}
-void AnimalUnit::playSelectSound()
-{
-	MusicHelper::playEffect(select_sound, false);
 }
 
 //go from point1 to point2, 1/10 of distance every step

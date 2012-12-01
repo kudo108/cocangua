@@ -32,11 +32,13 @@ private:
 	CC_SYNTHESIZE(CCMenuItemFont*, team2PointLable, Team2PointLable);
 	CC_SYNTHESIZE(CCMenuItemFont*, team3PointLable, Team3PointLable);
 
+	//CC_SYNTHESIZE(CCMenuItemFont*, pButtonSkip, ButtonSkip);
 	GameObject* gameObject;
 	int diceResultA;
 	int diceResultB;
 	CCMenuItemSprite *diceButton1;
 	CCMenuItemSprite *diceButton2;
+
 };
 
 #endif
