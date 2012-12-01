@@ -10,14 +10,73 @@
 #define  NOT_HAVE_UNIT_ON_WAY 100
 using namespace cocos2d;
 
+
+
 bool AIGameScene::init()
 {	
-	GameScene::init();
+	if(! CCScene::init() ) return false;
 
-	CCArray* menuArray = CCArray::create();
+	isCalledDice = FALSE;
+	
+	CCLog("Game type = %d", Config::gameType);
+	gameObject = new GameObject(this);
+	int currentTurn = 0;
+	
+	if(!MusicHelper::getHasTurnOffMusic()){
+		MusicHelper::stopBackgroundMusic();
+		MusicHelper::playBackgroundMusic(MusicHelper::gameplayMusic, GP_MUSIC);
+	}
+
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	//set dice and diceAction
+	
+	//background
+	CCSprite* background = CCSprite::create(Config::newGameBackground);
+    if(background){
+		background->setPosition(ccp(size.width/2-100, size.height/2));
+		this->addChild(background,-1);
+	}
+	//draw way helper
+	gameObject->getMap()->drawWay();
 
+	//menu border
+	CCSprite* menuBorder = CCSprite::create(Config::menuBorder);
+    if(menuBorder)
+	{
+		menuBorder->setPosition(ccp(size.width-100, size.height/2));
+		this->addChild(menuBorder,-1);
+	}
+	
+	//menu
+	CCArray *menuArray = CCArray::create();
+	int fontSize=Config::objectFontSize;
+	int jump =60;
+
+	//save
+	CCMenuItemFont* pSaveGameButton = CCMenuItemFont::create(
+										"Save",
+										this,
+										menu_selector(GameScene::saveGameCallback));
+	pSaveGameButton->setFontSizeObj(fontSize);
+	menuArray->addObject(pSaveGameButton);
+	pSaveGameButton->setPosition(ccp(size.width-100, 3*jump));
+	//Rule game
+	CCMenuItemFont* pRuleGameButton = CCMenuItemFont::create(
+										"Rule",
+										this,
+										menu_selector(GameScene::ruleCallback));
+	pRuleGameButton->setColor(ccColor3B());
+	pRuleGameButton->setFontSizeObj(fontSize);
+	menuArray->addObject(pRuleGameButton);
+	pRuleGameButton->setPosition(ccp(size.width-100, 2*jump));
+	//Quit game
+	CCMenuItemFont* pQuitGameButton = CCMenuItemFont::create(
+										"Quit",
+										this,
+										menu_selector(GameScene::quitGameCallback));
+	pQuitGameButton->setFontSizeObj(fontSize);
+	menuArray->addObject(pQuitGameButton);
+	pQuitGameButton->setPosition(ccp(size.width-100, jump));
+	//----------------------------------------------------------
 	//xuc xac
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(Config::dice_plist);
 	CCSpriteBatchNode *diceSpriteBatchNode =  CCSpriteBatchNode::create(Config::dice_texture);
@@ -57,11 +116,11 @@ bool AIGameScene::init()
 	this->diceB->retain();
 
 	//xuc xac button 1
-	CCMenuItemSprite *diceButton1 = CCMenuItemSprite::create(diceA,diceA,diceA,this,menu_selector(AIGameScene::buttonDiceCallback));
+	diceButton1 = CCMenuItemSprite::create(diceA,diceA,diceA,this,menu_selector(AIGameScene::buttonDiceCallback));
 	diceButton1->setPosition(ccp(size.width-100-40, size.height-60));
 	menuArray->addObject(diceButton1);
 	//xuc xac button 2
-	CCMenuItemSprite *diceButton2 = CCMenuItemSprite::create(diceB,diceB,diceB,this,menu_selector(AIGameScene::buttonDiceCallback));
+	diceButton2 = CCMenuItemSprite::create(diceB,diceB,diceB,this,menu_selector(AIGameScene::buttonDiceCallback));
 	diceButton2->setPosition(ccp(size.width-100+40, size.height-60));
 	menuArray->addObject(diceButton2);
 
@@ -77,6 +136,62 @@ bool AIGameScene::init()
 	pButtonSkip->setColor(ccORANGE);
 	menuArray->addObject(pButtonSkip);
 
+	//Team point Lable
+	CCSprite* teamHeo =  CCSprite::create(Config::team0);
+	if(teamHeo){
+		teamHeo->setPosition(ccp(size.width-140,size.height/3+0*45+30));
+		this->addChild(teamHeo,-10);
+	}
+
+	CCSprite* teamVit =  CCSprite::create(Config::team1);
+	if(teamVit){
+		teamVit->setPosition(ccp(size.width-140,size.height/3+1*45+30));
+		this->addChild(teamVit,-10);
+	}
+
+	CCSprite* teamNgua =  CCSprite::create(Config::team2);
+	if(teamNgua){
+		teamNgua->setPosition(ccp(size.width-140,size.height/3+2*45+30));
+		this->addChild(teamNgua,-10);
+	}
+
+	CCSprite* teamCho =  CCSprite::create(Config::team3);
+	if(teamCho){
+		teamCho->setPosition(ccp(size.width-140,size.height/3+3*45+30));
+		this->addChild(teamCho,-10);
+	}
+
+	//point
+	team0PointLable = CCMenuItemFont::create("0");
+	team0PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team0PointLable->setPosition(ccp(size.width-60, size.height/3+30));
+	team0PointLable->setColor(ccGREEN);
+	menuArray->addObject(team0PointLable);
+	team0PointLable->retain();
+
+	team1PointLable = CCMenuItemFont::create("0");
+	team1PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team1PointLable->setPosition(ccp(size.width-60, size.height/3+75));
+	team1PointLable->setColor(ccGREEN);
+	menuArray->addObject(team1PointLable);
+	team1PointLable->retain();
+
+	team2PointLable = CCMenuItemFont::create("0");
+	team2PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team2PointLable->setPosition(ccp(size.width-60, size.height/3+120));
+	team2PointLable->setColor(ccGREEN);
+	menuArray->addObject(team2PointLable);
+	team2PointLable->retain();
+
+	team3PointLable = CCMenuItemFont::create("0");
+	team3PointLable->setFontSizeObj(Config::objectFontSize/2);
+	team3PointLable->setPosition(ccp(size.width-60, size.height/3+165));
+	team3PointLable->setColor(ccGREEN);
+	menuArray->addObject(team3PointLable);
+	team3PointLable->retain();
+
+	gameObject->getAnimal(currentTurn)->setupTeamSpriteToParent();
+
 	// Create menu, it's an autorelease object
 	CCMenu* pMenu = CCMenu::createWithArray(menuArray);
 	pMenu->setPosition(CCPointZero);
@@ -90,70 +205,63 @@ bool AIGameScene::init()
 }
 
 void AIGameScene::autoPlay(){
-	CCLog("tu dong do xi ngau");
-	// tu dong do xi ngau cho AI
+	CCLog("ham AutoPlay tu dong do xi ngau");
 	CCCallFunc* firstCallDice		= CCCallFunc::create(this, callfunc_selector(AIGameScene::diceCallback));
 	CCCallFunc* secondCallDice		= CCCallFunc::create(this, callfunc_selector(AIGameScene::diceCallback));
 	CCDelayTime* timeDelay			= CCDelayTime::create(2.0f);
 	this->runAction(CCSequence::create(timeDelay, firstCallDice, timeDelay, secondCallDice,NULL));
 }
 
-void AIGameScene::buttonSkipCallback(CCObject* sender)
-{
-	// chi PLAYER moi dc nhan SKIP, AI tu dong nhan SKIP
-	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER)
+void AIGameScene::buttonSkipCallback(CCObject* sender){
+	// chi PLAYER moi dc nhan SKIP, AI tu dong SKIP
+	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER )
 		this->skipCallBack();
 	else 
-		MessageBox(NULL,L"only player can click SKIP button", L"", MB_OK | MB_ICONINFORMATION);
+		MessageBox(NULL,L"ONLY PLAYER can click SKIP button", L"", MB_OK | MB_ICONINFORMATION);
 }
 
 void AIGameScene::skipCallBack(){
-	if(gameObject->getLockUser())
-	{
+	if(gameObject->getLockUser()){
 		MusicHelper::playEffect(MusicHelper::btWrong, false);
-	}else
-	{
+	}
+	else{
 		gameObject->unSelect();
 		gameObject->deleteAllLightUpWay();
 		gameObject->removeButtonGo();
 		gameObject->resetCurrentUnit();
 		gameObject->setLockDice(false);
 		MusicHelper::playEffect(MusicHelper::btSkip, false);
-		if(gameObject->canContinueRollFromRollResult())
-		{//skip luot thoi
+		if(gameObject->canContinueRollFromRollResult())//skip luot thoi
 			CCLog("skip dice roll");
-		}else
-		{
+		else{
 			gameObject->changeTurn();
-			int teanNo =gameObject->getCurrentTurn()->getTeamNo();
+			int teanNo = gameObject->getCurrentTurn()->getTeamNo();
 			if( teanNo != PLAYER) {
+				CCLog("AUTO PLAY ");
 				this->autoPlay();
-			}
-			else{
-				// TO DO: player do xi ngau va choi
-				// MessageBox(NULL,L"PLAYER", L"", MB_OK | MB_ICONINFORMATION);
-				CCLog("PLAYER ");
 			}
 		}
 		gameObject->resetDice();
 	}
 }
 void AIGameScene::buttonDiceCallback(CCObject* sender){
-	this->diceCallback();
+	if(gameObject->getCurrentTurn()->getTeamNo() == PLAYER)
+		this->diceCallback();
+	else 
+		MessageBox(NULL,L"only PLAYER can click DICE button", L"", MB_OK | MB_ICONINFORMATION);
 }
 void AIGameScene::diceCallback(){
 	CCLog("tu dong do xi ngau");
-	if(gameObject->getLockUser())
-	{
+	if(gameObject->getLockUser()){
 		MusicHelper::playEffect(MusicHelper::btWrong,false);
 		return;
 	}
 
-	if(!isCalledDice)
-	{
+	if(!isCalledDice){
 		if(MusicHelper::getIdDice() == -1){
 			MusicHelper::setIdDice(MusicHelper::playEffect(MusicHelper::sfxDice, true));
-		}else{
+		}
+		else{
 			MusicHelper::resumeEffect(MusicHelper::getIdDice());
 		}
 		isCalledDice = TRUE;
@@ -192,11 +300,10 @@ void AIGameScene::diceCallback(){
 		CCLog("kq xuc xac %d %d",gameObject->getDiceResult1(),gameObject->getDiceResult2());
 
 		// kiem tra ket qua xi ngau
-		diceResultA = gameObject->getDiceResult1();
-		diceResultB = gameObject->getDiceResult2();
+		this->diceResultA = gameObject->getDiceResult1();
+		this->diceResultB = gameObject->getDiceResult2();
 
-		if(gameObject->canContinueRollFromRollResult())
-		{
+		if(gameObject->canContinueRollFromRollResult()){
 			MusicHelper::playEffect(MusicHelper::moreTurn,false);
 		}
 
@@ -211,48 +318,44 @@ void AIGameScene::checkResultDice(int diceA, int diceB){
 		AnimalUnit* unitSelected = this->unitSelected(diceA, diceB);
 		if (unitSelected == NULL){// ko chon duoc unit de di -> SKIP den team ke tiep
 			CCLog("khong chon duoc unit nao!");
-			this->skipCallBack();
+			this->autoSkip();
 			if(diceA == diceB) // neu do duoc 2 xi ngau bang nhau ma ko di duoc phai skip 1 lan nua
 				this->skipCallBack();
 		}
 		else{
 			gameObject->setCurrentSelectUnit(unitSelected);
-			time = AIGameLogic::goCallback(gameObject, unitSelected, diceB+diceA);
+			time = AIGameLogic::goCallback(gameObject, unitSelected, diceB+diceA, this);
 			if (time == -1.0){ // ko di duoc
 				CCLog("GO nhung ko di duoc");
-				this->skipCallBack();
+				if(diceA == diceB)
+					this->autoPlay();
+				else
+					this->autoSkip();
 				return;
 			}
 			if (diceA == diceB){ // truong hop do xi ngau giong nhau, sau khi GO duoc do xi ngau lan nua
 				this->autoPlay();
 			}
-			else{// truong hop xi ngau khac nhau, sau khi GO tu dong SKIP
-				CCLog("truong hop so xi ngau khac nhau -> khong duoc di nua");
-				this->skipCallBack();
-			}
 		}
+		gameObject->resetDice();
+		
 	}
-	else { // PLAYER
-		CCLog("player GO");
-		time = GameLogic::goCallback(gameObject, diceA+diceB);
-		if(time == -1)
-			CCLog("PLAYER GO nhung ko di duoc");
-		if(diceA != diceB){
-			this->skipCallBack();
-			//this->autoPlay();
+	else{ // PLAYER
+		if(diceB != diceA){
+			if(!AIGameScene::haveAnyPlayerOnWay(gameObject)) // tat ca player o trong chuong -> tu dong skip
+				this->autoSkip();
 		}
 	}
 }
 
 AnimalUnit* AIGameScene::unitSelected(int diceA, int diceB){
 	AnimalUnit* selectUnit = NULL;
-	
 	if (diceA == diceB){
 		CCLog("2 xi ngau bang nhau");
 		// uu tien ve dich truoc
 		for (int i = 0 ; i<4 ; i++)	{
 			AnimalUnit* unit = gameObject->getCurrentTurn()->getUnit(i);
-			if(unit->getPathWent() == 56){
+			if(unit->getPathWent() == 56 && unit->getFinishStep()<6){
 				CCLog("unit uu tien ve dich");
 				return unit;
 			}
@@ -281,6 +384,7 @@ AnimalUnit* AIGameScene::unitSelected(int diceA, int diceB){
 
 	} else{//diceA # diceB
 		// uu tien ve dich truoc
+		/*
 		CCLog("2 xi ngau khac nhau");
 		for (int i = 0 ; i<4 ; i++)	{
 			AnimalUnit* unit = gameObject->getCurrentTurn()->getUnit(i);
@@ -289,17 +393,32 @@ AnimalUnit* AIGameScene::unitSelected(int diceA, int diceB){
 				return unit;
 			}
 		}
+		*/
 		for (int i = 0 ; i<4 ; i++)	{
 			AnimalUnit* unit = gameObject->getCurrentTurn()->getUnit(i);
-			bool havingUnitOnWay = AIGameLogic::haveUnitOnWay(gameObject, unit, diceB+diceA);
+			int step = diceA+diceB;
+			bool havingUnitOnWay = AIGameLogic::haveUnitOnWay(gameObject, unit, step);
 			CCLog("havingUnitOnWay = %f", havingUnitOnWay);
-			if(unit->isOnWay() && havingUnitOnWay == FALSE){
+			if(unit->isOnWay() && havingUnitOnWay == FALSE && unit->getPathWent()+step<=56){
 					CCLog("unit dang di tren duong");
 					return unit;
 			}
 		}
 	}
-
 	return selectUnit;
 }
 
+bool AIGameScene::haveAnyPlayerOnWay(GameObject* gameObject){
+	for(int i = 0; i < 4; i++){
+		AnimalUnit* unit = gameObject->getAnimal(PLAYER)->getUnit(i);
+		if(unit->isOnWay())
+			return TRUE;
+	}
+	return FALSE;
+}
+
+void AIGameScene::autoSkip(){
+	CCCallFunc* autoSkip = CCCallFunc::create(this, callfunc_selector(AIGameScene::skipCallBack));
+	CCDelayTime* timeDelay = CCDelayTime::create(2.0);
+	this->runAction(CCSequence::create(timeDelay, autoSkip, NULL));
+}

@@ -1,6 +1,7 @@
 #include "AIGameLogic.h"
 #include "cocos2d.h"
 #include "MapLocation.h"
+#include "AIGameScene.h"
 
 #define CUA_CHUONG 56
 
@@ -65,10 +66,9 @@ bool AIGameLogic::isHaveUnitOnInitLocation(Animals* team){
 	return FALSE;
 }
 
-float AIGameLogic::goCallback(GameObject* gameObject,AnimalUnit* unitSelected, int tag){
-	//bool holdCurrentTurn = false;
-	//if (gameObject->getCurrentSelectUnit()==NULL) return -1.0f;
-
+float AIGameLogic::goCallback(GameObject* gameObject,AnimalUnit* unitSelected, int tag, CCNode* scene){
+	
+	AIGameScene* aiscene = (AIGameScene*) scene;
 	//delete lightup
 	gameObject->deleteAllLightUpWay();
 
@@ -88,6 +88,11 @@ float AIGameLogic::goCallback(GameObject* gameObject,AnimalUnit* unitSelected, i
 					unluckyUnit->die(-1);
 					float time = unitSelected->born();
 					unitSelected->kick(-1);
+
+					if(!isContinueRollDice(gameObject)){
+						//gameObject->changeTurn();
+						aiscene->autoSkip();
+					}
 					return time;
 				}
 				else // cung team ko ra quan dc
@@ -95,6 +100,9 @@ float AIGameLogic::goCallback(GameObject* gameObject,AnimalUnit* unitSelected, i
 			}
 			else{
 				float time = unitSelected->born();
+				if(!isContinueRollDice(gameObject)){
+					aiscene->autoSkip();
+				}
 				return time;
 			}
 		}
@@ -112,21 +120,37 @@ float AIGameLogic::goCallback(GameObject* gameObject,AnimalUnit* unitSelected, i
 						unLuckyUnit->die(step);
 					else// cung team -> khong di duoc
 						return -1.0;
-				return unitSelected->go(step);
+				float time =  unitSelected->go(step);
+				if(!isContinueRollDice(gameObject)){
+					aiscene->autoSkip();
+				}
+				return time;
 			}
 			else// neu di se qua chuong
 				return -1.0f;
 		}
-		
+
 		else{ // dung truoc cua chuong
 			int nextStep = unitSelected->getFinishStep();
+			if(nextStep >= 6) return -1.0f;
 			int teamNo = unitSelected->getTeam()->getTeamNo();
-			if(gameObject->canFinishFromRollResult() && !gameObject->havingUnitOnFinish(teamNo, nextStep))
-				return unitSelected->finish();
-			else
+			float time;
+			if(gameObject->canFinishFromRollResult() && !gameObject->havingUnitOnFinish(teamNo, nextStep)){
+				time =unitSelected->finish();
+				if(!isContinueRollDice(gameObject)){
+					aiscene->autoSkip();
+				}
+				return time;
+			}else
 				return -1.0f;//khong mat luot
 		}
 	}
 	else
 		return -1.0f;
+}
+
+bool AIGameLogic::isContinueRollDice(GameObject* gameObj){
+	if(gameObj->getDiceResult1() != gameObj->getDiceResult2())
+		return FALSE;
+	return TRUE;
 }
