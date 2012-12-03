@@ -91,7 +91,7 @@ void HelpScene::loadSpriteAtCurrent()
 	if(sprite)
 	{
 		sprite->setPosition(ccp(size.width/2.0f,size.height/2.0f));
-		sprite->setScale(0.8);
+		sprite->setScale(0.8f);
 		this->addChild(sprite,cur);
 		sprite->retain();
 	}
